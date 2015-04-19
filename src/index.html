@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html ng-app="app">
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>首页</title>
+    <!--[if lt IE 9]>
+    <script src="javaScripts/js/html5shiv.min.js"></script>
+    <script src="javaScripts/js/respond.min.js"></script>
+    <![endif]-->
+    <script src="pub.js"></script>
+    <!--<script src="javaScripts/js/require.min.js" data-main="main"></script>-->
+    <link rel="stylesheet" href="javaScripts/bootstrap/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="/css/index.css"/>
+    <link rel="stylesheet" href="/css/welcome.css"/>
+</head>
+<body>
+<div class="Navigation">
+    <ul class="navbox" id="a">
+        <li><a href="#/">公司首页</a></li>
+        <li><a href="http://www.17sucai.com/">关于我们</a></li>
+        <li><a href="http://www.17sucai.com/">公司介绍</a></li>
+        <li><a href="http://www.17sucai.com/">产品展示</a></li>
+        <li><a href="http://www.17sucai.com/">联系我们</a></li>
+
+    </ul>
+</div>
+
+<div ng-view></div>
+
+<!--<script src="javaScripts/js/jquery-1.4.2.min.js"></script>-->
+<script src="javaScripts/js/jquery.bgpos.js"></script>
+<script src="javaScripts/controllers/controller.js"></script>
+<script src="javaScripts/controllers/app.js"></script>
+</body>
+</html>
