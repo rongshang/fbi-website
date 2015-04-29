@@ -28,7 +28,7 @@ require.config({
     urlArgs: 'v=1.0.0.1'
 });
 
-require(['../js/jquery.bgpos'],
+require(['../js/navigation.js'],
     function(_jj) {
         alert(_jj.fn.jquery);
     }

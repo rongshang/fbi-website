@@ -5,12 +5,7 @@
 
 var app = angular.module('app');
 app.config(['$routeProvider',function($routeProvider){
-    $routeProvider.when(
-        '/',
-        {
-            templateUrl:'views/welcome.html',
-            controller: 'welcomeCtrl'
-        }
-    );
+    $routeProvider
+        .when('/welcome', {templateUrl:'views/welcome.html',controller: 'welcomeCtrl'});
 }
 ]);

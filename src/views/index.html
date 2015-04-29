@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html LANG="zh-CN" ng-app="app">
+<head>
+    <meta charset="UTF-8">
+    <title>青岛融商软件集成有限公司</title>
+    <!--[if lt IE 9]>
+    <script src="../javaScripts/js/html5shiv.min.js"></script>
+    <script src="../javaScripts/js/respond.min.js"></script>
+    <![endif]-->
+    <script src="../pub.js"></script>
+    <script src="../javaScripts/js/index.js"></script>
+    <!--<script src="javaScripts/js/require.min.js" data-main="main"></script>-->
+    <link rel="stylesheet" href="/css/index.css"/>
+    <link rel="stylesheet" href="/css/welcome.css"/>
+</head>
+<body>
+
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <img src="../images/logo1.png">
+        </div>
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav"  >
+                <li><a href="#/welcome">公司首页</a></li>
+                <li><a href="#">产品展示</a></li>
+                <li><a href="#">联系我们</a></li>
+                <li class="dropdown">
+                    <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown"
+                       role="button" aria-expanded="false">关于我们<span class="caret"></span></a>
+                    <ul class="dropdown-menu" role="menu">
+                        <li><a href="#">公司简介</a></li>
+                        <li><a href="#">企业文化</a></li>
+                        <li><a href="#">发展历程</a></li>
+                        <li><a href="#">资质荣誉</a></li>
+                    </ul>
+                </li>
+                <li><a href="#">招贤纳士</a></li>
+            </ul>
+        </div><!--/.nav-collapse -->
+    </div>
+</nav>
+
+<!--<div class="Navigation">-->
+    <!--<ul class="navbox" id="a">-->
+        <!--<li><a href="#/">公司首页</a></li>-->
+        <!--<li><a href="http://www.17sucai.com/">关于我们</a></li>-->
+        <!--<li><a href="http://www.17sucai.com/">公司介绍</a></li>-->
+        <!--<li><a href="http://www.17sucai.com/">产品展示</a></li>-->
+        <!--<li><a href="http://www.17sucai.com/">联系我们</a></li>-->
+    <!--</ul>-->
+<!--</div>-->
+
+<div class="glyphicon-text-height"></div>
+<div class="glyphicon-text-height"></div>
+<div class="glyphicon-text-height"></div>
+<div class="glyphicon-text-height"></div>
+<div ng-view></div>
+<!--客服-->
+<div class="main-im">
+    <div id="open_im" class="open-im">&nbsp;</div>
+    <div class="im_main" id="im_main">
+        <div id="close_im" class="close-im"><a href="javascript:void(0);" title="点击关闭">&nbsp;</a></div>
+        <a href="http://wpa.qq.com/msgrd?v=3&uin=741967386&site=qq&menu=yes" class="im-qq qq-a" title="在线QQ客服">
+            <div class="qq-container"></div>
+            <div class="qq-hover-c"><img class="img-qq" src="../images/qq.png"></div>
+            <span> QQ在线咨询</span> </a>
+        <div class="im-tel">
+            <div>售前咨询热线</div>
+            <div class="tel-num">400-123-8888</div>
+            <div>售后咨询热线</div>
+            <div class="tel-num">021-12345678</div>
+        </div>
+        <div class="im-footer" style="position:relative">
+            <div class="weixing-container">
+                <div class="weixing-show" style="display:none">
+                    <div class="weixing-txt">微信扫一扫<br>融商有限公司</div>
+                    <img class="weixing-ma" src="../images/weixing-ma.jpg">
+                    <div class="weixing-sanjiao"></div>
+                    <div class="weixing-sanjiao-big"></div>
+                </div>
+            </div>
+            <div class="go-top"><a href="javascript:;" title="返回顶部"></a> </div>
+            <div style="clear:both"></div>
+        </div>
+    </div>
+</div>
+
+
+<!--<script src="../javaScripts/js/navigation.js"></script>-->
+
+<script src="../javaScripts/controllers/controller.js"></script>
+<script src="../javaScripts/controllers/app.js"></script>
+
+
+</body>
+</html>

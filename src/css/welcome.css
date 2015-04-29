@@ -1,4 +1,6 @@
-
+/*
+首页背景图片样式
+*/
 @font-face {
     font-family: 'MisoBold';
     src: url('../images/engine/beifen/miso-bold-webfont.eot');
@@ -510,3 +512,22 @@
 	25% { -moz-transform: translateX(-2px);transform: translateX(-2px); }
 	75% { -moz-transform: translateX(2px);transform: translateX(2px); }
 }
+
+/*
+图片循环播放
+*/
+*{margin:0;padding:0;list-style-type:none;}
+a,img{border:0;}
+.title{height:24px;line-height:24px;font-size:18px;width:375px;margin:10px auto;}
+/* shutter */
+.shutter{position:relative;overflow:hidden;height:303px;width:375px;margin:0px auto;border:solid 1px #ddd;}
+.shutter li{position:absolute;left:0;top:0;}
+.shutter-nav{display:inline-block;margin-right:8px;color:#fff;padding:2px 6px;background:#333;border:1px solid #fff;font-family:Tahoma;font-weight:bold;font-size:12px;cursor:pointer;}
+.shutter-cur-nav{display:inline-block;margin-right:8px;color:#fff;padding:2px 6px;background:#ff7a00;border:1px solid #fff;font-family:Tahoma;font-weight:bold;font-size:12px;cursor:pointer;}
+
+/*
+新闻滚动
+*/
+
+#news_rolling{ height:280px; overflow:hidden;}/*这个高度设置配合每次滚动的行数可实现多行滚动*/
+#news_rolling li{ line-height:24px; height:24px; border-bottom:1px #CCCCCC dashed;}
