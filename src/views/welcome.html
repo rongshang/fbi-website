@@ -19,8 +19,9 @@
         <div id="wowslider-container">
             <div class="ws_images">
                 <ul>
-                    <!--<li ng-repeat='image in images'>-->
-                        <!--<a href="#"><img src="{{image.uri}}" alt="123" title="" /></a>-->
+
+                    <!--<li ng-repeat='image in datas.images'>-->
+                        <!--<a href="#"><img src="{{image.uri}}" alt="456" title="标题1234" /></a>-->
                     <!--</li>-->
                     <li><a href="#"><img src="images/data/images/slide2.png" alt="456" title="标题1234" /></a>标题1234</li>
                     <!--<li><a href="#"><img src="images/data/images/slide3.png" alt="789" title="标题1234" /></a>标题1234</li>-->
@@ -193,20 +194,13 @@
                     <div class="wrap">
                         <div id="news_rolling">
                             <ul>
-                                <li ng-repeat='news in news'>
-                                <a href="#">{{news.title}}</a>
+                                <li ng-repeat='news in datas.news'>
+                                    <a href="#">{{news.title}}</a>
                                 </li>
-                                <!--<li><a href="#" target="_blank">1.原生Ajax的XMLHttpRequest对象使用指南！</a></li>-->
-                                <!--<li><a href="#" target="_blank">2.jquery实现复选框全选、全不选和反选！</a></li>-->
-                                <!--<li><a href="#" target="_blank">3.Js中eval函数的详解与危害！</a></li>-->
-                                <!--<li><a href="#" target="_blank">4.HTML5图片的画法详解！</a></li>-->
-                                <!--<li><a href="#" target="_blank">5.HTML5 Canvas的基本使用函数详解！</a></li>-->
-                                <!--<li><a href="#" target="_blank">6.五种开发常见的开源协议！</a></li>-->
-                                <!--<li><a href="#" target="_blank">7.什么是node.js ！</a></li>-->
-                                <!--<li><a href="#" target="_blank">8.7种常用的排序算法详细讲解！</a></li>-->
-                                <!--<li><a href="#" target="_blank">9.常见HTTP状态详细讲解一览表！</a></li>-->
-                                <!--<li><a href="#" target="_blank">10.IE下的有条件注释详细讲解！</a></li>-->
 
+                                <li ng-repeat='image in datas.images'>
+                                    <a href="#"><img src="{{image.uri}}" alt="456" title="标题1234" /></a>
+                                </li>
                             </ul>
                         </div>
                     </div>

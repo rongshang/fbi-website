@@ -1,5 +1,6 @@
 'use strict'
 
+var howdo = require('howdo');
 var express = require('express');
 var router = express.Router();
 var path = require('path');
@@ -8,18 +9,23 @@ var ImagesDao = require("../src/javaScripts/dao/imagesDao");
 var news = require("../src/javaScripts/models").news;
 var images = require("../src/javaScripts/models").images;
 
-exports.welcome = function(req,res,next){
-  //最上边的图片
-  ImagesDao.getAll(function(err,images){
-      res.json(images);
-  });
-
-}
-
-exports.news = function(req,res,next){
-  //新闻
-  NewsDao.getAll(function(err,news){
-    res.json(news);
-  });
-
+exports.welcome = function(req,res){
+    howdo
+        .task(function(done){
+            //最上边的图片
+            ImagesDao.getAll(function(err,images){
+                console.log("========"+images);
+                done(null,images);
+            });
+        })
+        .task(function(done){
+            //新闻
+            NewsDao.getAll(function(err,news){
+                done(null,news);
+            })
+        })
+        // 异步顺序并行
+        .together(function(err,images,news){
+            res.json({'news':news,'images':images});
+        });
 }
