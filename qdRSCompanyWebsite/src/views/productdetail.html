@@ -1,0 +1,52 @@
+<script type="text/javascript" src="javaScripts/js/video.js"></script>
+<link rel="stylesheet"  type="text/css" href="/css/productdetail.css"/>
+<link rel="stylesheet"  type="text/css" href="/css/video-js.css" />
+
+<div  class="container">
+      <div class="left">
+           <div  class=" well lefttop"><strong>产品中心</strong></div>
+           <div  class="leftcenter" style="margin-top: -15px; overflow: auto;  ">
+             <ul id="myTab" class="nav nav-tabs" style="width: 150px;border: 0px;">
+               <li ng-repeat="productTitle in datas.productsTitle" ng-class="{true:'active'}[productTitle._id==datas.productid]" id="{{productTitle._id}}" >
+                   <a ng-href="#/productdetail?id={{productTitle._id}}" data-toggle="tab">{{productTitle.title}}</a>
+               </li>
+             </ul>
+           </div>
+      </div>
+      <div class="panel panel-default"id="right" >
+            <div class="panel-heading" id="panel-heading">
+              <span class="flag"></span>&nbsp;&nbsp;<a>首页</a>&nbsp;> &nbsp;产品详情
+            </div>
+            <div id="myTabContent" class="tab-content">
+                <div class="tab-pane fade in active" id="product1">
+                   <div style="margin-left: 220px;">
+                      <video id="example_video_1"
+                             class="video-js vjs-default-skin"
+                             controls preload="none"
+                             width="440" height="250"
+                             poster="/images/mrtp.jpg"
+                             data-setup="{}">
+                        <source  src="{{datas.products.videosrc}}" type="video/mp4" />
+                        <source src="http://video-js.zencoder.com/oceans-clip.webm" type='video/webm' />
+                        <source src="http://video-js.zencoder.com/oceans-clip.ogv" type='video/ogg' />
+                        <track kind="captions" src="/images/videoother/captions.vtt" srclang="en" label="English" />
+                      </video>
+                   </div>
+                <div style="text-align: center"><h3><strong>{{datas.products.title}}</strong></h3></div>
+                    {{datas.products.concat}}
+                </div>
+            </div>
+      </div>
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function(){
+        $("#myTab li").css("width","200px");
+    });
+
+    _V_.options.flash.swf = "/images/videoother/video-js.swf";
+
+</script>
+
+</body>
+</html>
