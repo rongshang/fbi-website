@@ -13,6 +13,7 @@ var productsSchema = new Schema({
     smallImg:String,
     title:String,
     videosrc:String,
+    websiteUrl:String,
     concat:String
 });
 

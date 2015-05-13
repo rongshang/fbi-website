@@ -1,0 +1,67 @@
+.left{
+    height: 400px;
+    width: 200px;
+    float: left;
+}
+.lefttop{
+    padding: 10px 15px 10px;
+    height: 45px;
+    font-size: 21px;
+    background:url("../images/right_m.jpg")repeat-x ;
+}
+.leftcenter{
+    margin-top: 1px;
+    height: 450px;
+    width: 200px;
+    background-color: #e3e3e3;
+}
+.right{
+    margin-left:220px;
+    width: 900px;
+}
+.panel-h{
+    background:url("../images/right_m.jpg")repeat-x ;
+    height:47px;
+}
+.flag{
+    background:url("../images/flag.jpg") no-repeat ;
+    height: 30px;
+    width: 24px;
+    margin-left: 20px;
+    float: left;
+
+}
+.right_top_font{
+    margin-left: 70px;
+    padding-top: 15px;
+}
+.product{
+    width: 160px;
+    height: 200px;
+    border: 1px solid #e0e0e0;
+    float: left;
+    margin: 10px 30px 10px;
+    text-align: center;
+    padding: 10px;
+}
+.img{
+    width: 135px;
+    height: 163px;
+}
+.product_s{
+    text-align: center;
+}
+.product_a{
+    color: #000000;
+    text-decoration: none;
+    font-size: small;
+}
+.plist{
+   height: 480px;border: 1px solid #e0e0e0;
+}
+.right_end_fy{
+    margin-left: 490px;margin-top:3px;float: left;
+}
+.right_end_go{
+    width:30px;margin-top: 4px;
+}

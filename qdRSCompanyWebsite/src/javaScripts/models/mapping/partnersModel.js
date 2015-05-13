@@ -10,6 +10,7 @@ var partnersSchema = new Schema({
     _id:String,
     title:String,
     concat:String,
+    image:String,
     createdTime:String
 });
 

@@ -13,11 +13,11 @@ var partnersDao = require("../src/javaScripts/dao/partnersDao");
 exports.allPartnersAjax = function(req,res){
     var pageCount=0;
     var pageNo = parseInt(req.query.pageNo);
-    var pageSize = 10;
+    var pageSize = 5;
     howdo
         .task(function(done){
             partnersDao.countByQuery({},function(err,count){
-                pageCount = Math.ceil(count/pageSize);
+                pageCount = parseInt(Math.ceil(count/pageSize));
                 if(pageNo>pageCount){
                     pageNo = pageCount;
                 }else if(pageNo<0){
@@ -27,11 +27,17 @@ exports.allPartnersAjax = function(req,res){
             });
         })
         .task(function(done){
-            partnersDao.findAllByPage({createdTime:-1},pageNo,pageSize,function(err,parents){
-                done(null,parents);
+            partnersDao.findAllByPage({createdTime:-1},pageNo,pageSize,function(err,allPartners){
+                done(null,allPartners);
             });
         })
-        .together(function(err,pageNo,pageCount,news){
-            res.json({'title':'我们的伙伴','pageNo':pageNo,'pageCount':pageCount,'allParents':parents});
+        .task(function(done){
+            //合作伙伴图片
+            partnersDao.findByLimitAndSortAndQuery({image:{$ne:""}},{createdTime:-1},3,function(err,partnerImgs){
+                done(null,partnerImgs);
+            });
+        })
+        .together(function(err,pageNo,pageCount,allPartners,partnerImgs){
+            res.json({'title':'我们的伙伴','pageNo':pageNo,'pageCount':pageCount,'allPartners':allPartners,'partnerImgs':partnerImgs});
         });
 }

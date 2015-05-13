@@ -10,6 +10,7 @@ var newsSchema = new Schema({
     _id:String,
     createdTime:String,
     title:String,
+    image:String,
     concat:String
 });
 

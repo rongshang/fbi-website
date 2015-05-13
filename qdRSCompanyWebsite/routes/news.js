@@ -32,8 +32,14 @@ exports.allnewsAjax = function(req,res){
                 done(null,news);
             });
         })
-        .together(function(err,pageNo,pageCount,news){
-            res.json({'title':'新闻中心','pageNo':pageNo,'pageCount':pageCount,'allNews':news});
+        .task(function(done){
+            //新闻图片
+            newsDao.findByLimitAndSortAndQuery({image:{$ne:""}},{createdTime:-1},3,function(err,newsImgs){
+                done(null,newsImgs);
+            });
+        })
+        .together(function(err,pageNo,pageCount,news,newsImgs){
+            res.json({'title':'新闻中心','pageNo':pageNo,'pageCount':pageCount,'allNews':news,'newsImgs':newsImgs});
         });
 }
 

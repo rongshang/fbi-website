@@ -69,16 +69,16 @@
         <div class="row">
             <div class="col-md-6">
                 <div class="page-header">
-                    <h3>我们的伙伴 <small><a ng-href="#/allpartner?pageNo=1">More</a></small> </h3>
+                    <h3>我们的伙伴<small><a ng-href="#/allpartner?pageNo=1">More</a></small> </h3>
                 </div>
                 <div class="row">
                     <div class="col-sm-4" ng-repeat="partner in datas.partners" >
                         <div ng-class="{0:'panel panel-default',1:'panel panel-primary',2:'panel panel-success',3:'panel panel-info',4:'panel panel-warning',5:'panel panel-danger'}[$index]">
                             <div class="panel-heading">
-                               <h3 class="panel-title"><a ng-href="#">{{partner.title}}</a></h3>
+                               <h3 class="panel-title"><a ng-href="javascript:void(0)">{{partner.title}}</a></h3>
                             </div>
                             <div class="panel-body">
-                                <a ng-href="#">{{partner.concat | limitTo :11}}...</a>
+                                <a ng-href="javascript:void(0)" title="{{partner.concat}}">{{partner.concat | limitTo :10}}...</a>
                             </div>
                         </div>
                     </div><!-- /.col-sm-4 -->
@@ -86,7 +86,7 @@
             </div>
             <div class="col-md-6">
                 <div class="page-header">
-                    <h3>我们的产品</h3>
+                    <h3>我们的产品<small><a ng-href="#/allproduct?pageNo=1" >More</a></small></h3>
                 </div>
                 <div class="row">
                     <div class="col-sm-4" ng-repeat="product in datas.products" >
@@ -95,7 +95,7 @@
                                 <h3 class="panel-title"><a ng-href="#/productdetail?id={{product._id}}">{{product.title}}</a></h3>
                             </div>
                             <div class="panel-body">
-                                <a ng-href="#/productdetail?id={{product._id}}">{{product.concat | limitTo :11}}...</a>
+                                <a ng-href="#/productdetail?id={{product._id}}">{{product.concat | limitTo :10}}...</a>
                             </div>
                         </div>
                     </div><!-- /.col-sm-4 -->

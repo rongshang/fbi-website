@@ -10,6 +10,9 @@ app.config(['$routeProvider',function($routeProvider){
         .when('/allnews', {templateUrl:'views/allnews.html',controller: 'allNewsCtrl'})
         .when('/newsdetail', {templateUrl:'views/newsdetail.html',controller: 'newsdetailCtrl'})
         .when('/productdetail', {templateUrl:'views/productdetail.html',controller: 'productdetailCtrl'})
-        .when('/allpartner', {templateUrl:'views/allpartner.html',controller: 'allpartnerCtrl'});
+        .when('/allpartner', {templateUrl:'views/allpartner.html',controller: 'allpartnerCtrl'})
+        .when('/allrecruitment', {templateUrl:'views/allrecruitment.html',controller: 'allrecruitmentCtrl'})
+        .when('/recruitmentdetail', {templateUrl:'views/recruitmentdetail.html',controller: 'recruitmentdetailCtrl'})
+        .when('/allproduct', {templateUrl:'views/allproduct.html',controller: 'allproductCtrl'});
 }
 ]);
