@@ -13,6 +13,13 @@ app.config(['$routeProvider',function($routeProvider){
         .when('/allpartner', {templateUrl:'views/allpartner.html',controller: 'allpartnerCtrl'})
         .when('/allrecruitment', {templateUrl:'views/allrecruitment.html',controller: 'allrecruitmentCtrl'})
         .when('/recruitmentdetail', {templateUrl:'views/recruitmentdetail.html',controller: 'recruitmentdetailCtrl'})
-        .when('/allproduct', {templateUrl:'views/allproduct.html',controller: 'allproductCtrl'});
-}
+        .when('/allproduct', {templateUrl:'views/allproduct.html',controller: 'allproductCtrl'})
+        .when('/companyprofile', {templateUrl:'views/companyprofiles.html',controller: 'companyprofilesCtrl'})
+        .when('/enterpriseculture', {templateUrl:'views/enterprisecultures.html',controller: 'enterpriseculturesCtrl'})
+        .when('/development', {templateUrl:'views/developments.html',controller: 'developmentsCtrl'})
+        .when('/honor', {templateUrl:'views/honors.html',controller: 'honorsCtrl'})
+        .when('/contactus', {templateUrl:'views/contactus.html',controller: 'contactusCtrl'})
+
+
+    }
 ]);

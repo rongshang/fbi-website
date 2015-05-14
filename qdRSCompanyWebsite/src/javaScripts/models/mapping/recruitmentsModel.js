@@ -13,6 +13,9 @@ var recruitmentsSchema = new Schema({
     count:String,
     address:String,
     salary:String,
+    tel:String,
+    email:String,
+    treatment:String,
     concat:String
 });
 

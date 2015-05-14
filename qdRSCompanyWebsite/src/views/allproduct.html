@@ -1,9 +1,11 @@
 <link rel="stylesheet" href="/css/allproduct.css"/>
 <div  class="container">
     <div class="left">
-        <div  class=" well lefttop"><strong>产品中心</strong></div>
+        <div  class="well lefttop" style="text-align: center">
+            <strong ng-bind="datas.title"></strong>
+        </div>
         <div  class="leftcenter" style="margin-top: -15px;">
-            <ul id="myTab" class="nav nav-tabs" style="width: 150px;border: 0px;">
+            <ul id="myTab" class="nav nav-tabs nav-pills" style="width: 150px;border: 0px;">
                 <li ng-repeat="productTitle in datas.productsTitle" ng-class="{true:'active'}[productTitle._id==datas.productid]" id="{{productTitle._id}}" >
                     <a ng-href="#/productdetail?id={{productTitle._id}}" data-toggle="tab">{{productTitle.title}}</a>
                 </li>
@@ -12,7 +14,7 @@
     </div>
     <div class="panel panel-default right" >
         <div class="panel-heading panel-h">
-            <span class="flag"></span>&nbsp;&nbsp;<a>首页</a>&nbsp;> &nbsp;产品列表
+            <span class="flag"></span>&nbsp;&nbsp;<a ng-href="#/welcome">首页</a>&nbsp;> &nbsp;产品列表
         </div>
         <div class="plist">
                 <div class="product" ng-repeat="product in datas.allProducts">
@@ -39,7 +41,7 @@
 
 <script type="text/javascript">
     $(document).ready(function(){
-        $("#myTab li").css("width","202px")
+        $("#myTab li").css("width","180px")
     });
 
     function go(){

@@ -4,9 +4,11 @@
 
 <div  class="container">
       <div class="left">
-           <div  class=" well lefttop"><strong>产品中心</strong></div>
-           <div  class="leftcenter" style="margin-top: -15px; overflow: auto;  ">
-             <ul id="myTab" class="nav nav-tabs" style="width: 150px;border: 0px;">
+           <div  class=" well lefttop" style="text-align: center">
+               <strong ng-bind="datas.title"></strong>
+           </div>
+           <div  class="leftcenter" style="margin-top: -15px; text-align: center">
+             <ul id="myTab" class="nav nav-tabs nav-pills" style="width: 150px;border: 0px;">
                <li ng-repeat="productTitle in datas.productsTitle" ng-class="{true:'active'}[productTitle._id==datas.productid]" id="{{productTitle._id}}" >
                    <a ng-href="#/productdetail?id={{productTitle._id}}" data-toggle="tab">{{productTitle.title}}</a>
                </li>
@@ -15,7 +17,9 @@
       </div>
       <div class="panel panel-default"id="right" >
             <div class="panel-heading" id="panel-heading">
-              <span class="flag"></span>&nbsp;&nbsp;<a>首页</a>&nbsp;> &nbsp;产品详情
+              <span class="flag"></span>
+                &nbsp;&nbsp;
+                <a ng-href="#/welcome">首页</a>&nbsp;> &nbsp;产品演示
             </div>
             <div id="myTabContent" class="tab-content">
                 <div class="tab-pane fade in active" id="product1">
@@ -41,12 +45,9 @@
 
 <script type="text/javascript">
     $(document).ready(function(){
-        $("#myTab li").css("width","200px");
+        $("#myTab li").css("width","180px");
     });
 
     _V_.options.flash.swf = "/images/videoother/video-js.swf";
 
 </script>
-
-</body>
-</html>

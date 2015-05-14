@@ -14,7 +14,7 @@ exports.productdetailAjax = function(req,res){
     var productid = req.query.productid;
     howdo
         .task(function(done){
-            productsDao.findBySort({createdTime:-1},function(err,productsTitle){
+            productsDao.findByLimitAndSortAndQuery({},{createdTime:-1},8,function(err,productsTitle){
                 done(null,productsTitle);
             });
         })
@@ -24,7 +24,7 @@ exports.productdetailAjax = function(req,res){
             });
         })
         .together(function(err,productsTitle,products){
-            res.json({'productid':productid,'productsTitle':productsTitle,'products':products});
+            res.json({'title':'产品中心','productid':productid,'productsTitle':productsTitle,'products':products});
         })
 
 }
@@ -52,7 +52,7 @@ exports.allProductAjax = function(req,res){
             });
         })
         .task(function(done){
-            productsDao.findBySort({createdTime:-1},function(err,productsTitle){
+            productsDao.findByLimitAndSortAndQuery({},{createdTime:-1},8,function(err,productsTitle){
                 done(null,productsTitle);
             });
         })

@@ -92,7 +92,7 @@ app.controller('allrecruitmentCtrl',['$scope','$http','$location',function($scop
 
 //职位控制器
 app.controller('recruitmentdetailCtrl',['$scope','$http','$location',function($scope,$http,$location){
-    var pageNo = $location.search().id;
+    var id = $location.search().id;
     var active = $location.search().active;
     $http({
         method:'GET',
@@ -103,3 +103,47 @@ app.controller('recruitmentdetailCtrl',['$scope','$http','$location',function($s
     });
 }
 ]);
+
+//公司简介控制器
+app.controller('companyprofilesCtrl',['$scope','$http','$location',function($scope,$http,$location){
+    $http.get('/companyprofile').success(function(data) {
+        $scope.datas= data;
+    });
+}
+]);
+
+//企业文化控制器
+app.controller('enterpriseculturesCtrl',['$scope','$http','$location',function($scope,$http,$location){
+    $http.get('/enterpriseculture').success(function(data) {
+        $scope.datas= data;
+    });
+}
+]);
+
+//发展历程控制器
+app.controller('developmentsCtrl',['$scope','$http','$location',function($scope,$http,$location){
+    $http.get('/development').success(function(data) {
+        $scope.datas= data;
+    });
+}
+]);
+
+//资质荣誉控制器
+app.controller('honorsCtrl',['$scope','$http','$location',function($scope,$http,$location){
+    $http.get('/honor').success(function(data) {
+        $scope.datas= data;
+    });
+}
+]);
+
+//联系我们控制器
+app.controller('contactusCtrl',['$scope','$http','$location',function($scope,$http,$location){
+    $http.get('/contactus').success(function(data) {
+        $scope.datas= data;
+    });
+}
+]);
+
+
+
+

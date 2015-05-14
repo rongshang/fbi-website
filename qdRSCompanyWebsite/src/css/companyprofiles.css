@@ -13,7 +13,7 @@
     margin-top: 1px;
     height: 450px;
     width: 180px;
-    border: 1px solid #e3e3e3;
+    border: 2px solid #e3e3e3;
     /*background-color: #e3e3e3;*/
 }
 #right{
@@ -36,9 +36,4 @@
 .right_top_font{
     margin-left: 70px;
     padding-top: 15px;
-}
-
-.nav-pills > li.active > a, .nav-pills > li.active > a:hover, .nav-pills > li.active > a:focus{
-    background-color:#e3e3e3;
-    color: #080808;
 }

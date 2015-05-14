@@ -33,7 +33,7 @@ exports.allRecruitmentAjax = function(req,res){
             });
         })
         .task(function(done){
-            recruitmentsDao.findBySort({createdTime:-1},function(err,allRecruitmentsTitle){
+            recruitmentsDao.findByLimitAndSortAndQuery({},{createdTime:-1},8,function(err,allRecruitmentsTitle){
                 done(null,allRecruitmentsTitle);
             });
         })
@@ -44,9 +44,10 @@ exports.allRecruitmentAjax = function(req,res){
 
 exports.recruitmentdetailAjax = function(req,res){
     var id = req.query.id;
+    var active = req.query.active;
    howdo
         .task(function(done){
-            recruitmentsDao.findBySort({createdTime:-1},function(err,allRecruitmentsTitle){
+            recruitmentsDao.findByLimitAndSortAndQuery({},{createdTime:-1},8,function(err,allRecruitmentsTitle){
                 done(null,allRecruitmentsTitle);
             });
         })

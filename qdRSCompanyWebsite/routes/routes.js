@@ -5,6 +5,8 @@ var news = require('./news');
 var products = require('./products');
 var partners = require('./partners');
 var recruitments = require('./recruitments');
+var aboutus = require('./aboutus');
+var contactus = require('./contactus');
 
 module.exports = function (app) {
     app.get('/welcome',index.welcome);
@@ -22,5 +24,17 @@ module.exports = function (app) {
     app.get('/allRecruitmentAjax',recruitments.allRecruitmentAjax);
     //职位详细内容
     app.get('/recruitmentdetailAjax',recruitments.recruitmentdetailAjax);
+    //公司简介
+    app.get('/companyprofile',aboutus.companyprofile);
+    //企业文化
+    app.get('/enterpriseculture',aboutus.enterpriseculture);
+    //公司发展历程
+    app.get('/development',aboutus.development);
+    //资质荣誉
+    app.get('/honor',aboutus.honor);
+    //联系我们
+    app.get('/contactus',contactus.contactus);
+
+
 
 };

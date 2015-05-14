@@ -14,9 +14,9 @@
                     <a  data-toggle="collapse"  href="javascript:void(0);#zw">
                       职位详情<span class="caret"></span>
                     </a>
-                    <ul class="collapse">
+                    <ul id="zw" class="collapse">
                         <li ng-repeat="recruitmentsTitle in datas.allRecruitmentsTitle">
-                            <a href="" data-toggle="tab">{{recruitmentsTitle.job}}</a>
+                            <a ng-href="#/recruitmentdetail?active=3&id={{recruitmentsTitle._id}}" data-toggle="tab">{{recruitmentsTitle.job}}</a>
                         </li>
                     </ul>
                 </li>
@@ -25,7 +25,7 @@
     </div>
     <div class="panel panel-default right" >
         <div class="panel-heading heading">
-            <span class="flag"></span>&nbsp;&nbsp;<a>首页</a>&nbsp;> &nbsp;招聘详情
+            <span class="flag"></span>&nbsp;&nbsp;<a ng-href="#/welcome">首页</a>&nbsp;> &nbsp;招聘详情
         </div>
         <div id="myTabContent" class="tab-content">
             <div ng-class="{true:'tab-pane fade in active',false:'tab-pane fade'}[datas.active==1]" id="zplc">

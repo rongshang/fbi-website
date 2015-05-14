@@ -11,11 +11,9 @@
 }
 .leftcenter{
     margin-top: 1px;
-    height: 400px;
+    height: 450px;
     width: 180px;
     border: 1px solid #e3e3e3;
-    text-align: center;
-    /*background-color: #e3e3e3;*/
 }
 .right{
     margin-left:220px;
@@ -37,18 +35,22 @@
     margin-left: 70px;
     padding-top: 15px;
 }
-.product{
-    width: 160px;
+.honor {
+    width: 350px;
     height: 200px;
-    border: 1px solid #e0e0e0;
+    border: 2px solid #00B7FF;
     float: left;
-    margin: 10px 30px 10px;
     text-align: center;
-    padding: 10px;
+    margin: 10px 10px 10px;
+
 }
 .img{
-    width: 135px;
-    height: 163px;
+    width: 340px;
+    height: 196px;
+    border: 2px solid #00B7FF;
+    float: left;
+    text-align: center;
+    margin: 1px 1px 0px;
 }
 .product_s{
     text-align: center;
@@ -59,16 +61,19 @@
     font-size: small;
 }
 .plist{
-   height: 480px;border: 1px solid #e0e0e0;
+  border: 1px solid #e0e0e0;
+    overflow: auto;
+   padding:30px 60px 0px;
+    text-align: center;
+
+}
+.honorlist{
+    overflow: auto;
+    margin-left:40px;
 }
 .right_end_fy{
-    margin-left: 490px;margin-top:3px;float: left;
+    margin-left: 450px;margin-top:3px;float: left;
 }
 .right_end_go{
     width:30px;margin-top: 4px;
-}
-
-.nav-pills > li.active > a, .nav-pills > li.active > a:hover, .nav-pills > li.active > a:focus{
-    background-color:#e3e3e3;
-    color: #080808;
 }
