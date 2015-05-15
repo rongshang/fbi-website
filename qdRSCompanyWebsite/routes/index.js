@@ -13,7 +13,17 @@ var PartnersDao = require("../src/javaScripts/dao/partnersDao");
 //我们的产品模块
 var products = require("../src/javaScripts/models").products;
 var ProductsDao = require("../src/javaScripts/dao/productsDao");
+//联系我们模块
+var contactus = require("../src/javaScripts/models").contactus;
+var contactusDao = require("../src/javaScripts/dao/contactusDao");
 
+//首页
+exports.index = function(req,res){
+    //联系我们
+    contactusDao.findOneBySort({createdTime:-1},function(err,contactus){
+        res.render('index',{'contactus':contactus});
+    });
+}
 
 exports.welcome = function(req,res){
     howdo
@@ -47,8 +57,14 @@ exports.welcome = function(req,res){
                 done(null,partners);
             });
         })
+        .task(function(done){
+            //联系我们
+            contactusDao.findOneBySort({createdTime:-1},function(err,contactus){
+                done(null,contactus);
+            });
+        })
         // 异步顺序并行
-        .together(function(err,productImg,products,newsImg,news,partners){
-            res.json({'productImg':productImg,'products':products,'newsImg':newsImg,'news':news,'partners':partners});
+        .together(function(err,productImg,products,newsImg,news,partners,contactus){
+            res.json({'productImg':productImg,'products':products,'newsImg':newsImg,'news':news,'partners':partners,'contactus':contactus});
         });
 }

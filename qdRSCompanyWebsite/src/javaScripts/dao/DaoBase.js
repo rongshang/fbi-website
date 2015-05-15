@@ -83,6 +83,14 @@ DaoBase.prototype.findByLimitAndSort = function(sort,count,callback){
     }).sort(sort).limit(count)
 }
 
+DaoBase.prototype.findOneBySort = function(sort,callback){
+    this.model.findOne({},function(error,model){
+        if(error) return callback(error,null);
+
+        return callback(null,model);
+    }).sort(sort)
+}
+
 DaoBase.prototype.findBySort = function(sort,callback){
     this.model.find({},function(error,model){
         if(error) return callback(error,null);

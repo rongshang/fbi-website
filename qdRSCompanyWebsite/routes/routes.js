@@ -9,6 +9,9 @@ var aboutus = require('./aboutus');
 var contactus = require('./contactus');
 
 module.exports = function (app) {
+    //标题页面
+    app.get('/',index.index);
+    //首页
     app.get('/welcome',index.welcome);
     //新闻
     app.get('/allnewsAjax',news.allnewsAjax);

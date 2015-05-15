@@ -1,17 +1,27 @@
+/*导航*/
+*{margin:0;padding:0;list-style-type:none;}
+body{font:12px/180% Arial, Helvetica, sans-serif, "新宋体";}
+.navigation{width:680px;margin:20px auto 0 auto;}
+/* navbox */
+.navbox{height:32px;overflow:hidden;}
+.navbox li{float:left;width:100px;text-align:center;}
+.navbox li a{display:block;padding:5px 10px;height:100%;color:#FFF;text-decoration:none;border-right:1px solid #FFF;font-size:14px;font-weight:800;}
+.navbox li a{background:url(../images/bg2.jpg) repeat 0 0;}
+.navbox li a:hover,.navbox li a:focus,.navbox li a:active{background-position:-150px 0;}
+#navbar a{background:url(../images/bg.jpg) repeat -20px 35px;}
 
-.top2 {
-    position: fixed;
-    z-index: 999;
-    top: 0;
-
-    filter: alpha(opacity=0);
-    -moz-opacity: 1;
-    -khtml-opacity: 1;
-    opacity: 1;
-    width: 100%;
-    text-align: center;
-    overflow: hidden;
-}
+/*.top2 {*/
+    /*position: fixed;*/
+    /*z-index: 999;*/
+    /*top: 0;*/
+    /*filter: alpha(opacity=0);*/
+    /*-moz-opacity: 1;*/
+    /*-khtml-opacity: 1;*/
+    /*opacity: 1;*/
+    /*width: 100%;*/
+    /*text-align: center;*/
+    /*overflow: hidden;*/
+/*}*/
 
 /*在线客服*/
 /*main css*/
@@ -23,7 +33,7 @@
 .main-im .img-qq {max-width: 60px; display: block; position: absolute; left: 6px; top: 3px; -moz-transition: all 0.5s; -webkit-transition: all 0.5s; -o-transition: all 0.5s; transition: all 0.5s; }
 .main-im .im-qq:hover .img-qq{ max-width: 70px; left: 1px; top: 8px; position: absolute; }
 .main-im .im_main {background: #F9FAFB; border: 1px solid #dddddd; border-radius: 10px; background: #F9FAFB;display:none;}
-.main-im .im_main .im-tel { color: #000000; text-align: center; width: 109px; height: 105px; border-bottom: 1px solid #dddddd; }
+.main-im .im_main .im-tel { color: #000000; text-align: center; width: 109px; height: 85px; border-bottom: 1px solid #dddddd; }
 .main-im .im_main .im-tel div{font-weight:bold;font-size: 12px;margin-top:4px;}
 .main-im .im_main .im-tel .tel-num { font-family: Arial; font-weight: bold; color: #e66d15;}
 .main-im .im_main .im-tel:hover { background: #fafafa; }

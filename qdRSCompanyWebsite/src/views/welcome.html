@@ -61,23 +61,21 @@
     </div>
 </div>
 
-<div class="glyphicon-text-height"></div>
-<div class="glyphicon-text-height"></div>
 
-<div class="panel panel-primary">
+<div class="panel panel-primary"style="width:1349px;height: 767px; margin-top:33px;">
     <div class="panel-body">
         <div class="row">
             <div class="col-md-6">
                 <div class="page-header">
-                    <h3>我们的伙伴<small><a ng-href="#/allpartner?pageNo=1">More</a></small> </h3>
+                    <h3>我们的伙伴<small style="margin-left: 460px;"><a ng-href="#/allpartner?pageNo=1">More>></a></small> </h3>
                 </div>
-                <div class="row">
+                <div class="row"style="width:660px;margin-left: 20px;">
                     <div class="col-sm-4" ng-repeat="partner in datas.partners" >
                         <div ng-class="{0:'panel panel-default',1:'panel panel-primary',2:'panel panel-success',3:'panel panel-info',4:'panel panel-warning',5:'panel panel-danger'}[$index]">
-                            <div class="panel-heading">
+                            <div class="panel-heading"style="height:36px;">
                                <h3 class="panel-title"><a ng-href="javascript:void(0)">{{partner.title}}</a></h3>
                             </div>
-                            <div class="panel-body">
+                            <div class="panel-body"style="height: 53px;">
                                 <a ng-href="javascript:void(0)" title="{{partner.concat}}">{{partner.concat | limitTo :10}}...</a>
                             </div>
                         </div>
@@ -86,15 +84,15 @@
             </div>
             <div class="col-md-6">
                 <div class="page-header">
-                    <h3>我们的产品<small><a ng-href="#/allproduct?pageNo=1" >More</a></small></h3>
+                    <h3>我们的产品  <small style="margin-left:430px"><a ng-href="#/allproduct?pageNo=1">More>></a></small></h3>
                 </div>
-                <div class="row">
+                <div class="row"style="width:660px;margin-left: 20px">
                     <div class="col-sm-4" ng-repeat="product in datas.products" >
                         <div ng-class="{0:'panel panel-default',1:'panel panel-primary',2:'panel panel-success',3:'panel panel-info',4:'panel panel-warning',5:'panel panel-danger'}[$index]">
-                            <div class="panel-heading">
+                            <div class="panel-heading"style="height:36px;">
                                 <h3 class="panel-title"><a ng-href="#/productdetail?id={{product._id}}">{{product.title}}</a></h3>
                             </div>
-                            <div class="panel-body">
+                            <div class="panel-body"style="height:53px;">
                                 <a ng-href="#/productdetail?id={{product._id}}">{{product.concat | limitTo :10}}...</a>
                             </div>
                         </div>
@@ -103,17 +101,24 @@
             </div>
         </div>
         <div class="row">
-            <div class="page-header">
-                <h3>新闻动态<small><a ng-href="#/allnews?pageNo=1" >More</a></small></h3>
+            <div class="col-md-6">
+                <div class="page-header">
+                    <h3>新闻动态<small style="margin-left: 480px;"><a ng-href="#/allnews?pageNo=1" >More>></a></small></h3>
+                </div>
             </div>
-            <div class="row">
-                <div class="col-md-4">
+            <div class="col-md-6">
+                <div class="page-header">
+                    <h3>联系方式 <small style="margin-left: 470px;"><a >More>></a></small></h3>
+                </div>
+            </div>
+            <div class="row"style="margin-left: 20px">
+                <div class="col-md-4" style="width: 370px;">
                     <div class="col-sm-4">
                         <div id="shutter2" class="shutter">
                             <ul>
                                 <li ng-repeat="newsImg in datas.newsImg">
                                     <a ng-href="#/newsdetail?id={{newsImg._id}}">
-                                        <img  width="375" height="303"  ng-src="{{newsImg.image}}" />
+                                        <img  width="350" height="303"  ng-src="{{newsImg.image}}" />
                                         <input type="hidden" name="newsImgHidden" value="{{newsImg.image}}" />
                                     </a>
                                 </li>
@@ -121,7 +126,7 @@
                         </div>
                     </div><!-- /.col-sm-4 -->
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-2"style="width:250px;">
                     <div class="wrap">
                         <div id="news_rolling">
                             <ul>
@@ -132,21 +137,28 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-sm-4">
-                    <div class="panel panel-success">
+                <div class="col-sm-5"style="margin-left:50px;">
+                    <div class="panel panel-success lxmb">
                         <div class="panel-heading">
                             <h3 class="panel-title">联系方式</h3>
                         </div>
                         <div class="panel-body">
-                            Panel content
+                            <ul class="list-inline">
+                                <li >电话:</li>
+                                <li><span ng-bind="datas.contactus.tel"></span></li>
+                            </ul>
+                            <ul class="list-inline">
+                                <li >QQ:</li>
+                                <li><span ng-bind="datas.contactus.qq"></span></li>
+                            </ul>
                         </div>
                     </div>
-                    <div class="panel panel-info">
+                    <div class="panel panel-info lxmb">
                         <div class="panel-heading">
                             <h3 class="panel-title">公司地址</h3>
                         </div>
                         <div class="panel-body">
-                            Panel content
+                            <span ng-bind="datas.contactus.address"></span>
                         </div>
                     </div>
                 </div>

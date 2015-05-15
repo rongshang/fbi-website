@@ -21,8 +21,7 @@ exports.contactus = function(req,res){
             });
         })
         .task(function(done){
-            contactusDao.findByLimitAndSortAndQuery({},{createdTime:-1},1,function(err,contactus){
-               console.log("====contactus====="+contactus);
+            contactusDao.findOneBySort({createdTime:-1},function(err,contactus){
                 done(null,contactus);
             });
         })

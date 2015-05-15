@@ -20,11 +20,13 @@
         </div>
         <div id="myTabContent" class="tab-content">
             <div class="tab-pane fade in active" id="product1">
-                <div> {{datas.contactus.qq}}</div>
-
-            <!--<div style="margin-left: 220px;" ng-repeat="companyprofile in datas.companyprofiles">-->
-                    <!--<span ng-bind="companyprofile.concat"></span>-->
-                <!--</div>-->
+                <div style="margin-left: 220px;" >
+                   <ul>
+                       <li>电话:<span ng-bind="datas.contactus.tel"></span></li>
+                       <li>qq:<span ng-bind="datas.contactus.qq"></span></li>
+                       <li>公司地址:<span ng-bind="datas.contactus.address"></span></li>
+                   </ul>
+                </div>
             </div>
         </div>
     </div>

@@ -13,73 +13,95 @@
     <script src="javaScripts/js/newsScroll.js"></script>
     <link rel="stylesheet" href="/css/index.css"/>
     <link rel="stylesheet" href="/css/welcome.css"/>
-
     <!--<script src="javaScripts/js/require.min.js" data-main="main"></script>-->
+    <script type="text/javascript">
+        $(function(){
+            $("#navbar a").css({backgroundPosition: "-20px 35px"}).mouseover(function(){
+                $(this).stop().animate({
+                    backgroundPosition:"(-20px 94px)"
+                },{duration:500})
+            }).mouseout(function(){
+                $(this).stop().animate({
+                    backgroundPosition:"(40px 35px)"
+                },{duration:200, complete:function(){
+                    $(this).css({backgroundPosition: "-20px 35px"})
+                }})
+            })
+        });
+    </script>
 </head>
 <body>
 
-<nav class="navbar navbar-default navbar-fixed-top">
+<nav class="navbar navbar-default navbar-fixed-top ">
     <div class="container">
         <div class="navbar-header">
-            <img src="../images/logo1.png">
+            <img height="60px;" src="<%=contactus.logo%>">
         </div>
-        <div class="navbar-collapse collapse">
-            <ul class="nav navbar-nav"  >
-                <li><a href="#/welcome">公司首页</a></li>
-                <li><a ng-href="#/allproduct?pageNo=1">产品展示</a></li>
-                <li><a href="#/contactus">联系我们</a></li>
-                <li class="dropdown">
-                    <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown"
-                       role="button" aria-expanded="false">关于我们<span class="caret"></span>
-                    </a>
-                    <ul class="dropdown-menu" role="menu">
-                        <li><a href="#/companyprofile">公司简介</a></li>
-                        <li><a href="#/enterpriseculture">企业文化</a></li>
-                        <li><a href="#/development">发展历程</a></li>
-                        <li><a href="#/honor">资质荣誉</a></li>
-                    </ul>
-                </li>
-                <li><a href="#/allrecruitment?pageNo=1&active=1">招贤纳士</a></li>
-            </ul>
+        <div class="navbar-collapse collapse nav nav-pills">
+
+            <div class="navigation">
+                <ul class="navbox" id="navbar">
+                    <li><a ng-href="#/welcome">公司首页</a></li>
+                    <li class="dropdown">
+                        <a href="javascript:void(0);">关于我们<span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li><a ng-href="#/companyprofile">公司简介</a></li>
+                            <li><a ng-href="#/enterpriseculture">企业文化</a></li>
+                            <li><a ng-href="#/development">发展历程</a></li>
+                            <li><a ng-href="#/honor">资质荣誉</a></li>
+                        </ul>
+                    </li>
+                    <li><a ng-href="#/allproduct?pageNo=1">产品展示</a></li>
+                    <li><a ng-href="#/contactus">联系我们</a></li>
+                    <li><a ng-href="#/allrecruitment?pageNo=1&active=1">招贤纳士</a></li>
+                </ul>
+            </div>
+
+            <!--<ul class="nav navbar-nav" id="navbar" >-->
+                <!--<li role="presentation"><a ng-href="#/welcome">公司首页</a></li>-->
+                <!--<li><a ng-href="#/allproduct?pageNo=1">产品展示</a></li>-->
+                <!--<li><a ng-href="#/contactus">联系我们</a></li>-->
+                <!--<li class="dropdown">-->
+                    <!--<a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown"-->
+                       <!--role="button" aria-expanded="false">关于我们<span class="caret"></span>-->
+                    <!--</a>-->
+                    <!--<ul class="dropdown-menu" role="menu">-->
+                        <!--<li><a ng-href="#/companyprofile">公司简介</a></li>-->
+                        <!--<li><a ng-href="#/enterpriseculture">企业文化</a></li>-->
+                        <!--<li><a ng-href="#/development">发展历程</a></li>-->
+                        <!--<li><a ng-href="#/honor">资质荣誉</a></li>-->
+                    <!--</ul>-->
+                <!--</li>-->
+                <!--<li><a href="#/allrecruitment?pageNo=1&active=1">招贤纳士</a></li>-->
+            <!--</ul>-->
         </div><!--/.nav-collapse -->
     </div>
 </nav>
 
-<!--<div class="Navigation">-->
-    <!--<ul class="navbox" id="a">-->
-        <!--<li><a href="#/">公司首页</a></li>-->
-        <!--<li><a href="http://www.17sucai.com/">关于我们</a></li>-->
-        <!--<li><a href="http://www.17sucai.com/">公司介绍</a></li>-->
-        <!--<li><a href="http://www.17sucai.com/">产品展示</a></li>-->
-        <!--<li><a href="http://www.17sucai.com/">联系我们</a></li>-->
-    <!--</ul>-->
-<!--</div>-->
 
-<div class="glyphicon-text-height"></div>
-<div class="glyphicon-text-height"></div>
-<div class="glyphicon-text-height"></div>
-<div class="glyphicon-text-height"></div>
-<div ng-view></div>
+
+<div ng-view style="margin-top: 70px;"></div>
 <!--客服-->
 <div class="main-im">
     <div id="open_im" class="open-im">&nbsp;</div>
     <div class="im_main" id="im_main">
         <div id="close_im" class="close-im"><a href="javascript:void(0);" title="点击关闭">&nbsp;</a></div>
-        <a href="http://wpa.qq.com/msgrd?v=3&uin=741967386&site=qq&menu=yes" class="im-qq qq-a" title="在线QQ客服">
+        <a href="http://wpa.qq.com/msgrd?v=3&uin=<%=contactus.qq%>&site=qq&menu=yes" class="im-qq qq-a" title="在线QQ客服">
             <div class="qq-container"></div>
             <div class="qq-hover-c"><img class="img-qq" src="../images/qq.png"></div>
             <span>QQ在线咨询</span> </a>
         <div class="im-tel">
-            <div>售前咨询热线</div>
-            <div class="tel-num">400-123-8888</div>
-            <div>售后咨询热线</div>
-            <div class="tel-num">021-12345678</div>
+            <div>咨询热线</div>
+            <div class="tel-num"><%=contactus.tel%></div>
+            <div>咨询QQ</div>
+            <div class="tel-num"><%=contactus.qq%></div>
         </div>
         <div class="im-footer" style="position:relative">
             <div class="weixing-container">
                 <div class="weixing-show" style="display:none">
                     <div class="weixing-txt">微信扫一扫<br>融商有限公司</div>
-                    <img class="weixing-ma" src="../images/weixing-ma.jpg">
+                    <img class="weixing-ma" src="<%=contactus.code%>">
                     <div class="weixing-sanjiao"></div>
                     <div class="weixing-sanjiao-big"></div>
                 </div>
