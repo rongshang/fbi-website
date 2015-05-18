@@ -10,7 +10,6 @@ var productsSchema = new Schema({
     _id:String,
     createdTime:String,
     image:String,
-    smallImg:String,
     title:String,
     videosrc:String,
     websiteUrl:String,

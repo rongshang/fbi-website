@@ -28,6 +28,34 @@
                 }})
             })
         });
+
+        //菜单
+        function menu(){
+            var elem=document.getElementById("navbar");
+            if(elem==null){
+                setTimeout("menu()",500);
+                return;
+            }
+            var ul=elem.getElementsByTagName("ul");
+            var li=elem.getElementsByTagName("li");
+            for(var i=0;i<li.length;i++){
+                li[i].onmouseover=function(){
+                    var inli=this.getElementsByTagName("ul");
+                    for(var j=0;j<inli.length;j++){
+                        inli[j].style.display="block";
+                    }
+                };
+                li[i].onmouseout=function(){
+                    var inli=this.getElementsByTagName("ul");
+                    for(var j=0;j<inli.length;j++){
+                        inli[j].style.display="none";
+                    }
+                }
+            }
+        }
+        window.onload=menu();
+        //setTimeout("menu()",1000);
+
     </script>
 </head>
 <body>
@@ -38,14 +66,12 @@
             <img height="60px;" src="<%=contactus.logo%>">
         </div>
         <div class="navbar-collapse collapse nav nav-pills">
-
-            <div class="navigation">
+            <div class="navigation" >
                 <ul class="navbox" id="navbar">
                     <li><a ng-href="#/welcome">公司首页</a></li>
-                    <li class="dropdown">
-                        <a href="javascript:void(0);">关于我们<span class="caret"></span>
-                        </a>
-                        <ul class="dropdown-menu" role="menu">
+                    <li style=" position:relative;" >
+                        <a href="javascript:void(0);">关于我们<span class="caret"></span></a>
+                        <ul style="position:absolute; display: none;">
                             <li><a ng-href="#/companyprofile">公司简介</a></li>
                             <li><a ng-href="#/enterpriseculture">企业文化</a></li>
                             <li><a ng-href="#/development">发展历程</a></li>
@@ -78,9 +104,6 @@
         </div><!--/.nav-collapse -->
     </div>
 </nav>
-
-
-
 <div ng-view style="margin-top: 70px;"></div>
 <!--客服-->
 <div class="main-im">
@@ -114,9 +137,6 @@
 
 <!--<div ng-include="foot.html"></div>-->
 <!--<!- #include file="foot.html" ->-->
-
-<!--<script src="../javaScripts/js/navigation.js"></script>-->
-
 <script src="../javaScripts/controllers/controller.js"></script>
 <script src="../javaScripts/controllers/app.js"></script>
 

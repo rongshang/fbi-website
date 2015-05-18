@@ -2,7 +2,7 @@
  * Created by Administrator on 2015/4/23.
  */
 
-//在线客服那块
+//在线客服
 $(function(){
     $('#close_im').bind('click',function(){
         $('#main-im').css("height","0");

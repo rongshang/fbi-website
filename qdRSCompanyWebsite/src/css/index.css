@@ -3,7 +3,7 @@
 body{font:12px/180% Arial, Helvetica, sans-serif, "新宋体";}
 .navigation{width:680px;margin:20px auto 0 auto;}
 /* navbox */
-.navbox{height:32px;overflow:hidden;}
+.navbox{height:32px;}
 .navbox li{float:left;width:100px;text-align:center;}
 .navbox li a{display:block;padding:5px 10px;height:100%;color:#FFF;text-decoration:none;border-right:1px solid #FFF;font-size:14px;font-weight:800;}
 .navbox li a{background:url(../images/bg2.jpg) repeat 0 0;}
@@ -33,7 +33,7 @@ body{font:12px/180% Arial, Helvetica, sans-serif, "新宋体";}
 .main-im .img-qq {max-width: 60px; display: block; position: absolute; left: 6px; top: 3px; -moz-transition: all 0.5s; -webkit-transition: all 0.5s; -o-transition: all 0.5s; transition: all 0.5s; }
 .main-im .im-qq:hover .img-qq{ max-width: 70px; left: 1px; top: 8px; position: absolute; }
 .main-im .im_main {background: #F9FAFB; border: 1px solid #dddddd; border-radius: 10px; background: #F9FAFB;display:none;}
-.main-im .im_main .im-tel { color: #000000; text-align: center; width: 109px; height: 85px; border-bottom: 1px solid #dddddd; }
+.main-im .im_main .im-tel { color: #000000; text-align: center; width: 109px; height: 100px; border-bottom: 1px solid #dddddd; }
 .main-im .im_main .im-tel div{font-weight:bold;font-size: 12px;margin-top:4px;}
 .main-im .im_main .im-tel .tel-num { font-family: Arial; font-weight: bold; color: #e66d15;}
 .main-im .im_main .im-tel:hover { background: #fafafa; }

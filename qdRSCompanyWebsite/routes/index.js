@@ -29,7 +29,7 @@ exports.welcome = function(req,res){
     howdo
         .task(function(done){
             //最上边产品的图片
-            ProductsDao.findByLimitAndSortAndQuery({$and:[{image:{$ne:""}},{smallImg:{$ne:""}}]},{createdTime:-1},4,function(err,productImg){
+            ProductsDao.findByLimitAndSortAndQuery({image:{$ne:""}},{createdTime:-1},4,function(err,productImg){
                 done(null,productImg);
             });
         })
