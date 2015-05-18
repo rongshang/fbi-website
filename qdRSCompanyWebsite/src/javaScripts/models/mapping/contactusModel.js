@@ -13,6 +13,7 @@ var contactusSchema = new Schema({
     tel:String,
     code:String,//二维码
     address:String,
+    email:String,
     logo:String,
     location: Object,//坐标{x:'',y:''}
     createdTime:String
