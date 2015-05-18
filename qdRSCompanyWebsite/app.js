@@ -31,9 +31,9 @@ app.use(express.static(path.join(__dirname, 'src')));
 //app.get('/', routes.index);
 
 // angular启动页
-app.get('/',function(req,res){
-  res.sendfile('src/views/index.html');
-});
+//app.get('/',function(req,res){
+//  res.sendfile('src/views/index.html');
+//});
 routes(app);
 
 // catch 404 and forward to error handler
