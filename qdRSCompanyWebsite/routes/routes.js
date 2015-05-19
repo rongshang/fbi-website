@@ -7,6 +7,7 @@ var partners = require('./partners');
 var recruitments = require('./recruitments');
 var aboutus = require('./aboutus');
 var contactus = require('./contactus');
+var amdin = require('./admin_index');
 
 module.exports = function (app) {
     //标题页面
@@ -37,7 +38,8 @@ module.exports = function (app) {
     app.get('/honor',aboutus.honor);
     //联系我们
     app.get('/contactus',contactus.contactus);
-
-
+////////////////////////////////////////////////////////////////////////////
+    //后台页面
+    app.get('/admin',amdin.index);
 
 };

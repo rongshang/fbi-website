@@ -73,10 +73,10 @@
                     <div class="col-sm-4" ng-repeat="partner in datas.partners" >
                         <div ng-class="{0:'panel panel-default',1:'panel panel-primary',2:'panel panel-success',3:'panel panel-info',4:'panel panel-warning',5:'panel panel-danger'}[$index]">
                             <div class="panel-heading"style="height:36px;">
-                               <h3 class="panel-title"><a ng-href="javascript:void(0)">{{partner.title}}</a></h3>
+                               <h3 class="panel-title">{{partner.title}}</h3>
                             </div>
                             <div class="panel-body"style="height: 53px;">
-                                <a ng-href="javascript:void(0)" title="{{partner.concat}}">{{partner.concat | limitTo :10}}...</a>
+                                {{partner.concat | limitTo :10}}...
                             </div>
                         </div>
                     </div><!-- /.col-sm-4 -->

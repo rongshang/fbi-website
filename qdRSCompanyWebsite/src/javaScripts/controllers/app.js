@@ -20,6 +20,5 @@ app.config(['$routeProvider',function($routeProvider){
         .when('/honor', {templateUrl:'views/honors.html',controller: 'honorsCtrl'})
         .when('/contactus', {templateUrl:'views/contactus.html',controller: 'contactusCtrl'})
 
-
     }
 ]);
