@@ -9,7 +9,7 @@
 var app = angular.module('admin');
 app.config(['$routeProvider',function($routeProvider){
     $routeProvider
-        .when('/adminProduct', {templateUrl:'views/admin_product.html',controller: 'adminProductCtrl'})
+        .when('/adminProduct', {templateUrl:'/views/admin_product.html',controller: 'adminProductCtrl'})
 
 
 }

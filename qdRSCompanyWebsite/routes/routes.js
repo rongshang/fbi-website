@@ -8,6 +8,7 @@ var recruitments = require('./recruitments');
 var aboutus = require('./aboutus');
 var contactus = require('./contactus');
 var amdin = require('./admin_index');
+var adminProduct = require('./admin_product');
 
 module.exports = function (app) {
     //标题页面
@@ -41,5 +42,6 @@ module.exports = function (app) {
 ////////////////////////////////////////////////////////////////////////////
     //后台页面
     app.get('/admin',amdin.index);
+    app.get('/adminProductAjax',adminProduct.adminProductAjax);
 
 };
