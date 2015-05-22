@@ -12,5 +12,4 @@ var CompanyprofilesDAO = function(companyprofiles) {
 };
 
 module.exports = CompanyprofilesDAO;
-var baseDao = new DaoBase(CompanyprofilesModel);
-module.exports = baseDao;
+

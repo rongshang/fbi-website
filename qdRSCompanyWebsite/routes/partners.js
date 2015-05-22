@@ -6,8 +6,10 @@ var express = require('express');
 var router = express.Router();
 var path = require('path');
 
+var daoBase = require("../src/javaScripts/dao/DaoBase");
 //合作伙伴模块
 var partners = require("../src/javaScripts/models").partners;
+var partnersDaoBse = new daoBase(partners);
 var partnersDao = require("../src/javaScripts/dao/partnersDao");
 
 exports.allPartnersAjax = function(req,res){
@@ -16,7 +18,7 @@ exports.allPartnersAjax = function(req,res){
     var pageSize = 5;
     howdo
         .task(function(done){
-            partnersDao.countByQuery({},function(err,count){
+            partnersDaoBse.countByQuery({},function(err,count){
                 pageCount = parseInt(Math.ceil(count/pageSize));
                 if(pageNo>pageCount){
                     pageNo = pageCount;
@@ -27,13 +29,13 @@ exports.allPartnersAjax = function(req,res){
             });
         })
         .task(function(done){
-            partnersDao.findAllByPage({createdTime:-1},pageNo,pageSize,function(err,allPartners){
+            partnersDaoBse.findAllByPage({createdTime:-1},pageNo,pageSize,function(err,allPartners){
                 done(null,allPartners);
             });
         })
         .task(function(done){
             //合作伙伴图片
-            partnersDao.findByLimitAndSortAndQuery({image:{$ne:""}},{createdTime:-1},3,function(err,partnerImgs){
+            partnersDaoBse.findByLimitAndSortAndQuery({image:{$ne:""}},{createdTime:-1},3,function(err,partnerImgs){
                 done(null,partnerImgs);
             });
         })

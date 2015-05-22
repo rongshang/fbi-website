@@ -13,5 +13,4 @@ var DevelopmentsDAO = function(developments) {
 };
 
 module.exports = DevelopmentsDAO;
-var baseDao = new DaoBase(DevelopmentsModel);
-module.exports = baseDao;
+

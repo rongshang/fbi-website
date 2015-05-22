@@ -6,32 +6,43 @@ var express = require('express');
 var router = express.Router();
 var path = require('path');
 
+var daoBase = require("../src/javaScripts/dao/DaoBase");
+
 //产品模块
 var products = require("../src/javaScripts/models").products;
-var productsDao = require("../src/javaScripts/dao/productsDao");
+var productsDaoBse = new daoBase(products);
+//var productsDao = require("../src/javaScripts/dao/productsDao");
+
 //公司简介模块
 var companyprofiles = require("../src/javaScripts/models").companyprofiles;
-var companyprofilesDao = require("../src/javaScripts/dao/companyprofilesDao");
+var companyprofilesDaoBse = new daoBase(companyprofiles);
+//var companyprofilesDao = require("../src/javaScripts/dao/companyprofilesDao");
+
 //企业文化模块
 var enterprisecultures = require("../src/javaScripts/models").enterprisecultures;
-var enterpriseculturesDao = require("../src/javaScripts/dao/enterpriseculturesDao");
+var enterpriseculturesDaoBse = new daoBase(enterprisecultures);
+//var enterpriseculturesDao = require("../src/javaScripts/dao/enterpriseculturesDao");
+
 //发展历程模块
 var developments = require("../src/javaScripts/models").developments;
-var developmentsDao = require("../src/javaScripts/dao/developmentsDao");
+var developmentsDaoBse = new daoBase(developments);
+//var developmentsDao = require("../src/javaScripts/dao/developmentsDao");
+
 //资质荣誉模块
 var honors = require("../src/javaScripts/models").honors;
-var honorsDao = require("../src/javaScripts/dao/honorsDao");
+var honorsDaoBse = new daoBase(honors);
+//var honorsDao = require("../src/javaScripts/dao/honorsDao");
 
 //公司简介
 exports.companyprofile = function(req,res){
     howdo
         .task(function(done){
-            productsDao.findByLimitAndSortAndQuery({},{createdTime:-1},8,function(err,productsTitle){
+            productsDaoBse.findByLimitAndSortAndQuery({},{createdTime:-1},8,function(err,productsTitle){
                 done(null,productsTitle);
             });
         })
         .task(function(done){
-            companyprofilesDao.findByLimitAndSortAndQuery({},{'createdTime':-1},1,function(err,companyprofiles){
+            companyprofilesDaoBse.findByLimitAndSortAndQuery({},{'createdTime':-1},1,function(err,companyprofiles){
                 done(null,companyprofiles);
             })
         })
@@ -44,12 +55,12 @@ exports.companyprofile = function(req,res){
 exports.enterpriseculture = function(req,res){
     howdo
         .task(function(done){
-            productsDao.findByLimitAndSortAndQuery({},{createdTime:-1},8,function(err,productsTitle){
+            productsDaoBse.findByLimitAndSortAndQuery({},{createdTime:-1},8,function(err,productsTitle){
                 done(null,productsTitle);
             });
         })
         .task(function(done){
-            enterpriseculturesDao.findByLimitAndSortAndQuery({},{'createdTime':-1},1,function(err,enterprisecultures){
+            enterpriseculturesDaoBse.findByLimitAndSortAndQuery({},{'createdTime':-1},1,function(err,enterprisecultures){
                 done(null,enterprisecultures);
             })
         })
@@ -62,12 +73,12 @@ exports.enterpriseculture = function(req,res){
 exports.development = function(req,res){
     howdo
         .task(function(done){
-            productsDao.findByLimitAndSortAndQuery({},{createdTime:-1},8,function(err,productsTitle){
+            productsDaoBse.findByLimitAndSortAndQuery({},{createdTime:-1},8,function(err,productsTitle){
                 done(null,productsTitle);
             });
         })
         .task(function(done){
-            developmentsDao.findByLimitAndSortAndQuery({},{'createdTime':-1},1,function(err,developments){
+            developmentsDaoBse.findByLimitAndSortAndQuery({},{'createdTime':-1},1,function(err,developments){
                 done(null,developments);
             })
         })
@@ -80,12 +91,12 @@ exports.development = function(req,res){
 exports.honor = function(req,res){
     howdo
         .task(function(done){
-            productsDao.findByLimitAndSortAndQuery({},{createdTime:-1},8,function(err,productsTitle){
+            productsDaoBse.findByLimitAndSortAndQuery({},{createdTime:-1},8,function(err,productsTitle){
                 done(null,productsTitle);
             });
         })
         .task(function(done){
-            honorsDao.findBySort({'createdTime':-1},function(err,honors){
+            honorsDaoBse.findBySort({'createdTime':-1},function(err,honors){
                 done(null,honors);
             })
         })

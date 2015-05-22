@@ -10,6 +10,16 @@ var DaoBase = require('./DaoBase'),
 var ProductsDAO = function(products) {
     this.products=products ||{};
 };
+
+ProductsDAO.prototype.save = function(product,callback){
+   var productsModel = new ProductsModel(product);
+    productsModel.save(function(err){
+        if (err){
+            return callback({msg:'0'});
+        }
+        return callback({msg:'1'});
+    });
+}
+
 module.exports = ProductsDAO;
-var baseDao = new DaoBase(ProductsModel);
-module.exports = baseDao;
+

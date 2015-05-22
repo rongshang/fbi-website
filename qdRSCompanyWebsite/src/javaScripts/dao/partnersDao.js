@@ -12,5 +12,4 @@ var PartnersDAO = function(partners) {
 };
 
 module.exports = PartnersDAO;
-var baseDao = new DaoBase(PartnersModel);
-module.exports = baseDao;
+

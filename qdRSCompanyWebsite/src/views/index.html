@@ -63,10 +63,10 @@
 <nav class="navbar navbar-default navbar-fixed-top ">
     <div class="container">
         <div class="navbar-header">
-            <img height="60px;" src="<%=contactus.logo%>">
+            <img style="width: 150px;margin-top: 10px;height: 30px;margin-left: 90px"  src="<%=contactus.logo%>">
         </div>
         <div class="navbar-collapse collapse nav nav-pills"
-             style="position: absolute;margin-top:8px;margin-left:250px">
+             style="position: absolute;margin-top:-3px;margin-left:300px">
             <div class="navigation">
                 <ul class="navbox" id="navbar">
                     <li><a ng-href="#/welcome">公司首页</a></li>
@@ -84,10 +84,28 @@
                     <li><a ng-href="#/allrecruitment?pageNo=1&active=1">招贤纳士</a></li>
                 </ul>
             </div>
+
+            <!--<ul class="nav navbar-nav" id="navbar" >-->
+                <!--<li role="presentation"><a ng-href="#/welcome">公司首页</a></li>-->
+                <!--<li><a ng-href="#/allproduct?pageNo=1">产品展示</a></li>-->
+                <!--<li><a ng-href="#/contactus">联系我们</a></li>-->
+                <!--<li class="dropdown">-->
+                    <!--<a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown"-->
+                       <!--role="button" aria-expanded="false">关于我们<span class="caret"></span>-->
+                    <!--</a>-->
+                    <!--<ul class="dropdown-menu" role="menu">-->
+                        <!--<li><a ng-href="#/companyprofile">公司简介</a></li>-->
+                        <!--<li><a ng-href="#/enterpriseculture">企业文化</a></li>-->
+                        <!--<li><a ng-href="#/development">发展历程</a></li>-->
+                        <!--<li><a ng-href="#/honor">资质荣誉</a></li>-->
+                    <!--</ul>-->
+                <!--</li>-->
+                <!--<li><a href="#/allrecruitment?pageNo=1&active=1">招贤纳士</a></li>-->
+            <!--</ul>-->
         </div><!--/.nav-collapse -->
     </div>
 </nav>
-<div ng-view style="margin-top: 70px;"></div>
+<div ng-view style="margin-top:60px;"></div>
 <!--客服-->
 <div class="main-im">
     <div id="open_im" class="open-im">&nbsp;</div>

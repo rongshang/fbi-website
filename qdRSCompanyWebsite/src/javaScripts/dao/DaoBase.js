@@ -107,12 +107,13 @@ DaoBase.prototype.findAllByPage = function(sort,pageNo,pageSize,callback){
     }).sort(sort).limit(pageSize).skip((pageNo-1)*pageSize)
 }
 
-DaoBase.prototype.insert = function(obj,callback){
-    this.model.insert(obj,function(error){
+DaoBase.prototype.insertData = function (data,callback){
+    console.log("-------"+data);
+    this.model.save(data, function (error) {
+        console.log("=========create============"+error);
         if(error) return callback(error);
-
         return callback(null);
-    })
-}
+    });
+};
 
 module.exports =DaoBase;

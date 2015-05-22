@@ -6,9 +6,12 @@ var express = require('express');
 var router = express.Router();
 var path = require('path');
 
+var daoBase = require("../src/javaScripts/dao/DaoBase");
+
 //招聘模块
 var recruitments = require("../src/javaScripts/models").recruitments;
-var recruitmentsDao = require("../src/javaScripts/dao/recruitmentsDao");
+var recruitmentsDaoBse = new daoBase(recruitments);
+//var recruitmentsDao = require("../src/javaScripts/dao/recruitmentsDao");
 
 exports.allRecruitmentAjax = function(req,res){
     var pageCount=0;
@@ -17,7 +20,7 @@ exports.allRecruitmentAjax = function(req,res){
     var pageSize =10;
     howdo
         .task(function(done){
-            recruitmentsDao.countByQuery({},function(err,count){
+            recruitmentsDaoBse.countByQuery({},function(err,count){
                 pageCount = parseInt(Math.ceil(count/pageSize));
                 if(pageNo>pageCount){
                     pageNo = pageCount;
@@ -28,12 +31,12 @@ exports.allRecruitmentAjax = function(req,res){
             });
         })
         .task(function(done){
-            recruitmentsDao.findAllByPage({createdTime:-1},pageNo,pageSize,function(err,allRecruitments){
+            recruitmentsDaoBse.findAllByPage({createdTime:-1},pageNo,pageSize,function(err,allRecruitments){
                 done(null,allRecruitments);
             });
         })
         .task(function(done){
-            recruitmentsDao.findByLimitAndSortAndQuery({},{createdTime:-1},8,function(err,allRecruitmentsTitle){
+            recruitmentsDaoBse.findByLimitAndSortAndQuery({},{createdTime:-1},8,function(err,allRecruitmentsTitle){
                 done(null,allRecruitmentsTitle);
             });
         })
@@ -47,12 +50,12 @@ exports.recruitmentdetailAjax = function(req,res){
     var active = req.query.active;
    howdo
         .task(function(done){
-            recruitmentsDao.findByLimitAndSortAndQuery({},{createdTime:-1},8,function(err,allRecruitmentsTitle){
+           recruitmentsDaoBse.findByLimitAndSortAndQuery({},{createdTime:-1},8,function(err,allRecruitmentsTitle){
                 done(null,allRecruitmentsTitle);
             });
         })
        .task(function(done){
-           recruitmentsDao.getById(id,function(err,recruitment){
+           recruitmentsDaoBse.getById(id,function(err,recruitment){
                done(null,recruitment);
            })
        })

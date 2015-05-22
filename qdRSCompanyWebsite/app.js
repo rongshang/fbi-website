@@ -25,9 +25,15 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'src')));
 
-//app.use(express.bodyParser({
-//  uploadDir:__dirname+'/upload/temp'
-//}));
+//图片上传配置
+var multipart = require('connect-multiparty');
+
+app.use(multipart({
+  uploadDir: '/upload/images'
+}));
+
+//配置结束
+//app.use(require("multer")({dest:__dirname + '/upload/images'}));
 
 routes(app);
 

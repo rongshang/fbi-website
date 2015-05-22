@@ -5,21 +5,22 @@ var howdo = require('howdo');
 var express = require('express');
 var router = express.Router();
 var path = require('path');
+
+var daoBase = require("../src/javaScripts/dao/DaoBase");
 //产品详细内容模块
 var products = require("../src/javaScripts/models").products;
-var productsDao = require("../src/javaScripts/dao/productsDao");
-
+var productsDaoBse = new daoBase(products);
 //产品的详细内容
 exports.productdetailAjax = function(req,res){
     var productid = req.query.productid;
     howdo
         .task(function(done){
-            productsDao.findByLimitAndSortAndQuery({},{createdTime:-1},8,function(err,productsTitle){
+            productsDaoBse.findByLimitAndSortAndQuery({},{createdTime:-1},8,function(err,productsTitle){
                 done(null,productsTitle);
             });
         })
         .task(function(done){
-            productsDao.getById(productid,function(err,products){
+            productsDaoBse.getById(productid,function(err,products){
                 done(null,products);
             });
         })
@@ -36,7 +37,7 @@ exports.allProductAjax = function(req,res){
     var pageSize = 8;
     howdo
         .task(function(done){
-            productsDao.countByQuery({},function(err,count){
+            productsDaoBse.countByQuery({},function(err,count){
                 pageCount = parseInt(Math.ceil(count/pageSize));
                 if(pageNo>pageCount){
                     pageNo = pageCount;
@@ -47,12 +48,12 @@ exports.allProductAjax = function(req,res){
             });
         })
         .task(function(done){
-            productsDao.findAllByPage({createdTime:-1},pageNo,pageSize,function(err,allProducts){
+            productsDaoBse.findAllByPage({createdTime:-1},pageNo,pageSize,function(err,allProducts){
                 done(null,allProducts);
             });
         })
         .task(function(done){
-            productsDao.findByLimitAndSortAndQuery({},{createdTime:-1},8,function(err,productsTitle){
+            productsDaoBse.findByLimitAndSortAndQuery({},{createdTime:-1},8,function(err,productsTitle){
                 done(null,productsTitle);
             });
         })

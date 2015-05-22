@@ -13,5 +13,4 @@ var ContactusDAO = function(contactus) {
 };
 
 module.exports = ContactusDAO;
-var baseDao = new DaoBase(ContactusModel);
-module.exports = baseDao;
+

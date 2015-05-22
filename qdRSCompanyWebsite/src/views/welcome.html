@@ -35,16 +35,16 @@
     }
     imgUriFun();
 </script>
-
+<div style="text-align: center">
 <div class="slideshow grid_12">
     <div class="holder">
         <!-- 主体部分 -->
         <div id="wowslider-container">
             <div class="ws_images">
-                <ul>
-                    <li ng-repeat='productImg in datas.productImg' >
+                <ul >
+                    <li ng-repeat='productImg in datas.productImg'>
                         <a ng-href="#/productdetail?id={{productImg._id}}">
-                            <img ng-src="{{productImg.image}}" title="" />
+                            <img ng-src="{{productImg.image}}" title=""/>
                         </a>
                     </li>
                 </ul>
@@ -52,7 +52,7 @@
             <div class="ws_bullets">
                 <div>
                     <a href="#" ng-repeat='productImg in datas.productImg'>
-                        <img no-repeat  ng-src="{{productImg.image}}" />
+                        <img no-repeat  ng-src="{{productImg.image}}"/>
                     </a>
                 </div>
             </div>
@@ -62,63 +62,42 @@
 </div>
 
 
-<div class="panel panel-primary"style="width:960px;height:847px; margin:33px 195px 0px;">
+<div class="panel panel-primary"style="margin: 0 auto;width: 71.1%; margin-top: 2%;">
     <div class="panel-body">
-        <div class="row">
-            <div class="col-md-7">
-                <div class="page-header"style="width:500px;">
-                    <h3>我们的伙伴<small style="margin-left:300px;"><a ng-href="#/allpartner?pageNo=1">More>></a></small> </h3>
+        <div class="row" style="margin: 10px 0 0">
+                <div class="page-header" style="margin-top: -20px;">
+                    <h4 class="text-left" >我们的产品  <small><p class="text-right"><a ng-href="#/allproduct?pageNo=1">More>></a></p></small></h4>
                 </div>
-                <div class="row"style="width:500px;margin-left: 10px;">
-                    <div class="col-sm-4" style="width: 250px;" ng-repeat="partner in datas.partners" >
-                        <div ng-class="{0:'panel panel-default',1:'panel panel-primary',2:'panel panel-success',3:'panel panel-info',4:'panel panel-warning',5:'panel panel-danger'}[$index]">
-                            <div class="panel-heading"style="height:36px;">
-                               <h3 class="panel-title">{{partner.title}}</h3>
-                            </div>
-                            <div class="panel-body"style="height: 53px;">
-                                {{partner.concat | limitTo :10}}...
-                            </div>
+                <div class="row">
+                    <div class="productlist">
+                        <div class="product" ng-repeat="product in datas.products">
+                            <img ng-src="{{product.image}}" />
+                            <span >
+                             <a ng-href="#/productdetail?id={{product._id}}">{{product.title| limitTo :10}}...</a>
+                            </span>
                         </div>
-                    </div><!-- /.col-sm-4 -->
+                    </div>
                 </div>
-            </div>
-            <div class="col-md-4">
-                <div class="page-header"style="width:390px;margin-left: -25px;">
-                    <h3>我们的产品  <small style="margin-left: 205px" ><a ng-href="#/allproduct?pageNo=1">More>></a></small></h3>
-                </div>
-                <div class="row"style="width:450px;">
-                    <div class="col-sm-4" ng-repeat="product in datas.products" >
-                        <div ng-class="{0:'panel panel-default',1:'panel panel-primary',2:'panel panel-success',3:'panel panel-info',4:'panel panel-warning',5:'panel panel-danger'}[$index]">
-                            <div class="panel-heading"style="height:36px;">
-                                <h3 class="panel-title"><a ng-href="#/productdetail?id={{product._id}}">{{product.title}}</a></h3>
-                            </div>
-                            <div class="panel-body"style="height:53px;">
-                                <a ng-href="#/productdetail?id={{product._id}}">{{product.concat | limitTo :10}}...</a>
-                            </div>
-                        </div>
-                    </div><!-- /.col-sm-4 -->
-                </div>
-            </div>
         </div>
         <div class="row">
             <div class="col-md-7">
-                <div class="page-header"style="width: 500px;">
-                    <h3>新闻动态<small style="margin-left:320px;"><a ng-href="#/allnews?pageNo=1" >More>></a></small></h3>
+                <div class="page-header">
+                    <h4 class="text-left">新闻动态<small><p class="text-right"><a ng-href="#/allnews?pageNo=1" >More>></a></p></small></h4>
                 </div>
             </div>
-            <div class="col-md-4">
-                <div class="page-header"style="width:390px;margin-left: -25px;">
-                    <h3>联系方式 <small style="margin-left:205px;"><a ng-href="#/contactus?pageNo=1">More>></a></small></h3>
+            <div class="col-md-5">
+                <div class="page-header">
+                    <h4 class="text-left">联系方式 <small ><p class="text-right"><a ng-href="#/contactus?pageNo=1">More>></a></p></small></h4>
                 </div>
             </div>
-            <div class="row"style="margin-left: 20px;">
-                <div class="col-md-4" style="width: 300px;margin-left:-20px;">
+            <div class="row">
+                <div class="col-md-4"style="margin-top: 2px;" >
                     <div class="col-sm-4">
                         <div id="shutter2" class="shutter">
                             <ul>
                                 <li ng-repeat="newsImg in datas.newsImg">
                                     <a ng-href="#/newsdetail?id={{newsImg._id}}">
-                                        <img  width="300" height="250"  ng-src="{{newsImg.image}}" />
+                                        <img  width="300" style="height:100%;"  ng-src="{{newsImg.image}}" />
                                         <input type="hidden" name="newsImgHidden" value="{{newsImg.image}}" />
                                     </a>
                                 </li>
@@ -126,8 +105,8 @@
                         </div>
                     </div><!-- /.col-sm-4 -->
                 </div>
-                <div class="col-md-2"style="width:240px;margin-left: -15px;">
-                    <div class="wrap">
+                <div class="col-md-3">
+                    <div class="wrap" style="text-align: left">
                         <div id="news_rolling">
                             <ul>
                                 <li ng-repeat='news in datas.news'>
@@ -137,32 +116,42 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-sm-5"style="margin-left:35px;">
-                    <div class="panel panel-success lxmb">
+                <div class="col-sm-4">
+                    <div class="panel panel-success">
                         <div class="panel-heading">
                             <h3 class="panel-title">联系方式</h3>
                         </div>
-                        <div class="panel-body">
+                        <div class="panel-body"style="text-align:left">
                             <ul class="list-inline">
                                 <li >电话:</li>
+                                <li><span ng-bind="datas.contactus.tel"></span></li>
+                            </ul>
+                            <ul class="list-inline">
+                                <li >传真:</li>
                                 <li><span ng-bind="datas.contactus.tel"></span></li>
                             </ul>
                             <ul class="list-inline">
                                 <li >QQ:</li>
                                 <li><span ng-bind="datas.contactus.qq"></span></li>
                             </ul>
+                            <ul class="list-inline">
+                                <li >微信:</li>
+                                <li><span ng-bind="datas.contactus.qq"></span></li>
+                            </ul>
+                            <ul class="list-inline">
+                                <li >地址:</li>
+                                <li><span ng-bind="datas.contactus.address"></span></li>
+                            </ul>
+                            <ul class="list-inline">
+                                <li >邮箱:</li>
+                                <li><span ng-bind="datas.contactus.email"></span></li>
+                            </ul>
                         </div>
                     </div>
-                    <div class="panel panel-info lxmb">
-                        <div class="panel-heading">
-                            <h3 class="panel-title">公司地址</h3>
-                        </div>
-                        <div class="panel-body">
-                            <span ng-bind="datas.contactus.address"></span>
-                        </div>
-                    </div>
+
                 </div>
             </div>
         </div>
     </div>
+</div>
 </div>

@@ -12,7 +12,6 @@ var NewsDAO = function(news) {
 };
 
 module.exports = NewsDAO;
-var baseDao = new DaoBase(NewsModel);
-module.exports = baseDao;
+
 
 

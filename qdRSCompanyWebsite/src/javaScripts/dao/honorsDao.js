@@ -12,8 +12,7 @@ var HonorsDAO = function(honors) {
 };
 
 module.exports = HonorsDAO;
-var baseDao = new DaoBase(HonorsModel);
-module.exports = baseDao;
+
 
 
 

@@ -9,5 +9,4 @@ var RecruitmentsDAO = function(recruitments) {
     this.recruitments=recruitments ||{};
 };
 module.exports = RecruitmentsDAO;
-var baseDao = new DaoBase(RecruitmentsModel);
-module.exports = baseDao;
+

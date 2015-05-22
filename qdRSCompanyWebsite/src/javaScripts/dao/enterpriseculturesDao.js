@@ -12,5 +12,4 @@ var EnterpriseculturesDAO = function(enterprisecultures) {
 };
 
 module.exports = EnterpriseculturesDAO;
-var baseDao = new DaoBase(EnterpriseculturesModel);
-module.exports = baseDao;
+
