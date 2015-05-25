@@ -11,7 +11,7 @@ Hongru.shutter = function(){
             var wp = H$(options.id), // 获取图片列表父元素
                 ul = H$$('ul',wp)[0], // 获取
                 li = this.li = H$$('li',ul);
-            this.a = options.auto?options.auto:4; //自动运行间隔
+            this.a = options.auto?options.auto:8; //自动运行间隔
             this.index = options.position?options.position:0; //开始运行的图片序号（从0开始）
             this.l = li.length;
             this.cur = 0; //当前显示的图片序号&&z-index变量

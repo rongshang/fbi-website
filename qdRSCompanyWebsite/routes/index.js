@@ -9,7 +9,6 @@ var daoBase = require("../src/javaScripts/dao/DaoBase");
 //新闻模块
 var news = require("../src/javaScripts/models").news;
 var newsDaoBse = new daoBase(news);
-//var NewsDao = require("../src/javaScripts/dao/newsDao");
 
 //我们的合作伙伴模块
 var partners = require("../src/javaScripts/models").partners;
@@ -19,12 +18,14 @@ var partnersDaoBse = new daoBase(partners);
 //我们的产品模块
 var products = require("../src/javaScripts/models").products;
 var productsDaoBse = new daoBase(products);
-//var ProductsDao = require("../src/javaScripts/dao/productsDao");
 
 //联系我们模块
 var contactus = require("../src/javaScripts/models").contactus;
 var contactusDaoBse = new daoBase(contactus);
-//var contactusDao = require("../src/javaScripts/dao/contactusDao");
+
+//公司图片
+var companyimgs = require("../src/javaScripts/models").companyimgs;
+var companyimgsDaoBse = new daoBase(companyimgs);
 
 //首页
 exports.index = function(req,res){
@@ -37,9 +38,9 @@ exports.index = function(req,res){
 exports.welcome = function(req,res){
     howdo
         .task(function(done){
-            //最上边产品的图片
-            productsDaoBse.findByLimitAndSortAndQuery({image:{$ne:""}},{createdTime:-1},4,function(err,productImg){
-                done(null,productImg);
+            //最上边公司的图片
+            companyimgsDaoBse.findByLimitAndSortAndQuery({image:{$ne:""}},{createdTime:-1},4,function(err,companyImgs){
+                done(null,companyImgs);
             });
         })
         .task(function(done){
@@ -73,7 +74,7 @@ exports.welcome = function(req,res){
             });
         })
         // 异步顺序并行
-        .together(function(err,productImg,products,newsImg,news,partners,contactus){
-            res.json({'productImg':productImg,'products':products,'newsImg':newsImg,'news':news,'partners':partners,'contactus':contactus});
+        .together(function(err,companyImgs,products,newsImg,news,partners,contactus){
+            res.json({'companyImgs':companyImgs,'products':products,'newsImg':newsImg,'news':news,'partners':partners,'contactus':contactus});
         });
 }

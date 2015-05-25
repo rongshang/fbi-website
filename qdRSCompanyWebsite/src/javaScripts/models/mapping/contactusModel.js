@@ -11,11 +11,12 @@ var contactusSchema = new Schema({
     _id:String,
     qq:String,
     tel:String,
-    code:String,//二维码
+    codeImg:String,//二维码
     address:String,
     email:String,
     logo:String,
-    location: Object,//坐标{x:'',y:''}
+    code: String,
+    fax:String,
     createdTime:String
 });
 

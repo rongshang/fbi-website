@@ -36,122 +36,119 @@
     imgUriFun();
 </script>
 <div style="text-align: center">
-<div class="slideshow grid_12">
-    <div class="holder">
-        <!-- 主体部分 -->
-        <div id="wowslider-container">
-            <div class="ws_images">
-                <ul >
-                    <li ng-repeat='productImg in datas.productImg'>
-                        <a ng-href="#/productdetail?id={{productImg._id}}">
-                            <img ng-src="{{productImg.image}}" title=""/>
+    <div>
+        <div class="holder">
+            <!-- 主体部分 -->
+            <div id="wowslider-container">
+                <div class="ws_images">
+                    <ul >
+                        <li ng-repeat='companyImg in datas.companyImgs'>
+                            <a href="javascript:void(0)">
+                                <img ng-src="{{companyImg.image}}" title=""/>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="ws_bullets">
+                    <div>
+                        <a href="#" ng-repeat='companyImg in datas.companyImgs'>
+                            <img no-repeat width="200" ng-src="{{companyImg.image}}"/>
                         </a>
-                    </li>
-                </ul>
-            </div>
-            <div class="ws_bullets">
-                <div>
-                    <a href="#" ng-repeat='productImg in datas.productImg'>
-                        <img no-repeat  ng-src="{{productImg.image}}"/>
-                    </a>
-                </div>
-            </div>
-        </div>
-        <!-- 主体部分. -->
-    </div>
-</div>
-
-
-<div class="panel panel-primary"style="margin: 0 auto;width: 71.1%; margin-top: 2%;">
-    <div class="panel-body">
-        <div class="row" style="margin: 10px 0 0">
-                <div class="page-header" style="margin-top: -20px;">
-                    <h4 class="text-left" >我们的产品  <small><p class="text-right"><a ng-href="#/allproduct?pageNo=1">More>></a></p></small></h4>
-                </div>
-                <div class="row">
-                    <div class="productlist">
-                        <div class="product" ng-repeat="product in datas.products">
-                            <img ng-src="{{product.image}}" />
-                            <span >
-                             <a ng-href="#/productdetail?id={{product._id}}">{{product.title| limitTo :10}}...</a>
-                            </span>
-                        </div>
                     </div>
                 </div>
-        </div>
-        <div class="row">
-            <div class="col-md-7">
-                <div class="page-header">
-                    <h4 class="text-left">新闻动态<small><p class="text-right"><a ng-href="#/allnews?pageNo=1" >More>></a></p></small></h4>
-                </div>
             </div>
-            <div class="col-md-5">
-                <div class="page-header">
-                    <h4 class="text-left">联系方式 <small ><p class="text-right"><a ng-href="#/contactus?pageNo=1">More>></a></p></small></h4>
-                </div>
+            <!-- 主体部分. -->
+        </div>
+    </div>
+    <div class="panel panel-primary panelimg"  style="margin: 0 auto; margin-top: 2%;">
+        <div class="panel-body">
+            <div class="row" style="margin: 10px 0 0">
+                    <div class="page-header" style="margin-top: -20px;">
+                        <h4 class="text-left" >产品介绍<small><p class="text-right"><a ng-href="#/allproduct?pageNo=1">More>></a></p></small></h4>
+                    </div>
+                    <div class="row">
+                        <div class="productlist">
+                            <div class="product" ng-repeat="product in datas.products">
+                                <img ng-src="{{product.image}}" />
+                                <span >
+                                 <a ng-href="#/productdetail?id={{product._id}}">{{product.title| limitTo :10}}...</a>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
             </div>
             <div class="row">
-                <div class="col-md-4"style="margin-top: 2px;" >
+                <div class="col-md-7">
+                    <div class="page-header">
+                        <h4 class="text-left">新闻动态<small><p class="text-right"><a ng-href="#/allnews?pageNo=1" >More>></a></p></small></h4>
+                    </div>
+                </div>
+                <div class="col-md-5">
+                    <div class="page-header">
+                        <h4 class="text-left">联系方式 <small ><p class="text-right"><a ng-href="#/contactus?pageNo=1">More>></a></p></small></h4>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4"style="margin-top: 2px;" >
+                        <div class="col-sm-4">
+                            <div id="shutter2" class="shutter">
+                                <ul>
+                                    <li ng-repeat="newsImg in datas.newsImg">
+                                        <a ng-href="#/newsdetail?id={{newsImg._id}}">
+                                            <img  width="300" style="height:100%;"  ng-src="{{newsImg.image}}" />
+                                            <input type="hidden" name="newsImgHidden" value="{{newsImg.image}}" />
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div><!-- /.col-sm-4 -->
+                    </div>
+                    <div class="col-md-3">
+                        <div class="wrap" style="text-align: left">
+                            <div id="news_rolling">
+                                <ul>
+                                    <li ng-repeat='news in datas.news'>
+                                        <a ng-href="#/newsdetail?id={{news._id}}">{{news.title}}</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
                     <div class="col-sm-4">
-                        <div id="shutter2" class="shutter">
-                            <ul>
-                                <li ng-repeat="newsImg in datas.newsImg">
-                                    <a ng-href="#/newsdetail?id={{newsImg._id}}">
-                                        <img  width="300" style="height:100%;"  ng-src="{{newsImg.image}}" />
-                                        <input type="hidden" name="newsImgHidden" value="{{newsImg.image}}" />
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div><!-- /.col-sm-4 -->
-                </div>
-                <div class="col-md-3">
-                    <div class="wrap" style="text-align: left">
-                        <div id="news_rolling">
-                            <ul>
-                                <li ng-repeat='news in datas.news'>
-                                    <a ng-href="#/newsdetail?id={{news._id}}">{{news.title}}</a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-4">
-                    <div class="panel panel-success">
-                        <div class="panel-heading">
-                            <h3 class="panel-title">联系方式</h3>
-                        </div>
-                        <div class="panel-body"style="text-align:left">
-                            <ul class="list-inline">
-                                <li >电话:</li>
-                                <li><span ng-bind="datas.contactus.tel"></span></li>
-                            </ul>
-                            <ul class="list-inline">
-                                <li >传真:</li>
-                                <li><span ng-bind="datas.contactus.tel"></span></li>
-                            </ul>
-                            <ul class="list-inline">
-                                <li >QQ:</li>
-                                <li><span ng-bind="datas.contactus.qq"></span></li>
-                            </ul>
-                            <ul class="list-inline">
-                                <li >微信:</li>
-                                <li><span ng-bind="datas.contactus.qq"></span></li>
-                            </ul>
-                            <ul class="list-inline">
-                                <li >地址:</li>
-                                <li><span ng-bind="datas.contactus.address"></span></li>
-                            </ul>
-                            <ul class="list-inline">
-                                <li >邮箱:</li>
-                                <li><span ng-bind="datas.contactus.email"></span></li>
-                            </ul>
+                        <div class="panel panel-success">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">联系方式</h3>
+                            </div>
+                            <div class="panel-body"style="text-align:left">
+                                <ul class="list-inline">
+                                    <li >电话:</li>
+                                    <li><span ng-bind="datas.contactus.tel"></span></li>
+                                </ul>
+                                <ul class="list-inline">
+                                    <li >传真:</li>
+                                    <li><span ng-bind="datas.contactus.fax"></span></li>
+                                </ul>
+                                <ul class="list-inline">
+                                    <li >Q&nbsp;&nbsp;Q:</li>
+                                    <li><span ng-bind="datas.contactus.qq"></span></li>
+                                </ul>
+                                <ul class="list-inline">
+                                    <li >微信:</li>
+                                    <li><span ng-bind="datas.contactus.code"></span></li>
+                                </ul>
+                                <ul class="list-inline">
+                                    <li >地址:</li>
+                                    <li><span ng-bind="datas.contactus.address"></span></li>
+                                </ul>
+                                <ul class="list-inline">
+                                    <li >邮箱:</li>
+                                    <li><span ng-bind="datas.contactus.email"></span></li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
-
                 </div>
             </div>
         </div>
     </div>
-</div>
 </div>

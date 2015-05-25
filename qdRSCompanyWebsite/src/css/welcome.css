@@ -516,7 +516,7 @@
 a,img{border:0;}
 .title{height:24px;line-height:24px;font-size:18px;width:375px;margin:10px auto;}
 /* shutter */
-.shutter{position:relative;overflow:hidden;height:185px;width:300px;margin:0px auto;border:solid 1px #ddd;}
+.shutter{position:relative;overflow:hidden;height:193px;width:300px;margin:0px auto;border:solid 1px #ddd;}
 .shutter li{position:absolute;left:0;top:0;}
 .shutter-nav{display:inline-block;margin-right:8px;color:#fff;padding:2px 6px;background:#333;border:1px solid #fff;font-family:Tahoma;font-weight:bold;font-size:12px;cursor:pointer;}
 .shutter-cur-nav{display:inline-block;margin-right:8px;color:#fff;padding:2px 6px;background:#ff7a00;border:1px solid #fff;font-family:Tahoma;font-weight:bold;font-size:12px;cursor:pointer;}
@@ -525,7 +525,7 @@ a,img{border:0;}
 新闻滚动
 */
 
-#news_rolling{ height:185px; overflow:hidden;}/*这个高度设置配合每次滚动的行数可实现多行滚动*/
+#news_rolling{ height:193px; overflow:hidden;}/*这个高度设置配合每次滚动的行数可实现多行滚动*/
 #news_rolling li{ line-height:24px; height:24px; border-bottom:1px #CCCCCC dashed;}
 
 p{
@@ -572,4 +572,9 @@ margin-bottom: 0px;
 .col-sm-4{
 	width: 40%;margin-top: 2px;
 
+}
+
+.panelimg{
+	max-width:960px;
+	width:expression(this.width>960?"960px":this.width);
 }
