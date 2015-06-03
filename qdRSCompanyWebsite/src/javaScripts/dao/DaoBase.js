@@ -107,6 +107,16 @@ DaoBase.prototype.findAllByPage = function(sort,pageNo,pageSize,callback){
     }).sort(sort).limit(pageSize).skip((pageNo-1)*pageSize)
 }
 
+DaoBase.prototype.findAllByPageAndQuery = function(query,sort,pageNo,pageSize,callback){
+
+    this.model.find(query,function(error,model){
+        if(error) return callback(error,null);
+
+        return callback(null,model);
+    }).sort(sort).limit(pageSize).skip((pageNo-1)*pageSize)
+}
+
+
 DaoBase.prototype.insertData = function (data,callback){
     console.log("-------"+data);
     this.model.save(data, function (error) {

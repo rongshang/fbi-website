@@ -5,6 +5,29 @@
 'use strict'
 
 var app = angular.module('admin',['ngRoute','angularFileUpload']);
+//所有的产品展示
+app.controller('adminAllProductCtrl',['$scope','$http','$location',function($scope,$http,$location){
+    $scope.product = {
+        _id:'',
+        createdTime:'',
+        image:'',
+        title:'',
+        videosrc:'',
+        websiteUrl:'',
+        concat:''
+    };
+    var pageNo = $location.search().pageNo;
+    $http({
+        method:'get',
+        url:'/adminAllProductAjax',
+        params: {pageNo:pageNo,product:$scope.product.title}
+    }).success(function(data, status, headers, config){
+        $scope.datas = data;
+    });
+
+}])
+
+//新增产品
 app.controller('adminProductCtrl',['$scope','$http','FileUploader',function($scope,$http,FileUploader){
     $scope.product = {
         _id:'',
@@ -15,12 +38,18 @@ app.controller('adminProductCtrl',['$scope','$http','FileUploader',function($sco
         websiteUrl:'',
         concat:''
     };
+    var day = new Date();
+    var month = day.getMonth()+1;
+    var createdTime = day.getFullYear() + '-' +month+'-'+day.getDate()+' '+day.getHours()+':'+day.getMinutes()+':'+day.getSeconds();
+    $scope.product.createdTime=createdTime
 
+    /////////////////////////////////////////////////////////////////////
     var uploader=$scope.uploader = new FileUploader({
-        url:window.location.protocol + '//' + window.location.host +
-        window.location.pathname + 'upload/temp'
+        scope: $scope,
+        url:window.location.protocol + '//' + window.location.host + '/adminProductAjax',
+        formData:[{"product":$scope.product}]
     });
-      alert(window.location.protocol + '//' + window.location.host +window.location.pathname + 'upload/temp');
+
     // FILTERS
     uploader.filters.push({
         name: 'extensionFilter',
@@ -41,7 +70,7 @@ app.controller('adminProductCtrl',['$scope','$http','FileUploader',function($sco
         fn: function (item, options) {
             var fileSize = item.size;
             fileSize = parseInt(fileSize) / (1024 * 1024);
-            if (fileSize <= 5)
+            if (fileSize <= 1)
                 return true;
             else {
                 alert('Selected file exceeds the 5MB file size limit.Please choose a new file and try again.');
@@ -53,7 +82,7 @@ app.controller('adminProductCtrl',['$scope','$http','FileUploader',function($sco
     uploader.filters.push({
         name: 'itemResetFilter',
         fn: function (item, options) {
-            if (this.queue.length < 5)
+            if (this.queue.length <=1)
                 return true;
             else {
                 alert('You have exceeded the limit of uploading files.');
@@ -101,27 +130,25 @@ app.controller('adminProductCtrl',['$scope','$http','FileUploader',function($sco
     uploader.onCompleteAll = function() {
         console.info('onCompleteAll');
     };
-
     console.info('uploader', uploader);
-
-    $scope.save = function(){
-        var day = new Date();
-        var month = day.getMonth()+1;
-        var createdTime = day.getFullYear() + '-' +month+'-'+day.getDate()+' '+day.getHours()+':'+day.getMinutes()+':'+day.getSeconds();
-        $scope.product.createdTime=createdTime
-        $http({
-            method:'get',
-            url:'/adminProductAjax',
-            params: {'product':$scope.product}
-        }).success(function(data, status, headers, config){
-            if(data.msg=='1'){
-                alert("添加成功");
-            }else{
-                alert("添加失败");
-            }
-        });
-
-    }
+///////////////////////////////////////////////////////////////////////////
+//    $scope.save = function(){
+//        var day = new Date();
+//        var month = day.getMonth()+1;
+//        var createdTime = day.getFullYear() + '-' +month+'-'+day.getDate()+' '+day.getHours()+':'+day.getMinutes()+':'+day.getSeconds();
+//        $scope.product.createdTime=createdTime
+//        $http({
+//            method:'post',
+//            url:'/adminProductAjax',
+//            params: {'product':$scope.product}
+//        }).success(function(data, status, headers, config){
+//            if(data.msg=='1'){
+//                alert("添加成功");
+//            }else{
+//                alert("添加失败");
+//            }
+//        });
+//    }
   }
 ]);
 

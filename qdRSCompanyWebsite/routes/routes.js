@@ -42,6 +42,8 @@ module.exports = function (app) {
 ////////////////////////////////////////////////////////////////////////////
     //后台页面
     app.get('/admin',amdin.index);
-    app.get('/adminProductAjax',adminProduct.adminProductAjax);
+    //所有的产品
+    app.get('/adminAllProductAjax',adminProduct.adminAllProductAjax);
+    //app.post('/adminProductAjax',adminProduct.adminProductAjax);
 
 };

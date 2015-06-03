@@ -4,6 +4,6 @@
 
 module.exports={
     cookieSecret:'rswebsite',
+    //connectionstring:'mongodb://rswebsite:rswebsite@localhost:27017/rswebsite'
     connectionstring:'mongodb://localhost/rswebsite'
-
 };

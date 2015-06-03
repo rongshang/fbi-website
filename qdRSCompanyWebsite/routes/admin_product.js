@@ -4,39 +4,61 @@
 
 var uuid = require("uuid");
 var fs = require("fs");
+var howdo = require('howdo');
 //产品模块
 var products = require("../src/javaScripts/models").products;
 var productsDao = require("../src/javaScripts/dao/productsDao");
-var productsDao = new productsDao(products);
+var newProductsDao = new productsDao(products);
+var daoBase = require("../src/javaScripts/dao/DaoBase");
+var productsDaoBse = new daoBase(products);
 
-exports.adminProductAjax = function(req,res,next){
-    var product=req.body.product;
-    product =JSON.parse(product);
-    product._id = uuid.v1();
-    //上传开始
-    var data = _.pick(req.body, 'type')
-        , uploadPath = path.normalize('/upload/images')
-        , file = req.files.file;
 
-    console.log(file.name); //original name (ie: sunset.png)
-    console.log(file.path); //tmp path (ie: /tmp/12345-xyaz.png)
-    console.log(uploadPath); //uploads directory: (ie: /home/user/data/uploads)
-    //上传结束
-    productsDao.save(product,function(data){
-        res.json(data);
-    });
-    //console.log("======"+uuid.v1()+"-------------"+req.files.codecsv);
-    //if (req.files && req.files.codecsv != 'undifined') {
-    //    var temp_path = req.files.codecsv.path;
-    //    if (temp_path) {
-    //        fs.readFile(temp_path, 'utf-8', function(err, content) {
-    //            //文件的内容
-    //            console.log('content',content);
-    //            // 删除临时文件
-    //            fs.unlink(temp_path);
-    //        });
-    //    }
+exports.adminAllProductAjax = function(req,res,next){
+    var title = req.query.title.trim;
+    var title="";
+    var pageCount=0;
+    var pageNo = parseInt(req.query.pageNo);
+    var pageSize = 8;
+    howdo
+        .task(function(done){
+            productsDaoBse.countByQuery({},function(err,count){
+                pageCount = parseInt(Math.ceil(count/pageSize));
+                if(pageNo>pageCount){
+                    pageNo = pageCount;
+                }else if(pageNo<0){
+                    pageNo = 1;
+                }
+                done(null,pageNo,pageCount);
+            });
+        })
+        .task(function(done){
+            if(title==""||title==null){
+                productsDaoBse.findAllByPageAndQuery({},{createdTime:-1},pageNo,pageSize,function(err,products){
+                    done(null,products);
+                });
+            }else{
+                productsDaoBse.findAllByPageAndQuery({title:/title/i},{createdTime:-1},pageNo,pageSize,function(err,products){
+                    done(null,products);
+                });
+            }
+        })
+        .together(function(err,pageNo,pageCount,products){
+            res.json({'title':'我们的产品','pageNo':pageNo,'pageCount':pageCount,'products':products});
+        });
+
+
+
+
+
+    //console.log("11111111111111----"+JSON.stringify(req.files));
+    //var product=req.body.product;
+    //console.log("++++++++++++"+product);
+    //product =JSON.parse(product);
+    //product._id = uuid.v1();
+    //if(req.files.name!=undefined){
+    //    product.image = '/upload/images/'+req.files.name;
     //}
-
-
+    //newProductsDao.save(product,function(data){
+    //    res.json(data);
+    //});
 }

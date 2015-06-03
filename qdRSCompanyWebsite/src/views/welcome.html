@@ -63,21 +63,21 @@
     <div class="panel panel-primary panelimg"  style="margin: 0 auto; margin-top: 2%;">
         <div class="panel-body">
             <div class="row" style="margin: 10px 0 0">
-                    <div class="page-header" style="margin-top: -20px;">
-                        <h4 class="text-left" >产品介绍<small><p class="text-right"><a ng-href="#/allproduct?pageNo=1">More>></a></p></small></h4>
-                    </div>
-                    <div class="row">
-                        <div class="productlist">
-                            <div class="product" ng-repeat="product in datas.products">
-                                <img ng-src="{{product.image}}" />
-                                <span >
-                                 <a ng-href="#/productdetail?id={{product._id}}">{{product.title| limitTo :10}}...</a>
-                                </span>
-                            </div>
+                <div class="page-header" style="margin-top: -20px;">
+                    <h4 class="text-left" >产品介绍<small><p class="text-right"><a ng-href="#/allproduct?pageNo=1">More>></a></p></small></h4>
+                </div>
+                <div class="row">
+                    <div class="productlist">
+                        <div class="product" ng-repeat="product in datas.products">
+                            <img ng-src="{{product.image}}" />
+                            <span >
+                             <a ng-href="#/productdetail?id={{product._id}}">{{product.title| limitTo :10}}...</a>
+                            </span>
                         </div>
                     </div>
+                </div>
             </div>
-            <div class="row">
+            <div class="row" style="margin-bottom:-20px;">
                 <div class="col-md-7">
                     <div class="page-header">
                         <h4 class="text-left">新闻动态<small><p class="text-right"><a ng-href="#/allnews?pageNo=1" >More>></a></p></small></h4>
