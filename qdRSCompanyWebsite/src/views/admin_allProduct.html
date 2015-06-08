@@ -1,49 +1,38 @@
-<style>
-    .my-drop-zone {
-        border: dotted 3px lightgray;
-    }
-
-    .nv-file-over {
-        border: dotted 3px red;
-    }
-    .another-file-over-class {
-        border: dotted 3px green;
-    }
-
-    html, body {
-        height: 100%;
-    }
-</style>
-
-<table class="table table-hover">
+<table class="table table-hover table-bordered">
     <tr>
        <td>产品名称:</td>
-       <td><input type="text" ng-model="product.title" /></td>
+       <td colspan="4">
+           <input type="text"/>
+           <input type="button" ng-click="find()" value="查询"/>
+       </td>
     </tr>
     <tr>
-        <td>产品名称</td>
-        <td>产品描述</td>
-        <td>连接地址</td>
+        <td style="width:20%;">产品名称</td>
+        <td style="width:60%;">产品描述</td>
+        <td style="width:10%;">连接地址</td>
         <td>产品图片</td>
+        <td>操作</td>
     </tr>
     <tr ng-repeat="product in datas.products">
-        <td ng-bind="product.title"></td>
-        <td ng-bind="product.concat"><textarea></textarea></td>
-        <td ng-bind="product.websiteUrl">连接地址</td>
-        <td><img ng-src="{{product.image}}" style="width: 50px;height: 50px;" /></td>
+        <td style="width:50px;" ng-bind="product.title"></td>
+        <td style="width:20%; overflow:hidden;" ng-bind-html="product.concat"></td>
+        <td style="width:50px;" ng-bind="product.websiteUrl"></td>
+        <td><img ng-src="{{product.image}}" style="width: 80px;height: 80px;" /></td>
+        <td>
+            <input type="button" value="修改" ng-click="update(product._id)"  class="btn btn-info" />
+            <input type="button" value="删除" ng-click="del(product._id)" class="btn btn-danger" />
+        </td>
     </tr>
 </table>
 <div class="pagination pagination-sm right_end_fy">
-    <li><a ng-href="/admin/#/adminAllProduct?pageNo=1">首页</a></li>
-    <li><a ng-href="/admin/#/adminAllProduct?pageNo={{datas.pageNo-1<=0?1:datas.pageNo-1}}"> 上一页</a></li>
-    <li><a ng-href="/admin/#/adminAllProduct?pageNo={{datas.pageNo+1>=datas.pageCount?datas.pageCount:datas.pageNo+1}}"> 下一页</a></li>
-    <li><a ng-href="/admin/#/adminAllProduct?pageNo={{datas.pageCount}}"> 尾页</a></li>
+    <li><a ng-href="/admin/#/adminAllProduct/1">首页</a></li>
+    <li><a ng-href="/admin/#/adminAllProduct/{{datas.pageNo-1<=0?1:datas.pageNo-1}}"> 上一页</a></li>
+    <li><a ng-href="/admin/#/adminAllProduct/{{datas.pageNo+1>=datas.pageCount?datas.pageCount:datas.pageNo+1}}"> 下一页</a></li>
+    <li><a ng-href="/admin/#/adminAllProduct/{{datas.pageCount}}"> 尾页</a></li>
     <li><a href="javascript:void(0);">共{{datas.pageNo}}/{{datas.pageCount}}页</a></li>
-</div>
-<div style="float: left">&nbsp;&nbsp;
-    第<input type="text" id="pageNo" class="input-small right_end_go">页
-    <input type="hidden" id="pageCount" value="{{datas.pageCount}}" />
-    <button type="button" class="btn btn-default" role="button" onclick="go()">go</button>
+    <li>第<input type="text" id="pageNo" class="input-small right_end_go">页</li>
+    <li><input type="hidden" id="pageCount" value="{{datas.pageCount}}" /></li>
+    <li><button type="button" class="btn btn-default" role="button" onclick="go()">go</button></li>
 </div>
 
 <script type="text/javascript">
@@ -56,21 +45,6 @@
         }else if(parseInt(pageNo)>pageCount){
             pageNo=pageCount;
         }
-        window.location.href="/admin/#/adminAllProduct?pageNo="+pageNo;
+        window.location.href="/admin/#/adminAllProduct/"+pageNo;
     }
 </script>
-
-
-
-
-
-
-
-
-
-<!--<form method="post" enctype="multipart/form-data" action="/adminProductAjax" >-->
-    <!--<input type="file" name="image"/>-->
-
-    <!--&lt;!&ndash;<button ng-click="save()">保存</button>&ndash;&gt;-->
-    <!--<input type="submit" value="提交" />-->
-<!--</form>-->

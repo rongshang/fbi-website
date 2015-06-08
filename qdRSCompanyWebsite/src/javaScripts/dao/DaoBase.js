@@ -59,6 +59,7 @@ DaoBase.prototype.update = function( conditions, update ,options, callback) {
     });
 };
 
+
 DaoBase.prototype.findByLimit = function(count,callback){
     this.model.find().limit(count,function(error,model){
         if(error) return callback(error);
@@ -108,7 +109,6 @@ DaoBase.prototype.findAllByPage = function(sort,pageNo,pageSize,callback){
 }
 
 DaoBase.prototype.findAllByPageAndQuery = function(query,sort,pageNo,pageSize,callback){
-
     this.model.find(query,function(error,model){
         if(error) return callback(error,null);
 

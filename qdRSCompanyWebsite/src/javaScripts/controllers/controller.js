@@ -3,7 +3,7 @@
  */
 'use strict'
 
-var app = angular.module('app',['ngRoute']);
+var app = angular.module('app',['ngRoute','ngSanitize']);
 app.controller('welcomeCtrl',['$scope','$http',function($scope,$http){
         $http.get('/welcome').success(function(data) {
             $scope.datas= data;

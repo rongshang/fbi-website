@@ -44,6 +44,12 @@ module.exports = function (app) {
     app.get('/admin',amdin.index);
     //所有的产品
     app.get('/adminAllProductAjax',adminProduct.adminAllProductAjax);
-    //app.post('/adminProductAjax',adminProduct.adminProductAjax);
-
+    //添加产品
+    app.post('/adminAddProductAjax',adminProduct.adminAddProductAjax);
+    //删除产品
+    app.post('/delProductAjax',adminProduct.delProductAjax);
+    //根据id查询产品
+    app.post('/findById',adminProduct.findById)
+    //更新产品
+    app.post('/updateProductAjax',adminProduct.updateProductAjax);
 };

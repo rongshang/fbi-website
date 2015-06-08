@@ -1,7 +1,6 @@
 <script type="text/javascript" src="javaScripts/js/video.js"></script>
 <link rel="stylesheet"  type="text/css" href="/css/productdetail.css"/>
 <link rel="stylesheet"  type="text/css" href="/css/video-js.css" />
-
 <div  class="container">
       <div class="left">
            <div  class=" well lefttop" style="text-align: center">
@@ -20,7 +19,6 @@
               <span class="flag"></span>
                 &nbsp;&nbsp;
                 <a ng-href="#/welcome">首页</a>&nbsp;> &nbsp;产品演示
-
                 <a ng-href="{{datas.products.websiteUrl}}" style="float: right;">在线演示</a>
             </div>
             <div id="myTabContent" class="tab-content">
@@ -38,8 +36,11 @@
                         <track kind="captions" src="/images/videoother/captions.vtt" srclang="en" label="English" />
                       </video>
                    </div>
-                <div style="text-align: center"><h3><strong>{{datas.products.title}}</strong></h3></div>
-                    {{datas.products.concat}}
+                <div style="text-align: center">
+                    <h3><strong>{{datas.products.title}}</strong></h3>
+                </div>
+
+                    <div ng-bind-html="datas.products.concat"></div>
                 </div>
             </div>
       </div>

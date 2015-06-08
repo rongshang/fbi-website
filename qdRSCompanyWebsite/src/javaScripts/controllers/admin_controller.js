@@ -4,31 +4,43 @@
 
 'use strict'
 
-var app = angular.module('admin',['ngRoute','angularFileUpload']);
+var app = angular.module('admin',['ngRoute','angularFileUpload','ngSanitize']);
 //所有的产品展示
-app.controller('adminAllProductCtrl',['$scope','$http','$location',function($scope,$http,$location){
-    $scope.product = {
-        _id:'',
-        createdTime:'',
-        image:'',
-        title:'',
-        videosrc:'',
-        websiteUrl:'',
-        concat:''
-    };
-    var pageNo = $location.search().pageNo;
-    $http({
-        method:'get',
-        url:'/adminAllProductAjax',
-        params: {pageNo:pageNo,product:$scope.product.title}
-    }).success(function(data, status, headers, config){
-        $scope.datas = data;
-    });
+app.controller('adminAllProductCtrl',['$scope','$http','$location','$routeParams','$rootScope',function($scope,$http,$location,$routeParams,$rootScope){
+
+    //查询产品
+    var pageNo = $routeParams.pageNo;
+    $scope.find = function(){
+        alert("");
+        $http({
+            method:'get',
+            url:'/adminAllProductAjax',
+            params: {pageNo:pageNo,title:'1111'}
+        }).success(function(data, status, headers, config){
+            alert(JSON.stringify(data));
+            $scope.$apply.datas = data;
+        });
+    }
+    $scope.find();
+
+    //根据id查询产品
+    $scope.update = function(id){
+        $location.path("/findById/"+id);
+    }
+
+    //删除产品
+    $scope.del = function(id){
+        if(confirm("你确定删除吗？")){
+            $http.post('/delProductAjax',{id:id}).success(function(data) {
+                $scope.datas = data;
+            });
+        }
+    }
 
 }])
 
 //新增产品
-app.controller('adminProductCtrl',['$scope','$http','FileUploader',function($scope,$http,FileUploader){
+app.controller('adminAddProductCtrl',['$scope','$http',function($scope,$http){
     $scope.product = {
         _id:'',
         createdTime:'',
@@ -38,6 +50,7 @@ app.controller('adminProductCtrl',['$scope','$http','FileUploader',function($sco
         websiteUrl:'',
         concat:''
     };
+    /*
     var day = new Date();
     var month = day.getMonth()+1;
     var createdTime = day.getFullYear() + '-' +month+'-'+day.getDate()+' '+day.getHours()+':'+day.getMinutes()+':'+day.getSeconds();
@@ -131,25 +144,49 @@ app.controller('adminProductCtrl',['$scope','$http','FileUploader',function($sco
         console.info('onCompleteAll');
     };
     console.info('uploader', uploader);
+    */
 ///////////////////////////////////////////////////////////////////////////
-//    $scope.save = function(){
-//        var day = new Date();
-//        var month = day.getMonth()+1;
-//        var createdTime = day.getFullYear() + '-' +month+'-'+day.getDate()+' '+day.getHours()+':'+day.getMinutes()+':'+day.getSeconds();
-//        $scope.product.createdTime=createdTime
-//        $http({
-//            method:'post',
-//            url:'/adminProductAjax',
-//            params: {'product':$scope.product}
-//        }).success(function(data, status, headers, config){
-//            if(data.msg=='1'){
-//                alert("添加成功");
-//            }else{
-//                alert("添加失败");
-//            }
-//        });
-//    }
+    $scope.save = function(){
+        $scope.product.concat=editor.html();
+
+        $scope.product.createdTime=getCreateTime();
+        $http({
+            method:'post',
+            url:'/adminAddProductAjax',
+            params: {'product':$scope.product}
+        }).success(function(data, status, headers, config){
+            if(data.msg=='1'){
+                window.location.reload();
+            }else{
+                alert("添加失败");
+            }
+        });
+    }
   }
 ]);
+
+//根据id查询产品
+app.controller("adminfindByIdProductCtrl",['$scope','$http','$location','$routeParams',function($scope,$http,$location,$routeParams){
+    $http.post('/findById',{id:$routeParams.id}).success(function(data) {
+        editor.html(data.concat);
+        $scope.datas = data;
+    });
+
+    //更新产品
+    $scope.save = function(product){
+        product.concat=editor.html()
+        $http.post('/updateProductAjax',{product:product}).success(function(data) {
+            if(data.msg=='1'){
+                window.location.reload();
+            }else{
+                alert("更新失败");
+            }
+        });
+    }
+
+}
+
+])
+
 
 
