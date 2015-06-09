@@ -5,30 +5,30 @@
 var uuid = require("uuid");
 var fs = require("fs");
 var howdo = require('howdo');
+var daoBase = require("../src/javaScripts/dao/DaoBase");
+
 //产品模块
 var products = require("../src/javaScripts/models").products;
 var productsDao = require("../src/javaScripts/dao/productsDao");
 var newProductsDao = new productsDao(products);
-var daoBase = require("../src/javaScripts/dao/DaoBase");
 var productsDaoBse = new daoBase(products);
-
 
 exports.adminAllProductAjax = function(req,res,next){
     var title = req.query.title;
     var pageCount=0;
     var pageNo = parseInt(req.query.pageNo);
     var pageSize = 8;
-    var queryStr=null;
+    var queryStr={};
     if(title==""||title==null){
         queryStr={};
     }else{
-        queryStr={title:/title/i}
+        var pattern = new RegExp("^.*"+title+".*$");
+        queryStr.title = pattern;
     }
     howdo
         .task(function(done){
             productsDaoBse.countByQuery(queryStr,function(err,count){
                 pageCount = parseInt(Math.ceil(count/pageSize));
-                console.log("=====pageCount========"+pageCount);
                 if(pageNo>pageCount){
                     pageNo = pageCount;
                 }else if(pageNo<0){
@@ -108,9 +108,11 @@ exports.updateProductAjax = function(req,res,next){
 }
 
 //根据id查询产品
-exports.findById = function(req,res,next){
+exports.findProductById = function(req,res,next){
     var id=req.body.id;
     productsDaoBse.getById(id,function(err,product){
         res.json(product);
     })
 }
+
+

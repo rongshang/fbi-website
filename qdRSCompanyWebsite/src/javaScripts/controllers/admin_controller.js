@@ -7,25 +7,23 @@
 var app = angular.module('admin',['ngRoute','angularFileUpload','ngSanitize']);
 //所有的产品展示
 app.controller('adminAllProductCtrl',['$scope','$http','$location','$routeParams','$rootScope',function($scope,$http,$location,$routeParams,$rootScope){
-
     //查询产品
     var pageNo = $routeParams.pageNo;
+    $scope.title="";
     $scope.find = function(){
-        alert("");
         $http({
             method:'get',
             url:'/adminAllProductAjax',
-            params: {pageNo:pageNo,title:'1111'}
+            params: {pageNo:pageNo,title:$scope.title}
         }).success(function(data, status, headers, config){
-            alert(JSON.stringify(data));
-            $scope.$apply.datas = data;
+            $scope.datas = data;
         });
     }
     $scope.find();
 
     //根据id查询产品
     $scope.update = function(id){
-        $location.path("/findById/"+id);
+        $location.path("/findProductById/"+id);
     }
 
     //删除产品
@@ -36,7 +34,6 @@ app.controller('adminAllProductCtrl',['$scope','$http','$location','$routeParams
             });
         }
     }
-
 }])
 
 //新增产品
@@ -51,11 +48,6 @@ app.controller('adminAddProductCtrl',['$scope','$http',function($scope,$http){
         concat:''
     };
     /*
-    var day = new Date();
-    var month = day.getMonth()+1;
-    var createdTime = day.getFullYear() + '-' +month+'-'+day.getDate()+' '+day.getHours()+':'+day.getMinutes()+':'+day.getSeconds();
-    $scope.product.createdTime=createdTime
-
     /////////////////////////////////////////////////////////////////////
     var uploader=$scope.uploader = new FileUploader({
         scope: $scope,
@@ -148,11 +140,10 @@ app.controller('adminAddProductCtrl',['$scope','$http',function($scope,$http){
 ///////////////////////////////////////////////////////////////////////////
     $scope.save = function(){
         $scope.product.concat=editor.html();
-
         $scope.product.createdTime=getCreateTime();
         $http({
             method:'post',
-            url:'/adminAddProductAjax',
+            url:'/adminAddCompanyfileAjax',
             params: {'product':$scope.product}
         }).success(function(data, status, headers, config){
             if(data.msg=='1'){
@@ -162,12 +153,11 @@ app.controller('adminAddProductCtrl',['$scope','$http',function($scope,$http){
             }
         });
     }
-  }
-]);
+}]);
 
 //根据id查询产品
-app.controller("adminfindByIdProductCtrl",['$scope','$http','$location','$routeParams',function($scope,$http,$location,$routeParams){
-    $http.post('/findById',{id:$routeParams.id}).success(function(data) {
+app.controller("adminfindProductByIdCtrl",['$scope','$http','$location','$routeParams',function($scope,$http,$location,$routeParams){
+    $http.post('/findProductById',{id:$routeParams.id}).success(function(data) {
         editor.html(data.concat);
         $scope.datas = data;
     });
@@ -183,10 +173,147 @@ app.controller("adminfindByIdProductCtrl",['$scope','$http','$location','$routeP
             }
         });
     }
+}])
 
-}
+//查询全部公司简介
+app.controller('adminAllCompanyprofileCtrl',['$scope','$http','$location','$routeParams','$rootScope',function($scope,$http,$location,$routeParams,$rootScope){
+    //查询公司简介
+    var pageNo = $routeParams.pageNo;
+        $http({
+            method:'get',
+            url:'/adminAllCompanyprofile',
+            params: {pageNo:pageNo}
+        }).success(function(data, status, headers, config){
+            $scope.datas = data;
+        });
 
-])
+    //根据id查询公司简介
+    $scope.update = function(id){
+        $location.path("/findCompanyprofileById/"+id);
+    }
 
+    //删除公司简介
+    $scope.del = function(id){
+        if(confirm("你确定删除吗？")){
+            $http.post('/delCompanyprofileAjax',{id:id}).success(function(data) {
+                if(data.msg=='1'){
+                    window.location.reload();
+                }else{
+                    alert("删除失败");
+                }
+            });
+        }
+    }
+}])
 
+//根据id查询公司简介
+app.controller("adminCompanyprofileByIdCtrl",['$scope','$http','$location','$routeParams',function($scope,$http,$location,$routeParams){
+    $http.post('/findCompanyprofileById',{id:$routeParams.id}).success(function(data) {
+        editor.html(data.concat);
+        $scope.datas = data;
+    });
 
+    //更新公司简介
+    $scope.save = function(companyprofile){
+        companyprofile.concat=editor.html()
+        $http.post('/updateCompanyprofileAjax',{companyprofile:companyprofile}).success(function(data) {
+            if(data.msg=='1'){
+                window.location.reload();
+            }else{
+                alert("更新失败");
+            }
+        });
+    }
+}])
+
+//新增公司简介
+app.controller('adminAddCompanyprofileCtrl',['$scope','$http',function($scope,$http){
+    $scope.companyprofile = {_id:'', concat:''};
+    $scope.save = function(){
+        $scope.companyprofile.concat=editor.html();
+        $scope.companyprofile.createdTime=getCreateTime();
+        $http({
+            method:'post',
+            url:'/adminAddCompanyprofileAjax',
+            params: {'companyprofile':$scope.companyprofile}
+        }).success(function(data, status, headers, config){
+            if(data.msg=='1'){
+                window.location.reload();
+            }else{
+                alert("添加失败");
+            }
+        });
+    }
+}]);
+
+//企业文化
+//查询全部企业文化
+app.controller('adminAllEnterprisecultureCtrl',['$scope','$http','$location','$routeParams','$rootScope',function($scope,$http,$location,$routeParams,$rootScope){
+    //查询企业文化
+    var pageNo = $routeParams.pageNo;
+    $http({
+        method:'get',
+        url:'/adminAllEnterpriseculture',
+        params: {pageNo:pageNo}
+    }).success(function(data, status, headers, config){
+        $scope.datas = data;
+    });
+
+    //根据id查询企业文化
+    $scope.update = function(id){
+        $location.path("/findEnterprisecultureById/"+id);
+    }
+
+    //删除企业文化
+    $scope.del = function(id){
+        if(confirm("你确定删除吗？")){
+            $http.post('/delEnterprisecultureAjax',{id:id}).success(function(data) {
+                if(data.msg=='1'){
+                    window.location.reload();
+                }else{
+                    alert("删除失败");
+                }
+            });
+        }
+    }
+}])
+
+//根据id查询企业文化
+app.controller("adminEnterprisecultureByIdCtrl",['$scope','$http','$location','$routeParams',function($scope,$http,$location,$routeParams){
+    $http.post('/findEnterprisecultureById',{id:$routeParams.id}).success(function(data) {
+        editor.html(data.concat);
+        $scope.datas = data;
+    });
+
+    //更新企业文化
+    $scope.save = function(companyprofile){
+        enterpriseculture.concat=editor.html()
+        $http.post('/updateEnterprisecultureAjax',{enterpriseculture:enterpriseculture}).success(function(data) {
+            if(data.msg=='1'){
+                window.location.reload();
+            }else{
+                alert("更新失败");
+            }
+        });
+    }
+}])
+
+//新增企业文化
+app.controller('adminAddEnterprisecultureCtrl',['$scope','$http',function($scope,$http){
+    $scope.enterpriseculture = {_id:'', concat:''};
+    $scope.save = function(){
+        $scope.enterpriseculture.concat=editor.html();
+        $scope.enterpriseculture.createdTime=getCreateTime();
+        $http({
+            method:'post',
+            url:'/adminAddEnterprisecultureAjax',
+            params: {'enterpriseculture':$scope.enterpriseculture}
+        }).success(function(data, status, headers, config){
+            if(data.msg=='1'){
+                window.location.reload();
+            }else{
+                alert("添加失败");
+            }
+        });
+    }
+}]);

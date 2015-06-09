@@ -14,7 +14,6 @@ var ProductsDAO = function(products) {
 ProductsDAO.prototype.save = function(product,callback){
    var productsModel = new ProductsModel(product);
     productsModel.save(function(err){
-        console.log("-----err----"+err);
         if (err){
             return callback({msg:'0'});
         }

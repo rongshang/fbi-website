@@ -21,7 +21,7 @@
         <div id="myTabContent" class="tab-content">
             <div class="tab-pane fade in active" id="product1">
                 <div style="margin-left: 10px;" ng-repeat="companyprofile in datas.companyprofiles">
-                    <span ng-bind="companyprofile.concat"></span>
+                    <span ng-bind-html="companyprofile.concat"></span>
                 </div>
             </div>
         </div>

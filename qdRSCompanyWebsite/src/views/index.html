@@ -55,18 +55,16 @@
         }
         window.onload=menu();
         //setTimeout("menu()",1000);
-
     </script>
 </head>
 <body>
-
 <nav class="navbar navbar-default navbar-fixed-top ">
-    <div class="container">
+    <div class="container top">
         <div class="navbar-header">
-            <img style="width: 150px;margin-top: 10px;height: 30px;margin-left: 90px"  src="<%=contactus.logo%>">
+            <img  src="<%=contactus.logo%>">
         </div>
         <div class="navbar-collapse collapse nav nav-pills"
-             style="position: absolute;margin-top:-3px;margin-left:300px">
+             style="width:1100px;min-width: 1100px;margin-left: 65px;">
             <div class="navigation">
                 <ul class="navbox" id="navbar">
                     <li><a ng-href="#/welcome">公司首页</a></li>
@@ -84,10 +82,10 @@
                     <li><a ng-href="#/allrecruitment?pageNo=1&active=1">招贤纳士</a></li>
                 </ul>
             </div>
-        </div><!--/.nav-collapse -->
+        </div>
     </div>
 </nav>
-<div ng-view style="margin-top:60px;"></div>
+<div ng-view style="margin-top:90px;"></div>
 <!--客服-->
 <div class="main-im">
     <div id="open_im" class="open-im">&nbsp;</div>
@@ -117,20 +115,24 @@
         </div>
     </div>
 </div>
-
-<div id="footer" class="container">
-    <p style="padding-top: 20px;text-align: center">
-        Copyright@2009-2020 青岛融商信息技术有限公司 单位用户备案12345678
-        <br>
-        联系电话:<%=contactus.tel%> &nbsp;&nbsp;公司邮箱:<%=contactus.email%>
-        <br>
-        <a ng-href="#/welcome">首页</a>&nbsp;&nbsp;&nbsp;
-        <a ng-href="#/companyprofile">关于我们</a>&nbsp;&nbsp;&nbsp;
-        <a ng-href="#/allproduct">产品展示</a>&nbsp;&nbsp;&nbsp;
-        <a ng-href="#/contactus">联系我们</a>&nbsp;&nbsp;&nbsp;
-        <a ng-href="#/allrecruitment?pageNo=1&active=1">招贤纳士</a>
-    </p>
+<br>
+<div  style="background: #404040;">
+    <br>
+    <div id="footer" class="container">
+        <p style="padding-top: 20px;text-align: center;color: white">
+            Copyright@2009-2020 青岛融商信息技术有限公司 单位用户备案12345678
+            <br>
+            联系电话:<%=contactus.tel%> &nbsp;&nbsp;公司邮箱:<%=contactus.email%>
+            <br>
+            <a ng-href="#/welcome">首页</a>&nbsp;&nbsp;&nbsp;
+            <a ng-href="#/companyprofile">关于我们</a>&nbsp;&nbsp;&nbsp;
+            <a ng-href="#/allproduct">产品展示</a>&nbsp;&nbsp;&nbsp;
+            <a ng-href="#/contactus">联系我们</a>&nbsp;&nbsp;&nbsp;
+            <a ng-href="#/allrecruitment?pageNo=1&active=1">招贤纳士</a>
+        </p>
+    </div>
 </div>
+
 <script src="../javaScripts/controllers/controller.js"></script>
 <script src="../javaScripts/controllers/app.js"></script>
 </body>
