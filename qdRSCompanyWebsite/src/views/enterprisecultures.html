@@ -21,7 +21,7 @@
         <div id="myTabContent" class="tab-content">
             <div class="tab-pane fade in active" id="product1">
                 <div style="margin-left: 10px;" ng-repeat="enterpriseculture in datas.enterprisecultures">
-                    <span ng-bind="enterpriseculture.concat"></span>
+                    <span ng-bind-html="enterpriseculture.concat"></span>
                 </div>
             </div>
         </div>

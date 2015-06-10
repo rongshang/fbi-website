@@ -286,7 +286,7 @@ app.controller("adminEnterprisecultureByIdCtrl",['$scope','$http','$location','$
     });
 
     //更新企业文化
-    $scope.save = function(companyprofile){
+    $scope.save = function(enterpriseculture){
         enterpriseculture.concat=editor.html()
         $http.post('/updateEnterprisecultureAjax',{enterpriseculture:enterpriseculture}).success(function(data) {
             if(data.msg=='1'){
@@ -308,6 +308,78 @@ app.controller('adminAddEnterprisecultureCtrl',['$scope','$http',function($scope
             method:'post',
             url:'/adminAddEnterprisecultureAjax',
             params: {'enterpriseculture':$scope.enterpriseculture}
+        }).success(function(data, status, headers, config){
+            if(data.msg=='1'){
+                window.location.reload();
+            }else{
+                alert("添加失败");
+            }
+        });
+    }
+}]);
+
+//发展历程
+//查询全部发展历程
+app.controller('adminAllDevelopmentCtrl',['$scope','$http','$location','$routeParams','$rootScope',function($scope,$http,$location,$routeParams,$rootScope){
+    //查询发展历程
+    var pageNo = $routeParams.pageNo;
+    $http({
+        method:'get',
+        url:'/adminAllDevelopment',
+        params: {pageNo:pageNo}
+    }).success(function(data, status, headers, config){
+        $scope.datas = data;
+    });
+
+    //根据id查询发展历程
+    $scope.update = function(id){
+        $location.path("/findDevelopmentById/"+id);
+    }
+
+    //删除发展历程
+    $scope.del = function(id){
+        if(confirm("你确定删除吗？")){
+            $http.post('/delDevelopmentAjax',{id:id}).success(function(data) {
+                if(data.msg=='1'){
+                    window.location.reload();
+                }else{
+                    alert("删除失败");
+                }
+            });
+        }
+    }
+}])
+
+//根据id查询发展历程
+app.controller("adminDevelopmentByIdCtrl",['$scope','$http','$location','$routeParams',function($scope,$http,$location,$routeParams){
+    $http.post('/findDevelopmentById',{id:$routeParams.id}).success(function(data) {
+        editor.html(data.concat);
+        $scope.datas = data;
+    });
+
+    //更新发展历程
+    $scope.save = function(development){
+        development.concat=editor.html()
+        $http.post('/updateDevelopmentAjax',{development:development}).success(function(data) {
+            if(data.msg=='1'){
+                window.location.reload();
+            }else{
+                alert("更新失败");
+            }
+        });
+    }
+}])
+
+//新增发展历程
+app.controller('adminAddDevelopmentCtrl',['$scope','$http',function($scope,$http){
+    $scope.development = {_id:'', concat:''};
+    $scope.save = function(){
+        $scope.development.concat=editor.html();
+        $scope.development.createdTime=getCreateTime();
+        $http({
+            method:'post',
+            url:'/adminAddDevelopmentAjax',
+            params: {'development':$scope.development}
         }).success(function(data, status, headers, config){
             if(data.msg=='1'){
                 window.location.reload();

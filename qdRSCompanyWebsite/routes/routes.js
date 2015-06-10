@@ -11,6 +11,7 @@ var amdin = require('./admin_index');
 var adminProduct = require('./admin_product');
 var adminCompanyprofile = require('./admin_companyfile');
 var adminEnterpriseculture = require('./admin_enterprisecultures');
+var adminDevelopment = require('./admin_developments');
 
 module.exports = function (app) {
     //标题页面
@@ -74,5 +75,15 @@ module.exports = function (app) {
     app.post('/updateEnterprisecultureAjax',adminEnterpriseculture.updatEenterprisecultureAjax);
     //查询全部企业文化
     app.get('/adminAllEnterpriseculture',adminEnterpriseculture.adminAllEnterpriseculture);
+    //添加发展历程
+    app.post('/adminAddDevelopmentAjax',adminDevelopment.adminAddDevelopmentAjax);
+    //删除发展历程
+    app.post('/delDevelopmentAjax',adminDevelopment.delDevelopmentAjax);
+    //根据id查询发展历程
+    app.post('/findDevelopmentById',adminDevelopment.findDevelopmentById)
+    //更新发展历程
+    app.post('/updateDevelopmentAjax',adminDevelopment.updateDevelopmentAjax);
+    //查询全部发展历程
+    app.get('/adminAllDevelopment',adminDevelopment.adminAllDevelopment);
 
 };

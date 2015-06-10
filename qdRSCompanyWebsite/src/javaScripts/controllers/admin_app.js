@@ -17,15 +17,21 @@ app.config(['$routeProvider',function($routeProvider){
          //查询全部公司简介
         .when('/adminAllCompanyprofile/:pageNo', {templateUrl:'/views/admin_allCompanyprofiles.html',controller: 'adminAllCompanyprofileCtrl'})
         //添加公司简介
-        .when('/adminAddCompanyprofile', {templateUrl:'/views/admin_addCompanyfiles.html',controller: 'adminAddCompanyprofileCtrl'})
+        .when('/adminAddCompanyprofile', {templateUrl:'/views/admin_addCompanyfile.html',controller: 'adminAddCompanyprofileCtrl'})
          //根据id查询公司简介
-        .when('/findenterprisecultureById/:id', {templateUrl:'/views/admin_updateCompanyprofile.html',controller: 'adminCompanyprofileByIdCtrl'})
+        .when('/findCompanyprofileById/:id', {templateUrl:'/views/admin_updateCompanyprofile.html',controller: 'adminCompanyprofileByIdCtrl'})
         //查询全部企业文化
         .when('/adminAllEnterpriseculture/:pageNo', {templateUrl:'/views/admin_allEnterprisecultures.html',controller: 'adminAllEnterprisecultureCtrl'})
         //添加企业文化
         .when('/adminAddEnterpriseculture', {templateUrl:'/views/admin_addEnterpriseculture.html',controller: 'adminAddEnterprisecultureCtrl'})
         //根据id查询企业文化
-        .when('/findEnterprisecultureById/:id', {templateUrl:'/views/admin_updateEnterprisecultures.html',controller: 'adminEnterprisecultureByIdCtrl'})
+        .when('/findEnterprisecultureById/:id', {templateUrl:'/views/admin_updateEnterpriseculture.html',controller: 'adminEnterprisecultureByIdCtrl'})
+        //查询全部发展历程
+        .when('/adminAllDevelopment/:pageNo', {templateUrl:'/views/admin_allDevelopments.html',controller: 'adminAllDevelopmentCtrl'})
+        //添加发展历程
+        .when('/adminAddDevelopment', {templateUrl:'/views/admin_addDevelopment.html',controller: 'adminAddDevelopmentCtrl'})
+        //根据id查询发展历程
+        .when('/findDevelopmentById/:id', {templateUrl:'/views/admin_updateDevelopment.html',controller: 'adminDevelopmentByIdCtrl'})
 
 }
 ]);
