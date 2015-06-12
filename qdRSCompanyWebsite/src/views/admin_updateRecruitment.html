@@ -1,0 +1,36 @@
+<link rel="stylesheet" href="../javaScripts/js/kindeditor/themes/default/default.css" />
+<script charset="utf-8" src="../javaScripts/js/kindeditor/kindeditor-min.js"></script>
+<script charset="utf-8" src="../javaScripts/js/kindeditor/lang/zh_CN.js"></script>
+<script>
+    var editor;
+    KindEditor.ready(function (K) {
+        editor = K.create('#content', {
+            allowFileManager: true,
+            allowImageUpload: false
+        });
+        prettyPrint();
+    });
+</script>
+<table>
+    <tr>
+        <td style="width:10%;">招聘职位</td>
+        <td style="width:10%;">招聘人数</td>
+        <td style="width:10%;">工作地点</td>
+        <td style="width:10%;">薪资待遇</td>
+        <td style="width:30%;">工作要求</td>
+        <td style="width:10%;">联系电话</td>
+        <td style="width:10%;">邮箱</td>
+        <td style="width:10%;">工作待遇</td>
+    </tr>
+    <tr>
+        <td style="width:10%;"><input type="text" ng-model="datas.job" /></td>
+        <td style="width:10%;"><input type="text" ng-model="datas.count" /></td>
+        <td style="width:10%;"><input type="text" ng-model="datas.address" /></td>
+        <td style="width:10%;"><input type="text" ng-model="datas.salary" /></td>
+        <td style="width:30%;"><textarea id="content" style="width:300px;height:200px;visibility:hidden;"></textarea></td>
+        <td style="width:10%;"><input type="text" ng-model="datas.tel" /></td>
+        <td style="width:10%;"><input type="text" ng-model="datas.email" /></td>
+        <td style="width:10%;"><input type="text" ng-model="datas.treatment" /></td>
+    </tr>
+</table>
+<input type="button" ng-click="save(datas)" value="保存"/>

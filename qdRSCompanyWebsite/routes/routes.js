@@ -9,9 +9,10 @@ var aboutus = require('./aboutus');
 var contactus = require('./contactus');
 var amdin = require('./admin_index');
 var adminProduct = require('./admin_product');
-var adminCompanyprofile = require('./admin_companyfile');
+var adminCompanyprofile = require('./admin_companyfiles');
 var adminEnterpriseculture = require('./admin_enterprisecultures');
 var adminDevelopment = require('./admin_developments');
+var adminRecruitment = require('./admin_recruitments');
 
 module.exports = function (app) {
     //标题页面
@@ -85,5 +86,15 @@ module.exports = function (app) {
     app.post('/updateDevelopmentAjax',adminDevelopment.updateDevelopmentAjax);
     //查询全部发展历程
     app.get('/adminAllDevelopment',adminDevelopment.adminAllDevelopment);
+    //添加招贤纳士
+    app.post('/adminAddRecruitmentAjax',adminRecruitment.adminAddRecruitmentAjax);
+    //删除招贤纳士
+    app.post('/delRecruitmentAjax',adminRecruitment.delRecruitmentAjax);
+    //根据id查询招贤纳士
+    app.post('/findRecruitmentById',adminRecruitment.findRecruitmentById)
+    //更新招贤纳士
+    app.post('/updateRecruitmentAjax',adminRecruitment.updateRecruitmentAjax);
+    //查询全部招贤纳士
+    app.get('/adminAllRecruitment',adminRecruitment.adminAllRecruitment);
 
 };

@@ -43,9 +43,9 @@
                         </tr>
                     </table>
                     <h4>岗位要求：</h4>
-                        <span ng-bind="datas.recruitment.concat"></span>
+                        <span ng-bind-html="datas.recruitment.concat"></span>
                     <h4>福利待遇</h4>
-                    <li>{{datas.recruitment.treatment}}</li>
+                    <li ng-bind-html="datas.recruitment.treatment"></li>
                     <h4>联系电话：<small>{{datas.recruitment.tel}}</small></h4>
                     <h4>联系邮箱：<small>{{datas.recruitment.email}}</small></h4>
                 </div>

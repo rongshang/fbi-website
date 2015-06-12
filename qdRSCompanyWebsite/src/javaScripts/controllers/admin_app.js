@@ -32,6 +32,12 @@ app.config(['$routeProvider',function($routeProvider){
         .when('/adminAddDevelopment', {templateUrl:'/views/admin_addDevelopment.html',controller: 'adminAddDevelopmentCtrl'})
         //根据id查询发展历程
         .when('/findDevelopmentById/:id', {templateUrl:'/views/admin_updateDevelopment.html',controller: 'adminDevelopmentByIdCtrl'})
+        //查询全部招贤纳士
+        .when('/adminAllRecruitment/:pageNo', {templateUrl:'/views/admin_allRecruitments.html',controller: 'adminAllRecruitmentCtrl'})
+        //添加招贤纳士
+        .when('/adminAddRecruitment', {templateUrl:'/views/admin_addRecruitment.html',controller: 'adminAddRecruitmentCtrl'})
+        //根据id查询招贤纳士
+        .when('/findRecruitmentById/:id', {templateUrl:'/views/admin_updateRecruitment.html',controller: 'adminRecruitmentByIdCtrl'})
 
 }
 ]);

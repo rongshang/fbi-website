@@ -389,3 +389,86 @@ app.controller('adminAddDevelopmentCtrl',['$scope','$http',function($scope,$http
         });
     }
 }]);
+
+//招贤纳士
+//查询全部招贤纳士
+app.controller('adminAllRecruitmentCtrl',['$scope','$http','$location','$routeParams','$rootScope',function($scope,$http,$location,$routeParams,$rootScope){
+    //查询招贤纳士
+    var pageNo = $routeParams.pageNo;
+    $http({
+        method:'get',
+        url:'/adminAllRecruitment',
+        params: {pageNo:pageNo}
+    }).success(function(data, status, headers, config){
+        $scope.datas = data;
+    });
+
+    //根据id查询招贤纳士
+    $scope.update = function(id){
+        $location.path("/findRecruitmentById/"+id);
+    }
+
+    //删除招贤纳士
+    $scope.del = function(id){
+        if(confirm("你确定删除吗？")){
+            $http.post('/delRecruitmentAjax',{id:id}).success(function(data) {
+                if(data.msg=='1'){
+                    window.location.reload();
+                }else{
+                    alert("删除失败");
+                }
+            });
+        }
+    }
+}])
+
+//根据id查询招贤纳士
+app.controller("adminRecruitmentByIdCtrl",['$scope','$http','$location','$routeParams',function($scope,$http,$location,$routeParams){
+    $http.post('/findRecruitmentById',{id:$routeParams.id}).success(function(data) {
+        editor.html(data.concat);
+        $scope.datas = data;
+    });
+
+    //更新招贤纳士
+    $scope.save = function(recruitment){
+        recruitment.concat=editor.html()
+        $http.post('/updateRecruitmentAjax',{recruitment:recruitment}).success(function(data) {
+            if(data.msg=='1'){
+                window.location.reload();
+            }else{
+                alert("更新失败");
+            }
+        });
+    }
+}])
+
+//新增招贤纳士
+app.controller('adminAddRecruitmentCtrl',['$scope','$http',function($scope,$http){
+    $scope.recruitment = {
+        _id:''
+        ,job:""
+        ,count:""
+        ,address:""
+        ,salary:""
+        ,concat:""
+        ,tel:""
+        ,email:""
+        ,treatment:""
+        ,createdTime:""
+    };
+    $scope.save = function(){
+        $scope.recruitment.concat=editor.html();
+        $scope.recruitment.createdTime=getCreateTime();
+        $http({
+            method:'post',
+            url:'/adminAddRecruitmentAjax',
+            params: {'recruitment':$scope.recruitment}
+        }).success(function(data, status, headers, config){
+            if(data.msg=='1'){
+                window.location.reload();
+            }else{
+                alert("添加失败");
+            }
+        });
+    }
+}]);
