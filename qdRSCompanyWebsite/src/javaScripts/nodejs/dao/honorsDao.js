@@ -1,0 +1,18 @@
+/**
+ * Created by Administrator on 2015/5/14.
+ */
+
+'use strict'
+var DaoBase = require('./DaoBase'),
+    models = require('../models/index'),
+    HonorsModel = models.honors;
+
+var HonorsDAO = function(honors) {
+    this.honors=honors ||{};
+};
+
+module.exports = HonorsDAO;
+
+
+
+

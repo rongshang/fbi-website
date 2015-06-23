@@ -1,18 +1,18 @@
 'use strict'
 
-var index = require('./index');
-var news = require('./news');
-var products = require('./products');
-var partners = require('./partners');
-var recruitments = require('./recruitments');
-var aboutus = require('./aboutus');
-var contactus = require('./contactus');
-var amdin = require('./admin_index');
-var adminProduct = require('./admin_product');
-var adminCompanyprofile = require('./admin_companyfiles');
-var adminEnterpriseculture = require('./admin_enterprisecultures');
-var adminDevelopment = require('./admin_developments');
-var adminRecruitment = require('./admin_recruitments');
+var index = require('./frontRoutes/index');
+var news = require('./frontRoutes/news');
+var products = require('./frontRoutes/products');
+var partners = require('./frontRoutes/partners');
+var recruitments = require('./frontRoutes/recruitments');
+var aboutus = require('./frontRoutes/aboutus');
+var contactus = require('./frontRoutes/contactus');
+var amdin = require('./afterRoutes/admin_index');
+var adminProduct = require('./afterRoutes/admin_product');
+var adminCompanyprofile = require('./afterRoutes/admin_companyfiles');
+var adminEnterpriseculture = require('./afterRoutes/admin_enterprisecultures');
+var adminDevelopment = require('./afterRoutes/admin_developments');
+var adminRecruitment = require('./afterRoutes/admin_recruitments');
 
 module.exports = function (app) {
     //标题页面
@@ -43,7 +43,7 @@ module.exports = function (app) {
     app.get('/honor',aboutus.honor);
     //联系我们
     app.get('/contactus',contactus.contactus);
-////////////////////////////////////////////////////////////////////////////
+/////////////////////////////后台页面开始///////////////////////////////////////////////
     //后台页面
     app.get('/admin',amdin.index);
     //添加产品

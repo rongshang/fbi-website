@@ -1,0 +1,21 @@
+<script>
+    var editor;
+    KindEditor.ready(function (K) {
+        editor = K.create('#content', {
+            allowFileManager: true,
+            allowImageUpload: false
+        });
+        prettyPrint();
+    });
+</script>
+<table>
+    <tr>
+        <td>公司简介</td>
+    </tr>
+    <tr>
+        <td>
+            <textarea id="content" style="width:300px;height:200px;visibility:hidden;"></textarea>
+        </td>
+    </tr>
+</table>
+<input type="button" ng-click="save(datas)" value="保存"/>

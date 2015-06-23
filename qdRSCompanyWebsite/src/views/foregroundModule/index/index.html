@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html LANG="zh-CN" ng-app="app">
+<head>
+    <meta charset="UTF-8">
+    <title>青岛融商软件集成有限公司</title>
+    <!--[if lt IE 9]>
+    <script src="../../../libs/html5shiv.min.js"></script>
+    <script src="../../../libs/respond.min.js"></script>
+    <![endif]-->
+    <script src="../../../resource.js"></script>
+    <script src="../../views/js/foregroundModule/index.js"></script>
+    <script src="../../views/js/foregroundModule/welcome.js"></script>
+    <script src="../../views/js/foregroundModule/newsScroll.js"></script>
+    <link rel="stylesheet" href="../../views/resource/foregroundModule/css/index.css"/>
+    <link rel="stylesheet" href="../../views/resource/foregroundModule/css/welcome.css"/>
+    <!--<script src="javaScripts/js/require.min.js" data-main="main"></script>-->
+    <script type="text/javascript">
+        $(function(){
+            $("#navbar a").css({backgroundPosition: "-20px 35px"}).mouseover(function(){
+                $(this).stop().animate({
+                    backgroundPosition:"(-20px 94px)"
+                },{duration:500})
+            }).mouseout(function(){
+                $(this).stop().animate({
+                    backgroundPosition:"(40px 35px)"
+                },{duration:200, complete:function(){
+                    $(this).css({backgroundPosition: "-20px 35px"})
+                }})
+            })
+        });
+
+        //菜单
+        function menu(){
+            var elem=document.getElementById("navbar");
+            if(elem==null){
+                setTimeout("menu()",500);
+                return;
+            }
+            var ul=elem.getElementsByTagName("ul");
+            var li=elem.getElementsByTagName("li");
+            for(var i=0;i<li.length;i++){
+                li[i].onmouseover=function(){
+                    var inli=this.getElementsByTagName("ul");
+                    for(var j=0;j<inli.length;j++){
+                        inli[j].style.display="block";
+                    }
+                };
+                li[i].onmouseout=function(){
+                    var inli=this.getElementsByTagName("ul");
+                    for(var j=0;j<inli.length;j++){
+                        inli[j].style.display="none";
+                    }
+                }
+            }
+        }
+        window.onload=menu();
+        //setTimeout("menu()",1000);
+    </script>
+</head>
+<body>
+<nav class="navbar navbar-default navbar-fixed-top ">
+    <div class="container top">
+        <div class="navbar-header">
+            <img  src="<%=contactus.logo%>">
+        </div>
+        <div class="navbar-collapse collapse nav nav-pills"
+             style="width:1100px;min-width: 1100px;margin-left: 65px;">
+            <div class="navigation">
+                <ul class="navbox" id="navbar">
+                    <li><a ng-href="#/welcome">公司首页</a></li>
+                    <li style=" position:relative;" >
+                        <a href="javascript:void(0);">关于我们<span class="caret"></span></a>
+                        <ul style="position:absolute; display: none;">
+                            <li><a ng-href="#/companyprofile">公司简介</a></li>
+                            <li><a ng-href="#/enterpriseculture">企业文化</a></li>
+                            <li><a ng-href="#/development">发展历程</a></li>
+                            <li><a ng-href="#/honor">资质荣誉</a></li>
+                        </ul>
+                    </li>
+                    <li><a ng-href="#/allproduct?pageNo=1">产品展示</a></li>
+                    <li><a ng-href="#/contactus">联系我们</a></li>
+                    <li><a ng-href="#/allrecruitment?pageNo=1&active=1">招贤纳士</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</nav>
+<div ng-view style="margin-top:90px;"></div>
+<!--客服-->
+<div class="main-im">
+    <div id="open_im" class="open-im">&nbsp;</div>
+    <div class="im_main" id="im_main">
+        <div id="close_im" class="close-im"><a href="javascript:void(0);" title="点击关闭">&nbsp;</a></div>
+        <a href="http://wpa.qq.com/msgrd?v=3&uin=<%=contactus.qq%>&site=qq&menu=yes" class="im-qq qq-a" title="在线QQ客服">
+            <div class="qq-container"></div>
+            <div class="qq-hover-c"><img class="img-qq" src="../../../views/resource/foregroundModule/images/qq.png"></div>
+            <span>QQ在线咨询</span> </a>
+        <div class="im-tel">
+            <div>咨询热线</div>
+            <div class="tel-num"><%=contactus.tel%></div>
+            <div>咨询QQ</div>
+            <div class="tel-num"><%=contactus.qq%></div>
+        </div>
+        <div class="im-footer" style="position:relative">
+            <div class="weixing-container">
+                <div class="weixing-show" style="display:none">
+                    <div class="weixing-txt">微信扫一扫<br>融商有限公司</div>
+                    <img class="weixing-ma" src="<%=contactus.codeImg%>">
+                    <div class="weixing-sanjiao"></div>
+                    <div class="weixing-sanjiao-big"></div>
+                </div>
+            </div>
+            <div class="go-top"><a href="javascript:;" title="返回顶部"></a> </div>
+            <div style="clear:both"></div>
+        </div>
+    </div>
+</div>
+<br>
+<div  style="background: #404040;">
+    <br>
+    <div id="footer" class="container">
+        <p style="padding-top: 20px;text-align: center;color: white">
+            Copyright@2009-2020 青岛融商信息技术有限公司 单位用户备案12345678
+            <br>
+            联系电话:<%=contactus.tel%> &nbsp;&nbsp;公司邮箱:<%=contactus.email%>
+            <br>
+            <a ng-href="#/welcome">首页</a>&nbsp;&nbsp;&nbsp;
+            <a ng-href="#/companyprofile">关于我们</a>&nbsp;&nbsp;&nbsp;
+            <a ng-href="#/allproduct">产品展示</a>&nbsp;&nbsp;&nbsp;
+            <a ng-href="#/contactus">联系我们</a>&nbsp;&nbsp;&nbsp;
+            <a ng-href="#/allrecruitment?pageNo=1&active=1">招贤纳士</a>
+        </p>
+    </div>
+</div>
+
+<script src="../../../javaScripts/angularjs/controllers/controller.js"></script>
+<script src="../../../javaScripts/angularjs/controllers/app.js"></script>
+</body>
+</html>
