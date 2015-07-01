@@ -16,24 +16,13 @@
         <td>视频地址</td>
     </tr>
     <tr>
-        <td><input ng-model="datas.title" /></td>
+        <td><input type="text" ng-model="datas.title" /></td>
         <td>
-            <textarea id="content" style="width:300px;height:200px;visibility:hidden;">
-            </textarea>
+            <textarea id="content" style="width:300px;height:200px;visibility:hidden;"></textarea>
         </td>
-        <td><input ng-model="datas.image" /></td>
-        <td><input ng-model="datas.websiteUrl" /></td>
+        <td><img ng-src="{{datas.image}}" /></td>
+        <td><input type="text" ng-model="datas.websiteUrl" /></td>
     </tr>
 </table>
 <input type="button" ng-click="save(datas)" value="保存"/>
 
-<script>
-//    function htmlspecialchars(str) {
-//        str = str.replace(/&/g, "&amp;");
-//        str = str.replace(/</g, "&lt;");
-//        str = str.replace(/>/g, "&gt;");
-//        str = str.replace(/\"/g, "&quot;");
-//        return str;
-//    }
-
-</script>

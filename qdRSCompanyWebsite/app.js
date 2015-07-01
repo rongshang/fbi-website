@@ -26,19 +26,16 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'src')));
 
 //图片上传配置
-//app.use('/upload', express.static(path.join(__dirname, 'src/upload/images'))); // 上传图片的路径
-
+//app.use(require("multer")({
+//  dest:__dirname + '/src/upload/images',
+//  rename: function (fieldname, filename) {
+//    var day = new Date();
+//    var month = day.getMonth()+1;
+//    var newname = day.getFullYear() + '-' +month+'-'+day.getDate()+'-'+day.getHours()+'-'+day.getMinutes()+'-'+day.getSeconds();
+//    return filename.replace(/\W+/g, '-').toLowerCase() +newname
+//  }
+//}));
 //配置结束
-app.use(require("multer")({
-  dest:__dirname + '/src/upload/images',
-  rename: function (fieldname, filename) {
-    var day = new Date();
-    var month = day.getMonth()+1;
-    var newname = day.getFullYear() + '-' +month+'-'+day.getDate()+'-'+day.getHours()+'-'+day.getMinutes()+'-'+day.getSeconds();
-    return filename.replace(/\W+/g, '-').toLowerCase() +newname
-  }
-}));
-
 
 routes(app);
 

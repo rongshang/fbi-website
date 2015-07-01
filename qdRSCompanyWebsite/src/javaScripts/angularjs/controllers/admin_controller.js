@@ -4,7 +4,13 @@
 
 'use strict'
 
-var app = angular.module('admin',['ngRoute','angularFileUpload','ngSanitize']);
+var app = angular.module('admin',['ngRoute','angularFileUpload','ngSanitize','appFilereader']);
+//管理员登陆
+app.controller('adminLoginCtrl',['$scope','$http',function($scope,$http) {
+
+
+}]);
+
 //所有的产品展示
 app.controller('adminAllProductCtrl',['$scope','$http','$location','$routeParams','$rootScope',function($scope,$http,$location,$routeParams,$rootScope){
     //查询产品
@@ -30,7 +36,11 @@ app.controller('adminAllProductCtrl',['$scope','$http','$location','$routeParams
     $scope.del = function(id){
         if(confirm("你确定删除吗？")){
             $http.post('/delProductAjax',{id:id}).success(function(data) {
-                $scope.datas = data;
+                if(data.msg=='1'){
+                    window.location.reload();
+                }else{
+                    alert("删除失败");
+                }
             });
         }
     }
@@ -47,103 +57,13 @@ app.controller('adminAddProductCtrl',['$scope','$http',function($scope,$http){
         websiteUrl:'',
         concat:''
     };
-    /*
-    /////////////////////////////////////////////////////////////////////
-    var uploader=$scope.uploader = new FileUploader({
-        scope: $scope,
-        url:window.location.protocol + '//' + window.location.host + '/adminProductAjax',
-        formData:[{"product":$scope.product}]
-    });
 
-    // FILTERS
-    uploader.filters.push({
-        name: 'extensionFilter',
-        fn: function (item, options) {
-            var filename = item.name;
-            var extension = filename.substring(filename.lastIndexOf('.') + 1).toLowerCase();
-            if (extension == "gif" ||extension == "jpg" ||extension == "png")
-                return true;
-            else {
-                alert('请选择图片格式为: gif/jpg/png');
-                return false;
-            }
-        }
-    });
-
-    uploader.filters.push({
-        name: 'sizeFilter',
-        fn: function (item, options) {
-            var fileSize = item.size;
-            fileSize = parseInt(fileSize) / (1024 * 1024);
-            if (fileSize <= 1)
-                return true;
-            else {
-                alert('Selected file exceeds the 5MB file size limit.Please choose a new file and try again.');
-                return false;
-            }
-        }
-    });
-
-    uploader.filters.push({
-        name: 'itemResetFilter',
-        fn: function (item, options) {
-            if (this.queue.length <=1)
-                return true;
-            else {
-                alert('You have exceeded the limit of uploading files.');
-                return false;
-            }
-        }
-    });
-
-    // CALLBACKS
-    uploader.onWhenAddingFileFailed = function (item, filter, options) {
-        console.info('onWhenAddingFileFailed', item, filter, options);
-    };
-    uploader.onAfterAddingFile = function (fileItem) {
-        alert('Files ready for upload.');
-    };
-
-    uploader.onSuccessItem = function (fileItem, response, status, headers) {
-        $scope.uploader.queue = [];
-        $scope.uploader.progress = 0;
-        alert('Selected file has been uploaded successfully.');
-    };
-    uploader.onErrorItem = function (fileItem, response, status, headers) {
-        alert('We were unable to upload your file. Please try again.');
-    };
-    uploader.onCancelItem = function (fileItem, response, status, headers) {
-        alert('File uploading has been cancelled.');
-    };
-
-    uploader.onAfterAddingAll = function(addedFileItems) {
-        console.info('onAfterAddingAll', addedFileItems);
-    };
-    uploader.onBeforeUploadItem = function(item) {
-        console.info('onBeforeUploadItem', item);
-    };
-    uploader.onProgressItem = function(fileItem, progress) {
-        console.info('onProgressItem', fileItem, progress);
-    };
-    uploader.onProgressAll = function(progress) {
-        console.info('onProgressAll', progress);
-    };
-
-    uploader.onCompleteItem = function(fileItem, response, status, headers) {
-        console.info('onCompleteItem', fileItem, response, status, headers);
-    };
-    uploader.onCompleteAll = function() {
-        console.info('onCompleteAll');
-    };
-    console.info('uploader', uploader);
-    */
-///////////////////////////////////////////////////////////////////////////
     $scope.save = function(){
         $scope.product.concat=editor.html();
         $scope.product.createdTime=getCreateTime();
         $http({
             method:'post',
-            url:'/adminAddCompanyfileAjax',
+            url:'/adminAddProductAjax',
             params: {'product':$scope.product}
         }).success(function(data, status, headers, config){
             if(data.msg=='1'){
