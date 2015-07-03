@@ -1,29 +1,46 @@
-<table class="table table-hover table-bordered">
-    <tr>
-       <td>产品名称:</td>
-       <td colspan="4">
-           <input type="text" ng-model="title"/>
-           <input type="button" ng-click="find()" value="查询"/>
-       </td>
-    </tr>
-    <tr>
-        <td style="width:20%;">产品名称</td>
-        <td style="width:60%;">产品描述</td>
-        <td style="width:10%;">连接地址</td>
-        <td>产品图片</td>
-        <td>操作</td>
-    </tr>
-    <tr ng-repeat="product in datas.products">
-        <td style="width:50px;" ng-bind="product.title"></td>
-        <td style="width:20%; overflow:hidden;" ng-bind-html="product.concat"></td>
-        <td style="width:50px;" ng-bind="product.websiteUrl"></td>
-        <td><img ng-src="{{product.image}}" style="width: 80px;height: 80px;" /></td>
-        <td>
-            <input type="button" value="修改" ng-click="update(product._id)"  class="btn btn-info" />
-            <input type="button" value="删除" ng-click="del(product._id)" class="btn btn-danger" />
-        </td>
-    </tr>
-</table>
+<link href="../libs/adminLTE/plugins/datatables/dataTables.bootstrap.css" rel="stylesheet" type="text/css" />
+<link href="../libs/adminLTE/dist/css/skins/_all-skins.min.css" rel="stylesheet" type="text/css" />
+<div class="row">
+    <div class="col-xs-12">
+        <div class="box">
+            <div class="box-header">
+                <h3 class="box-title">
+                   <span>
+                       产品名称:
+                        <input type="text" ng-model="title"/>
+                        <input type="button" ng-click="find()" value="查询"/>
+                   </span>
+                </h3>
+            </div><!-- /.box-header -->
+            <div class="box-body">
+                <table id="table" class="table table-bordered table-hover">
+                    <thead>
+                        <tr>
+                            <th>产品名称</th>
+                            <th>产品描述</th>
+                            <th>连接地址</th>
+                            <th>产品图片</th>
+                            <th>操作</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="product in datas.products">
+                            <td ng-bind="product.title"></td>
+                            <td ng-bind-html="product.concat"></td>
+                            <td ng-bind="product.websiteUrl"></td>
+                            <td><img ng-src="{{product.image}}" style="width: 80px;height: 80px;" /></td>
+                            <td>
+                                <input type="button" value="修改" ng-click="update(product._id)"  class="btn btn-info" />
+                                <input type="button" value="删除" ng-click="del(product._id)" class="btn btn-danger" />
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div><!-- /.box-body -->
+        </div><!-- /.box -->
+    </div>
+</div>
+
 <div class="pagination pagination-sm right_end_fy">
     <li><a ng-href="/admin/#/adminAllProduct/1">首页</a></li>
     <li><a ng-href="/admin/#/adminAllProduct/{{datas.pageNo-1<=0?1:datas.pageNo-1}}"> 上一页</a></li>
@@ -34,8 +51,29 @@
     <li><input type="hidden" id="pageCount" value="{{datas.pageCount}}" /></li>
     <li><button type="button" class="btn btn-default" role="button" onclick="go()">go</button></li>
 </div>
+<!-- DATA TABES SCRIPT -->
+<script src="../libs/adminLTE/plugins/datatables/jquery.dataTables.min.js" type="text/javascript"></script>
+<script src="../libs/adminLTE/plugins/datatables/dataTables.bootstrap.min.js" type="text/javascript"></script>
+<!-- SlimScroll -->
+<script src="../libs/adminLTE/plugins/slimScroll/jquery.slimscroll.min.js" type="text/javascript"></script>
+<!-- FastClick -->
+<script src='../libs/adminLTE/plugins/fastclick/fastclick.min.js'></script>
+<!-- AdminLTE for demo purposes -->
+<script src="../libs/adminLTE/dist/js/demo.js" type="text/javascript"></script>
 
 <script type="text/javascript">
+    $(function () {
+        $("#table").dataTable();
+//        $('#table').dataTable({
+//            "bPaginate": true,
+//            "bLengthChange": false,
+//            "bFilter": false,
+//            "bSort": true,
+//            "bInfo": true,
+//            "bAutoWidth": false
+//        });
+    });
+
     function go(){
         var pageNo = $("#pageNo").val();
         var pageCount = parseInt($("#pageCount").val());

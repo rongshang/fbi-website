@@ -8,8 +8,6 @@
 var app = angular.module('admin');
 app.config(['$routeProvider',function($routeProvider){
     $routeProvider
-        //管理员登陆
-        //.when('/login', {templateUrl:'/views/backgroundModule/userinfo/login.html',controller: 'adminLoginCtrl'})
         //查询全部产品
         .when('/adminAllProduct/:pageNo', {templateUrl:'/views/backgroundModule/product/admin_allProduct.html',controller: 'adminAllProductCtrl'})
          //添加产品

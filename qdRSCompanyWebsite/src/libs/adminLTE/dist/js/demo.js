@@ -6,7 +6,7 @@
  */
 (function ($, AdminLTE) {
 
-  /**
+    /**
    * List of all the available skins
    * 
    * @type Array

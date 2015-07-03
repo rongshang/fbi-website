@@ -1,5 +1,5 @@
 .flag{
-    background:url("../front/images/flag.jpg") no-repeat ;
+    background:url("../images/flag.jpg") no-repeat ;
     height: 30px;
     width: 24px;
     margin-left: 20px;
@@ -12,20 +12,20 @@
     padding-top: 15px;
 }
 .right_top{
-    background:url("../front/images/right_m.jpg")repeat-x ;
+    background:url("../images/right_m.jpg")repeat-x ;
     height: 47px;
     width: 1000px;
     float: left;
 }
 .right_top_right_1{
-    background-image: url("../front/images/right_l.jpg");
+    background-image: url("../images/right_l.jpg");
     height: 47px;
     float: left;
     width: 8px;
     margin: 0px 0px 0px;
 }
 .right_top_right_2{
-    background: url("../front/images/right_r.jpg") no-repeat;
+    background: url("../images/right_r.jpg") no-repeat;
     height: 47px;
     width: 12px;
     float: left;

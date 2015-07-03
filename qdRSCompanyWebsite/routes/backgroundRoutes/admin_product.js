@@ -23,7 +23,7 @@ exports.adminAllProductAjax = function(req,res,next){
     var title = req.query.title;
     var pageCount=0;
     var pageNo = parseInt(req.query.pageNo);
-    var pageSize = 8;
+    var pageSize =10;
     var queryStr={};
     if(title==""||title==null){
         queryStr={};
@@ -50,7 +50,7 @@ exports.adminAllProductAjax = function(req,res,next){
 
         })
         .together(function(err,pageNo,pageCount,products){
-            res.json({'title':'我们的产品','pageNo':pageNo,'pageCount':pageCount,'products':products});
+            res.json({'title':'产品展示','pageNo':pageNo,'pageCount':pageCount,'products':products});
         });
 }
 

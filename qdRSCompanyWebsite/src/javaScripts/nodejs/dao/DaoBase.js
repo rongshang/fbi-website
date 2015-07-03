@@ -117,13 +117,4 @@ DaoBase.prototype.findAllByPageAndQuery = function(query,sort,pageNo,pageSize,ca
 }
 
 
-DaoBase.prototype.insertData = function (data,callback){
-    console.log("-------"+data);
-    this.model.save(data, function (error) {
-        console.log("=========create============"+error);
-        if(error) return callback(error);
-        return callback(null);
-    });
-};
-
 module.exports =DaoBase;

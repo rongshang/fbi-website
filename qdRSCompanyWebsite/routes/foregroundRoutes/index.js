@@ -12,7 +12,6 @@ var newsDaoBse = new daoBase(news);
 //我们的合作伙伴模块
 var partners = require("../../src/javaScripts/nodejs/models/index").partners;
 var partnersDaoBse = new daoBase(partners);
-//var PartnersDao = require("../src/javaScripts/dao/partnersDao");
 
 //我们的产品模块
 var products = require("../../src/javaScripts/nodejs/models/index").products;
@@ -22,9 +21,9 @@ var productsDaoBse = new daoBase(products);
 var contactus = require("../../src/javaScripts/nodejs/models/index").contactus;
 var contactusDaoBse = new daoBase(contactus);
 
-//公司图片
-var companyimgs = require("../../src/javaScripts/nodejs/models/index").companyimgs;
-var companyimgsDaoBse = new daoBase(companyimgs);
+//风云人物
+var figures = require("../../src/javaScripts/nodejs/models/index").figures;
+var figuresDaoBse = new daoBase(figures);
 
 //首页
 exports.index = function(req,res){
@@ -37,32 +36,26 @@ exports.index = function(req,res){
 exports.welcome = function(req,res){
     howdo
         .task(function(done){
-            //最上边公司的图片
-            companyimgsDaoBse.findByLimitAndSortAndQuery({image:{$ne:""}},{createdTime:-1},4,function(err,companyImgs){
-                done(null,companyImgs);
-            });
-        })
-        .task(function(done){
             //我们的产品
-            productsDaoBse.findByLimitAndSortAndQuery({image:{$ne:""}},{createdTime:-1},6,function(err,products){
+            productsDaoBse.findByLimitAndSortAndQuery({image:{$ne:""}},{createdTime:-1},3,function(err,products){
                 done(null,products);
             });
         })
         .task(function(done){
-            //新闻图片
-            newsDaoBse.findByLimitAndSortAndQuery({image:{$ne:""}},{createdTime:-1},4,function(err,newsImg){
-                done(null,newsImg);
+            //风云人物
+            figuresDaoBse.findByLimitAndSortAndQuery({image:{$ne:""}},{createdTime:-1},3,function(err,figures){
+                done(null,figures);
             });
         })
         .task(function(done){
             //新闻标题
-            newsDaoBse.findByLimitAndSort({createdTime:-1},9,function(err,news){
+            newsDaoBse.findByLimitAndSort({createdTime:-1},10,function(err,news){
                 done(null,news);
             });
         })
         .task(function(done){
             //合作伙伴
-            partnersDaoBse.findByLimitAndSortAndQuery({image:{$ne:""}},{createdTime:-1},2,function(err,partners){
+            partnersDaoBse.findByLimitAndSortAndQuery({image:{$ne:""}},{createdTime:-1},5,function(err,partners){
                 done(null,partners);
             });
         })
@@ -73,7 +66,7 @@ exports.welcome = function(req,res){
             });
         })
         // 异步顺序并行
-        .together(function(err,companyImgs,products,newsImg,news,partners,contactus){
-            res.json({'companyImgs':companyImgs,'products':products,'newsImg':newsImg,'news':news,'partners':partners,'contactus':contactus});
+        .together(function(err,products,figures,news,partners,contactus){
+            res.json({'products':products,'figures':figures,'news':news,'partners':partners,'contactus':contactus});
         });
 }

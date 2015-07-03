@@ -16,18 +16,6 @@
         <script charset="utf-8" src="../../../libs/kindeditor/lang/zh_CN.js"></script>
         <script charset="utf-8" src="../../../libs/kindeditor/plugins/code/prettify.js"></script>
         <!--在线编辑器结束-->
-        <!--<script language=javascript>-->
-            <!--function expand(el){-->
-                <!--childObj = document.getElementById("child" + el);-->
-                <!--if (childObj.style.display == 'none'){-->
-                    <!--childObj.style.display = 'block';-->
-                <!--}-->
-                <!--else{-->
-                    <!--childObj.style.display = 'none';-->
-                <!--}-->
-                <!--return;-->
-            <!--}-->
-        <!--</script>-->
     </head>
     <body class="skin-blue sidebar-mini">
   <div class="wrapper">
@@ -112,43 +100,127 @@
               </div>
               <!-- Sidebar Menu -->
               <ul class="sidebar-menu">
-                  <li class="header">HEADER</li>
-                  <!-- Optionally, you can add icons to the links -->
-                  <li class="active"><a href="#"><i class='fa fa-link'></i> <span>Link</span></a></li>
-                  <li><a href="#"><i class='fa fa-link'></i> <span>Another Link</span></a></li>
+                  <li class="header">菜单</li>
                   <li class="treeview">
                       <a href="#">
-                          <i class='fa fa-link'></i>
-                          <span>Multilevel</span>
+                          <i class="fa fa-share"></i>
+                          <span>关于我们</span>
                           <i class="fa fa-angle-left pull-right"></i>
                       </a>
                       <ul class="treeview-menu">
-                          <li><a href="#">Link in level 2</a></li>
-                          <li><a href="#">Link in level 2</a></li>
+                          <li>
+                              <a href="#"><i class="fa fa-circle-o"></i>公司简介<i class="fa fa-angle-left pull-right"></i></a>
+                              <ul class="treeview-menu">
+                                  <li><a href="/admin/#/adminAllCompanyprofile/1"><i class="fa fa-circle-o"></i>查看公司简介</a></li>
+                                  <li>
+                                      <a href="/admin/#/adminAddCompanyprofile"><i class="fa fa-circle-o"></i>添加公司简介<i class="fa fa-angle-left pull-right"></i></a>
+                                  </li>
+                              </ul>
+                          </li>
+                          <li>
+                              <a href="#"><i class="fa fa-circle-o"></i>企业文化<i class="fa fa-angle-left pull-right"></i></a>
+                              <ul class="treeview-menu">
+                                  <li><a href="/admin/#/adminAllEnterpriseculture/1"><i class="fa fa-circle-o"></i>查看企业文化</a></li>
+                                  <li>
+                                      <a href="/admin/#/adminAddEnterpriseculture"><i class="fa fa-circle-o"></i>添加企业文化<i class="fa fa-angle-left pull-right"></i></a>
+                                  </li>
+                              </ul>
+                          </li>
+                          <li>
+                              <a href="#"><i class="fa fa-circle-o"></i>发展历程<i class="fa fa-angle-left pull-right"></i></a>
+                              <ul class="treeview-menu">
+                                  <li><a href="/admin/#/adminAllDevelopment/1"><i class="fa fa-circle-o"></i>查看发展历程</a></li>
+                                  <li>
+                                      <a href="/admin/#/adminAddDevelopment"><i class="fa fa-circle-o"></i>添加发展历程<i class="fa fa-angle-left pull-right"></i></a>
+                                  </li>
+                              </ul>
+                          </li>
+                          <li>
+                              <a href="#"><i class="fa fa-circle-o"></i>资质荣誉<i class="fa fa-angle-left pull-right"></i></a>
+                              <ul class="treeview-menu">
+                                  <li><a href="#"><i class="fa fa-circle-o"></i>查看资质荣誉</a></li>
+                                  <li>
+                                      <a href="#"><i class="fa fa-circle-o"></i>添加资质荣誉<i class="fa fa-angle-left pull-right"></i></a>
+                                  </li>
+                              </ul>
+                          </li>
+                      </ul>
+                  </li>
+                  <li class="treeview">
+                      <a href="#">
+                          <i class="fa fa-share"></i>
+                          <span>产品展示</span>
+                          <i class="fa fa-angle-left pull-right"></i>
+                      </a>
+                      <ul class="treeview-menu">
+                          <li><a href="/admin/#/adminAllProduct/1"><i class="fa fa-circle-o"></i>查看产品</a></li>
+                          <li><a href="/admin/#/adminAddProduct"><i class="fa fa-circle-o"></i>添加产品</a></li>
+                      </ul>
+                  </li>
+                  <li class="treeview">
+                      <a href="#">
+                          <i class="fa fa-share"></i>
+                          <span>联系我们</span>
+                          <i class="fa fa-angle-left pull-right"></i>
+                      </a>
+                      <ul class="treeview-menu">
+                          <li><a href=""><i class="fa fa-circle-o"></i>查看联系我们</a></li>
+                          <li><a href=""><i class="fa fa-circle-o"></i>添加联系我们</a></li>
+                      </ul>
+                  </li>
+                  <li class="treeview">
+                      <a href="#">
+                          <i class="fa fa-share"></i>
+                          <span>招贤纳士</span>
+                          <i class="fa fa-angle-left pull-right"></i>
+                      </a>
+                      <ul class="treeview-menu">
+                          <li><a href="/admin/#/adminAllRecruitment/1"><i class="fa fa-circle-o"></i>查看招贤纳士</a></li>
+                          <li><a href="/admin/#/adminAddRecruitment"><i class="fa fa-circle-o"></i>添加招贤纳士</a></li>
+                      </ul>
+                  </li>
+                  <li class="treeview">
+                      <a href="#">
+                          <i class="fa fa-share"></i>
+                          <span>风云人物</span>
+                          <i class="fa fa-angle-left pull-right"></i>
+                      </a>
+                      <ul class="treeview-menu">
+                          <li><a href="#"><i class="fa fa-circle-o"></i>查看风云人物</a></li>
+                          <li><a href="#"><i class="fa fa-circle-o"></i>添加风云人物</a></li>
+                      </ul>
+                  </li>
+                  <li class="treeview">
+                      <a href="#">
+                          <i class="fa fa-share"></i>
+                          <span>合作伙伴</span>
+                          <i class="fa fa-angle-left pull-right"></i>
+                      </a>
+                      <ul class="treeview-menu">
+                          <li><a href="#"><i class="fa fa-circle-o"></i>查看合作伙伴</a></li>
+                          <li><a href="#"><i class="fa fa-circle-o"></i>添加合作伙伴</a></li>
+                      </ul>
+                  </li>
+                  <li class="treeview">
+                      <a href="#">
+                          <i class="fa fa-share"></i>
+                          <span>新闻</span>
+                          <i class="fa fa-angle-left pull-right"></i>
+                      </a>
+                      <ul class="treeview-menu">
+                          <li><a href="#"><i class="fa fa-circle-o"></i>查看新闻</a></li>
+                          <li><a href="#"><i class="fa fa-circle-o"></i>添加新闻</a></li>
                       </ul>
                   </li>
               </ul><!-- /.sidebar-menu -->
           </section>
           <!-- /.sidebar -->
       </aside>
-
       <!-- Content Wrapper. Contains page content -->
       <div class="content-wrapper">
-          <!-- Content Header (Page header) -->
-          <section class="content-header">
-              <h1>
-                  Page Header
-                  <small>Optional description</small>
-              </h1>
-              <ol class="breadcrumb">
-                  <li><a href="#"><i class="fa fa-dashboard"></i> Level</a></li>
-                  <li class="active">Here</li>
-              </ol>
-          </section>
-
           <!-- Main content -->
           <section class="content">
-              <!-- Your Page Content Here -->
+              <div ng-view></div>
           </section><!-- /.content -->
       </div><!-- /.content-wrapper -->
       <!-- Main Footer -->
@@ -219,224 +291,10 @@
               </div><!-- /.tab-pane -->
           </div>
       </aside><!-- /.control-sidebar -->
-      <!-- Add the sidebar's background. This div must be placed
-           immediately after the control sidebar -->
       <div class='control-sidebar-bg'></div>
   </div><!-- ./wrapper -->
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-   <!--
-
-    <table cellSpacing=0 cellPadding=0 width="100%"
-               background="../../views/resource/backgroundModule/images/header_bg.jpg" border=0>
-            <tr height=56>
-                <td width=260>
-                    <img height=56 src="../../views/resource/backgroundModule/images/header_left.jpg" width=260>
-                </td>
-                <td style="FONT-WEIGHT: bold; color: #fff; padding-top: 20px"
-                    align=middle>当前用户：admin &nbsp;&nbsp;
-                    <a style="color: #fff" href="" target=main>修改口令</a> &nbsp;&nbsp;
-                    <a style="color: #fff" onclick="if (confirm('确定要退出吗？')) return true; else return false;"
-                     href="" target=_top>退出系统</a>
-                </td>
-                <td align=right width=268>
-                    <img height=56 src="../../views/resource/backgroundModule/images/header_right.jpg" width=268>
-                </td>
-            </tr>
-        </table>
-        <table cellSpacing=0 cellPadding=0 width="100%" border=0>
-            <tr bgcolor=#1c5db6 height=4>
-                <td></td>
-            </tr>
-        </table>
-        <div>
-
-            <script>
-                var editor;
-                KindEditor.ready(function (K) {
-                    editor = K.create('textarea[name="content"]', {
-                        allowFileManager: true
-                    });
-                });
-
-            </script>
-            <table cellSpacing=0 cellPadding=0  background="../../views/resource/backgroundModule/images/menu_bg.jpg" border=0 style="float: left;width: 10%;">
-                <tr>
-                    <td valign=top align=middle>
-                        <table cellSpacing=0 cellPadding=0 width="100%" border=0>
-                            <tr>
-                                <td height=10></td>
-                            </tr>
-                        </table>
-                        <table cellSpacing=0 cellPadding=0 width=150 border=0>
-                            <tr height=22>
-                                <td style="padding-left: 30px" background="../../views/resource/backgroundModule/images/menu_bt.jpg">
-                                    <a class=menuParent onclick=expand(1) href="javascript:void(0);">关于我们</a>
-                                </td>
-                            </tr>
-                        </table>
-                        <table id=child1 style="display: none" cellSpacing=0 cellPadding=0 width=150 border=0>
-                            <tr height=20>
-                                <td align=middle width=30>
-                                    <img height=9 src="../../views/resource/backgroundModule/images/menu_icon.gif" width=9>
-                                </td>
-                                <td>
-                                    <a class=menuChild href="/admin/#/adminAllCompanyprofile/1">公司简介</a>
-                                </td>
-                            </tr>
-                            <tr height=20>
-                                <td align=middle width=30>
-                                    <img height=9 src="../../views/resource/backgroundModule/images/menu_icon.gif" width=9>
-                                </td>
-                                <td>
-                                    <a class=menuChild href="/admin/#/adminAddCompanyprofile">新增公司简介</a>
-                                </td>
-                            </tr>
-                            <tr height=20>
-                                <td align=middle width=30>
-                                    <img height=9 src="../../views/resource/backgroundModule/images/menu_icon.gif" width=9>
-                                </td>
-                                <td>
-                                    <a class=menuChild href="/admin/#/adminAllEnterpriseculture/1">企业文化</a>
-                                </td>
-                            </tr>
-                            <tr height=20>
-                                <td align=middle width=30>
-                                    <img height=9 src="../../views/resource/backgroundModule/images/menu_icon.gif" width=9>
-                                </td>
-                                <td>
-                                    <a class=menuChild href="/admin/#/adminAddEnterpriseculture">新增企业文化</a>
-                                </td>
-                            </tr>
-                            <tr height=20>
-                                <td align=middle width=30>
-                                    <img height=9 src="../../views/resource/backgroundModule/images/menu_icon.gif" width=9>
-                                </td>
-                                <td>
-                                    <a class=menuChild href="#">荣誉资质</a>
-                                </td>
-                            </tr>
-                            <tr height=20>
-                                <td align=middle width=30>
-                                    <img height=9 src="../../views/resource/backgroundModule/images/menu_icon.gif" width=9>
-                                </td>
-                                <td><a class=menuChild href="/admin/#/adminAllDevelopment/1">发展历程</a>
-                                </td>
-                            </tr>
-                            <tr height=20>
-                                <td align=middle width=30>
-                                    <img height=9 src="../../views/resource/backgroundModule/images/menu_icon.gif" width=9>
-                                </td>
-                                <td><a class=menuChild href="/admin/#/adminAddDevelopment">新增发展历程</a>
-                                </td>
-                            </tr>
-                        </table>
-                        <table cellSpacing=0 cellPadding=0 width=150 border=0>
-                            <tr height=22>
-                                <td style="PaDDING-LEFT: 30px" background="../../views/resource/backgroundModule/images/menu_bt.jpg">
-                                    <a class=menuParent onclick=expand(2) href="javascript:void(0);">新闻中心</a>
-                                </td>
-                            </tr>
-                        </table>
-                        <table id=child2 style="display: none" cellSpacing=0 cellPadding=0 width=150 border=0>
-                            <tr height=20>
-                                <td align=middle width=30>
-                                    <img height=9 src="../../views/resource/backgroundModule/images/menu_icon.gif" width=9>
-                                </td>
-                                <td>
-                                    <a class=menuChild href="#" target=main>公司新闻</a>
-                                </td>
-                            </tr>
-                        </table>
-                        <table cellSpacing=0 cellPadding=0 width=150 border=0>
-                            <tr height=22>
-                                <td style="PaDDING-LEFT: 30px" background="../../views/resource/backgroundModule/images/menu_bt.jpg">
-                                    <a class=menuParent onclick=expand(3) href="javascript:void(0);">产品中心</a>
-                                </td>
-                            </tr>
-                        </table>
-                        <table id=child3 style="display: none" cellSpacing=0 cellPadding=0 width=150 border=0>
-                            <tr height=20>
-                                <td align=middle width=30>
-                                    <img height=9 src="../../views/resource/backgroundModule/images/menu_icon.gif" width=9>
-                                </td>
-                                <td>
-                                    <a class=menuChild href="/admin/#/adminAllProduct/1">产品展示</a>
-                                </td>
-                            </tr>
-                            <tr height=20>
-                                <td align=middle width=30>
-                                    <img height=9 src="../../views/resource/backgroundModule/images/menu_icon.gif" width=9>
-                                </td>
-                                <td>
-                                    <a class=menuChild href="/admin/#/adminAddProduct">新增产品</a>
-                                </td>
-                            </tr>
-                        </table>
-                        <table cellSpacing=0 cellPadding=0 width=150 border=0>
-                            <tr height=22>
-                                <td style="padding-left: 30px" background="../../views/resource/backgroundModule/images/menu_bt.jpg">
-                                    <a class=menuParent onclick=expand(4) href="javascript:void(0);">联系我们</a>
-                                </td>
-                            </tr>
-                        </table>
-                        <table id=child4 style="display: none" cellSpacing=0 cellPadding=0 width=150 border=0>
-                            <tr height=20>
-                                <td align=middle width=30>
-                                    <img height=9 src="../../views/resource/backgroundModule/images/menu_icon.gif" width=9>
-                                </td>
-                                <td>
-                                    <a class=menuChild href="#" target=main>联系我们</a>
-                                </td>
-                            </tr>
-                        </table>
-                        <table cellSpacing=0 cellPadding=0 width=150 border=0>
-                            <tr height=22>
-                                <td style="padding-left: 30px" background="../../views/resource/backgroundModule/images/menu_bt.jpg">
-                                    <a class=menuParent onclick=expand(5) href="javascript:void(0);">招贤纳士</a>
-                                </td>
-                            </tr>
-                        </table>
-                        <table id=child5 style="display: none" cellSpacing=0 cellPadding=0 width=150 border=0>
-                            <tr height=20>
-                                <td align=middle width=30>
-                                    <img height=9 src="../../views/resource/backgroundModule/images/menu_icon.gif" width=9>
-                                </td>
-                                <td>
-                                    <a class=menuChild href="/admin/#/adminAllRecruitment/1">招聘信息</a>
-                                </td>
-                            </tr>
-                            <tr height=20>
-                                <td align=middle width=30>
-                                    <img height=9 src="../../views/resource/backgroundModule/images/menu_icon.gif" width=9>
-                                </td>
-                                <td>
-                                    <a class=menuChild href="/admin/#/adminAddRecruitment">添加招聘信息</a>
-                                </td>
-                            </tr>
-                        </table>
-                    </td>
-                </tr>
-            </table>
-            <div ng-view style="float:left;width: 88%;"></div>
-        </div>
-        -->
-    </body>
+ </body>
     <script src="../../../javaScripts/angularjs/directive/fileDirective.js"></script>
-
     <script src="../../../javaScripts/angularjs/controllers/admin_controller.js"></script>
     <script src="../../../javaScripts/angularjs/controllers/admin_app.js"></script>
     <!-- jQuery 2.1.4 -->

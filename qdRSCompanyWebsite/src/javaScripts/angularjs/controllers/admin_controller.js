@@ -7,7 +7,11 @@
 var app = angular.module('admin',['ngRoute','angularFileUpload','ngSanitize','appFilereader']);
 //管理员登陆
 app.controller('adminLoginCtrl',['$scope','$http',function($scope,$http) {
-
+   $scope.userinfo = {username:'1111',password:''};
+    alert("");
+    $scope.getUserInfoByUsernameAndPassword = function(){
+        alert(userinfo.username);
+    }
 
 }]);
 

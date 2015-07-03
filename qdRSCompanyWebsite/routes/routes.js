@@ -13,6 +13,7 @@ var adminCompanyprofile = require('./backgroundRoutes/admin_companyprofiles');
 var adminEnterpriseculture = require('./backgroundRoutes/admin_enterprisecultures');
 var adminDevelopment = require('./backgroundRoutes/admin_developments');
 var adminRecruitment = require('./backgroundRoutes/admin_recruitments');
+var userinfo = require('./backgroundRoutes/admin_userInfo');
 
 module.exports = function (app) {
     //标题页面
@@ -44,8 +45,10 @@ module.exports = function (app) {
     //联系我们
     app.get('/contactus',contactus.contactus);
 /////////////////////////////后台页面开始///////////////////////////////////////////////
-    //后台登陆
-    app.get('/login',amdin.login);
+    //后台登陆页面
+    app.get('/admin/login',userinfo.loginHTML);
+    //登陆功能
+    app.post('/login',userinfo.login);
     //首页
     app.get('/admin',amdin.index);
     //添加产品

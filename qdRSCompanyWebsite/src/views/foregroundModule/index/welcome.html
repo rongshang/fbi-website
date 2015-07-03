@@ -30,96 +30,51 @@
     </div>
 </div>
 <div class="row3">
-    <div class="col">
+    <div class="col" ng-repeat="product in data.products">
         <h4>
-            <a href="" class="product-title">融商资金中心核心业务系统</a>
+            <a href="" class="product-title" ng-bind="product.title"></a>
         </h4>
         <a>
-            <img src="../../../upload/images/epss.jpg"/>
+            <img ng-src="product.image"/>
         </a>
-        <div class="txt"title="系统为银行、财务公司或集团资金中心核心业务系统。
-                为资金管理中心提供资金管理系统，该系统具有科目管理、利率管理、汇率管理、
-                账簿管理、客户信息管理、账户管理、记账、计息、会计核算、对账单管理、
-                分户账管理等全面地账务管理。该系统帮助资金中心实现对资金的集中管控，防范资金风险。
-               ">
-            <p>
-                系统为银行、财务公司或集团资金中心核心业务系统。
-                为资金管理中心提供资金管理系统，该系统具有科目管理、利率管理、汇率管理、
-                账簿管理、客户信息管理、账户管理、记账、计息、会计核算、对账单管理、
-                分户账管理等全面地账务管理。该系统帮助资金中心实现对资金的集中管控，防范资金风险。
-            </p>
+        <div class="txt" title="{{product.concat}}">
+            <p ng-bind="product.concat"></p>
         </div>
         <div class="detail"><a > << more </a></div>
     </div>
-    <div class="col">
+    <div class="col" ng-repeat="product in datas.products">
         <h4>
-            <a class="product-title">CBS资金中心核心业务系统</a>
+            <a class="product-title" ng-bind="product.title"></a>
         </h4>
         <a>
-            <img src="../../../upload/images/fip.jpg"/>
+            <img ng-src="product.image"/>
         </a>
-        <div class="txt"title="系统为银行、财务公司或集团资金中心核心业务系统。
-                为资金管理中心提供资金管理系统，该系统具有科目管理、利率管理、汇率管理、
-                账簿管理、客户信息管理、账户管理、记账、计息、会计核算、对账单管理、
-                分户账管理等全面地账务管理。该系统帮助资金中心实现对资金的集中管控，防范资金风险。
-        ">
-            <p>
-                系统为银行、财务公司或集团资金中心核心业务系统。
-                为资金管理中心提供资金管理系统，该系统具有科目管理、利率管理、汇率管理、
-                账簿管理、客户信息管理、账户管理、记账、计息、会计核算、对账单管理、
-                分户账管理等全面地账务管理。该系统帮助资金中心实现对资金的集中管控，防范资金风险。
-            </p>
+        <div class="txt" title="{{product.concat}}">
+            <p ng-bind="product.concat | limitTo :130 "></p>
         </div>
-        <div class="detail"><a > << more </a></div>
-    </div>
-    <div class="col">
-        <h4>
-            <a class="product-title">融商资金中心核心业务系统</a>
-        </h4>
-        <a>
-            <img src="../../../upload/images/sbs.jpg"/>
-        </a>
-        <div class="txt"title="系统为银行、财务公司或集团资金中心核心业务系统。
-                为资金管理中心提供资金管理系统，该系统具有科目管理、利率管理、汇率管理、
-                账簿管理、客户信息管理、账户管理、记账、计息、会计核算、对账单管理、
-                分户账管理等全面地账务管理。该系统帮助资金中心实现对资金的集中管控，防范资金风险。">
-            <p>
-                系统为银行、财务公司或集团资金中心核心业务系统。
-                为资金管理中心提供资金管理系统，该系统具有科目管理、利率管理、汇率管理、
-                账簿管理、客户信息管理、账户管理、记账、计息、会计核算、对账单管理、
-                分户账管理等全面地账务管理。该系统帮助资金中心实现对资金的集中管控，防范资金风险。
-            </p>
-        </div>
-        <div class="detail"><a > << more </a></div>
+        <div class="detail"><a ng-href="#/productdetail?id={{product._id}}" > << more </a></div>
     </div>
 </div>
 <div class="block-home customers border-sep">
     <h1><a class="customers_title">合作伙伴</a></h1>
     <div>
-        <div class="customers_img"><img src="../../views/resource/foregroundModule/images/pufa.png">
+        <div class="customers_img" >
+            <img src="{{datas.partners[0].image}}" style="width: 350px;">
         </div>
         <div class="bank">
-            <h3><a>浦发银行</a></h3>
+            <h3><a ng-bind="datas.partners[0].title"></a></h3>
             <div class="txt">
-                <p title="银行、财务公司或集团资金中心核心业务系统。主要功能包括：系统管理、客户信息管理、码表管理、账户管理、记账、批量处理、会计报表等。
-                     银行、财务公司或集团资金中心核心业务系统。主要功能包括：系统管理、客户信息管理、码表管理、账户管理、记账、批量处理、会计报表等。
-            ">
-                    银行、财务公司或集团资金中心核心业务系统。主要功能包括：系统管理、客户信息管理、码表管理、账户管理、记账、批量处理、会计报表等。
-                    银行、财务公司或集团资金中心核心业务系统。主要功能包括：系统管理、客户信息管理、码表管理、账户管理、记账、批量处理、会计报表等。
-                </p>
-            </div>
-            <div class="detail"><a > << more </a>
+                <p title="{{datas.partners[0].concat}}" ng-bind="datas.partners[0].concat | limitTo:140"></p>
             </div>
         </div>
         <div>
             <h3><a>其他伙伴</a></h3>
             <div class="customers_other">
-                <a> <img src="../../views/resource/foregroundModule/images/zhaohang.png"/></a>
-                <a> <img src="../../views/resource/foregroundModule/images/rizhao.png"/></a>
-                <a><img src="../../views/resource/foregroundModule/images/jianhang.png"/></a>
-                <a><img src="../../views/resource/foregroundModule/images/haier.png"/></a>
+                <a ng-repeat="partner in datas.partners">
+                    <img ng-if="$index>0" ng-src="{{partner.image}}"/>
+                </a>
             </div>
-            <div class="detail"><a > << more </a></div>
+            <div class="detail"><a ng-href="#/allpartner" > << more </a></div>
         </div>
     </div>
 </div>
@@ -143,67 +98,21 @@
                 <a><img class="icon-rounded img" src="../../views/resource/foregroundModule/images/fzlc3.jpg"/></a>
             </div>
         </div>
-        <div class="detail"><a > << more </a></div>
     </div>
 </div>
 <div class="row3">
     <h1 style="margin-top: -20px;"><a class="fyrw_title">风云人物</a></h1>
-    <div class="col">
+    <div class="col" ng-repeat="figure in datas.figures">
         <a>
-            <img src="../../../upload/images/fip.jpg"class="img-thumbnail"/>
+            <img ng-src="{{figure.image}}" class="img-thumbnail"/>
         </a>
         <div class="txt">
             <p>
-            <div>姓名：战睿</div>
-            <div>职位：经理</div>
-            <div>资质荣誉：1992年毕业于青岛大学计算机系计算机及应用专业，
-                在人民银行科技部门任职6年后，于1998年10月进入青岛中天信息技术有限公司，
-                直至2007年底离开中天。
-                在青岛中天公司任职期间，主要担任技术主管职务，
-                有7年的时间主要负责开发团队的管理，在软件的产品研发、项目实施、团队管理以及企业运营方面，
-                积累了一定的工作经验。
-            </div>
+                <div>姓名：<span ng-bind="figure.name"></span></div>
+                <div>职位：<span ng-bind="figure.job"></span></div>
+                <div title="{{figure.honor}}" ng-bind="figure.honor | limitTo:120"></div>
             </p>
         </div>
-        <div class="detail"><a > << more </a></div>
-    </div>
-    <div class="col">
-        <a>
-            <img src="../../../upload/images/fip.jpg" class="img-thumbnail"/>
-        </a>
-        <div class="txt">
-            <p>
-            <div>姓名：战睿</div>
-            <div>职位：经理</div>
-            <div>资质荣誉：1992年毕业于青岛大学计算机系计算机及应用专业，
-                在人民银行科技部门任职6年后，于1998年10月进入青岛中天信息技术有限公司，
-                直至2007年底离开中天。
-                在青岛中天公司任职期间，主要担任技术主管职务，
-                有7年的时间主要负责开发团队的管理，在软件的产品研发、项目实施、团队管理以及企业运营方面，
-                积累了一定的工作经验。
-            </div>
-            </p>
-        </div>
-        <div class="detail"><a ><< more </a></div>
-    </div>
-    <div class="col">
-        <a>
-            <img src="../../../upload/images/fip.jpg"class="img-thumbnail"/>
-        </a>
-        <div class="txt">
-            <p>
-            <div>姓名：战睿</div>
-            <div>职位：经理</div>
-            <div>资质荣誉：1992年毕业于青岛大学计算机系计算机及应用专业，
-                在人民银行科技部门任职6年后，于1998年10月进入青岛中天信息技术有限公司，
-                直至2007年底离开中天。
-                在青岛中天公司任职期间，主要担任技术主管职务，
-                有7年的时间主要负责开发团队的管理，在软件的产品研发、项目实施、团队管理以及企业运营方面，
-                积累了一定的工作经验。
-            </div>
-            </p>
-        </div>
-        <div class="detail"><a > << more </a></div>
     </div>
 </div>
 <div class="block-home snippet-about border-sep">
@@ -216,63 +125,28 @@
             <a><img src="../../views/resource/foregroundModule/images/slide2.png"  title=" News"style="width:470px;height:199px"></a>
             <div class="txt news">
                 <ul>
-                    <li>
-                        <a class="about_news">青岛融商信息技术有限公司</a>
-                        <span style="float: right;">2015-05-05</span>
+                    <li ng-repeat="news in datas.news">
+                        <a ng-href="#/newsdetail?id={{news._id}}" class="about_news" title="{{news.title}}" ng-bind="news.title"></a>
+                        <span style="float: right;" ng-bind="news.createdTime"></span>
                     </li>
-                    <li>
-                        <a class="about_news" >青岛融商信息技术有限公司</a>
-                        <span style="float: right;">2015-05-05</span>
-                    </li>
-                    <li>
-                        <a class="about_news">青岛融商信息技术有限公司</a>
-                        <span style="float: right;">2015-05-05</span>
-                    </li>
-                    <li>
-                        <a class="about_news">青岛融商信息技术有限公司</a>
-                        <span style="float: right;">2015-05-05</span>
-                    </li>
-                    <li>
-                        <a class="about_news">青岛融商信息技术有限公司</a>
-                        <span style="float: right;">2015-05-05</span>
-                    </li>
-                    <li>
-                        <a class="about_news">青岛融商信息技术有限公司</a>
-                        <span style="float: right;">2015-05-05</span>
-                    </li>
-                    <li>
-                        <a class="about_news">青岛融商信息技术有限公司</a>
-                        <span style="float: right;">2015-05-05</span>
-                    </li>
-                    <li>
-                        <a class="about_news">青岛融商信息技术有限公司</a>
-                        <span style="float: right;">2015-05-05</span>
-                    </li>
-                    <li>
-                        <a class="about_news">青岛融商信息技术有限公司</a>
-                        <span style="float: right;">2015-05-05</span>
-                    </li>
-                    <li>
-                        <a class="about_news">青岛融商信息技术有限公司</a>
-                        <span style="float: right;">2015-05-05</span>
-                    </li>
+
                 </ul>
-                <div class="detail"><a > << more </a></div>
+                <div class="detail"><a ng-href="#/allnews?pageNo=1"> << more </a></div>
             </div>
         </div>
         <div class="col" style="margin-left: 25px;">
             <a><img src="../../../upload/images/fwwxzj.jpg"style="width:470px;height:199px"></a>
             <div class="about_other" >
                 <h4 class="ours_title"> <a>电话：</a></h4>
-                <p class="about_p">0532-67701662</p>
+                <p class="about_p" ng-bind="datas.contactus.tel"></p>
                 <h4 class="ours_title"> <a>地址：</a></h4>
-                <p class="about_p">青岛市崂山区同安路880号深蓝公寓811室</p>
+                <p class="about_p" ng-bind="datas.contactus.address"></p>
                 <h4 class="ours_title"> <a>邮箱：</a></h4>
-                <p class="about_p">123456@rongshang.com</p>
+                <p class="about_p" ng-bind="datas.contactus.email"></p>
                 <h4 class="ours_title"> <a>QQ：</a></h4>
-                <p class="about_p">12345678910</p>
+                <p class="about_p" ng-bind="datas.contactus.qq"></p>
                 <h4 class="ours_title"> <a>传真：</a></h4>
-                <p class="about_p">12345678910</p>
+                <p class="about_p" ng-bind="datas.contactus.fax"></p>
             </div>
         </div>
     </div>
