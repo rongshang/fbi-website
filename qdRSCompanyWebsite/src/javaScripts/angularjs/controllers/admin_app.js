@@ -8,6 +8,8 @@
 var app = angular.module('admin');
 app.config(['$routeProvider',function($routeProvider){
     $routeProvider
+        //添加新用户
+        .when('/addAdmin', {templateUrl:'/views/backgroundModule/userinfo/admin_register.html',controller: 'addAdminCtrl'})
         //查询全部产品
         .when('/adminAllProduct/:pageNo', {templateUrl:'/views/backgroundModule/product/admin_allProduct.html',controller: 'adminAllProductCtrl'})
          //添加产品

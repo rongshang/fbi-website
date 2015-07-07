@@ -3,6 +3,6 @@
  */
 //首页
 exports.index = function(req,res){
-    res.render('backgroundModule/index/admin_index');
+    res.render('backgroundModule/index/admin_index',{"userinfo":req.session.userinfo});
 }
 

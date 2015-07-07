@@ -5,15 +5,45 @@
 'use strict'
 
 var app = angular.module('admin',['ngRoute','angularFileUpload','ngSanitize','appFilereader']);
-//管理员登陆
-app.controller('adminLoginCtrl',['$scope','$http',function($scope,$http) {
-   $scope.userinfo = {username:'1111',password:''};
-    alert("");
-    $scope.getUserInfoByUsernameAndPassword = function(){
-        alert(userinfo.username);
+
+//用户注册
+app.controller('addAdminCtrl',['$scope','$http','$location','$routeParams','$rootScope',function($scope,$http,$location,$routeParams,$rootScope){
+     $scope.userinfo={_id:'',username:'',password:'',level:'',createdTime:getCreateTime()};
+     $scope.repassword="";
+    $scope.save = function(){
+        var regExpUname = /^[\w\u4e00-\u9f5a]{4,20}$/;
+        var regExpPwd = /^(\w+){6,20}$/;
+        if(!regExpUname.test($scope.userinfo.username)){
+            alert("用户名格式为数字、字母、下划线和中文4到20位");
+            return;
+        }
+
+        if(!regExpPwd.test($scope.userinfo.password)){
+            alert("密码格式为数字、字母、下划线6到20位");
+            return;
+        }
+
+        if($scope.userinfo.password!=$scope.repassword){
+            alert("两次密码不一致");
+            return;
+        }
+        $http({
+            method:'POST',
+            url:'/addAdminAjax',
+            params: {userinfo:$scope.userinfo}
+        }).success(function(data, status, headers, config){
+            if(data.msg=='0'){
+                alert("用户名已存在");
+            }else if(data.msg=='1'){
+                alert("添加用户成功");
+            }else if(data.msg=='2'){
+                alert("添加失败");
+            }
+        });
     }
 
-}]);
+}])
+
 
 //所有的产品展示
 app.controller('adminAllProductCtrl',['$scope','$http','$location','$routeParams','$rootScope',function($scope,$http,$location,$routeParams,$rootScope){

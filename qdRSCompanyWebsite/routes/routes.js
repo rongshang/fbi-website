@@ -47,8 +47,12 @@ module.exports = function (app) {
 /////////////////////////////后台页面开始///////////////////////////////////////////////
     //后台登陆页面
     app.get('/admin/login',userinfo.loginHTML);
+    //退出
+    app.get('/admin/logout',userinfo.logout);
     //登陆功能
-    app.post('/login',userinfo.login);
+    app.post('/adminLoginAjax',userinfo.adminLogin);
+    //添加用户
+    app.post('/addAdminAjax',userinfo.addAdmin);
     //首页
     app.get('/admin',amdin.index);
     //添加产品

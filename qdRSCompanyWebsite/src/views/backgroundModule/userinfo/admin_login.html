@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html  ng-app>
+<html  ng-app="admin">
 <head>
   <meta charset="UTF-8">
   <title>融商后台登陆页面</title>
@@ -10,8 +10,7 @@
     <script src="../libs/respond.min.js"></script>
   <![endif]-->
 </head>
-<body class="login-page" ng-controller="aa">
-{{userinfo.username}}
+<body class="login-page" ng-controller="adminLoginController">
 <div class="login-box">
   <div class="login-logo">
     <a href="javascript:void(0)"><b>融商</b>管理平台</a>
@@ -35,8 +34,6 @@
     </form>
   </div><!-- /.login-box-body -->
 </div><!-- /.login-box -->
-
+<script src="../../javaScripts/angularjs/controllers/adminLogin_controller.js"></script>
 </body>
-<script src="../../javaScripts/angularjs/controllers/aa.js"></script>
-
 </html>

@@ -5,6 +5,9 @@
 var uuid = require("uuid");
 var fs = require("fs");
 var howdo = require('howdo');
+var url = require("url");
+var fs = require("fs");
+var path = require("path");
 var daoBase = require("../../src/javaScripts/nodejs/dao/DaoBase");
 
 //图片上传模块
@@ -47,7 +50,6 @@ exports.adminAllProductAjax = function(req,res,next){
             productsDaoBse.findAllByPageAndQuery(queryStr,{createdTime:-1},pageNo,pageSize,function(err,products){
                 done(null,products);
             });
-
         })
         .together(function(err,pageNo,pageCount,products){
             res.json({'title':'产品展示','pageNo':pageNo,'pageCount':pageCount,'products':products});
@@ -56,6 +58,8 @@ exports.adminAllProductAjax = function(req,res,next){
 
 //添加产品
 exports.adminAddProductAjax = function(req,res,next){
+    var pathname = url.parse(req.url).pathname;
+    console.log("===pathname==="+pathname);
     var product=req.query.product;
     product =JSON.parse(product);
     product._id = uuid.v1();

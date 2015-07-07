@@ -41,39 +41,8 @@
                               <!-- The user image in the navbar-->
                               <img src="../libs/adminLTE/dist/img/user2-160x160.jpg" class="user-image" alt="User Image"/>
                               <!-- hidden-xs hides the username on small devices so only the image appears. -->
-                              <span class="hidden-xs">Alexander Pierce</span>
+                              <span class="hidden-xs"><%=userinfo.username%></span>
                           </a>
-                          <ul class="dropdown-menu">
-                              <!-- The user image in the menu -->
-                              <li class="user-header">
-                                  <img src="../libs/adminLTE/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image" />
-                                  <p>
-                                      Alexander Pierce - Web Developer
-                                      <small>Member since Nov. 2012</small>
-                                  </p>
-                              </li>
-                              <!-- Menu Body -->
-                              <li class="user-body">
-                                  <div class="col-xs-4 text-center">
-                                      <a href="#">Followers</a>
-                                  </div>
-                                  <div class="col-xs-4 text-center">
-                                      <a href="#">Sales</a>
-                                  </div>
-                                  <div class="col-xs-4 text-center">
-                                      <a href="#">Friends</a>
-                                  </div>
-                              </li>
-                              <!-- Menu Footer-->
-                              <li class="user-footer">
-                                  <div class="pull-left">
-                                      <a href="#" class="btn btn-default btn-flat">Profile</a>
-                                  </div>
-                                  <div class="pull-right">
-                                      <a href="#" class="btn btn-default btn-flat">Sign out</a>
-                                  </div>
-                              </li>
-                          </ul>
                       </li>
                       <!-- Control Sidebar Toggle Button -->
                       <li>
@@ -93,7 +62,7 @@
                       <img src="../libs/adminLTE/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image" />
                   </div>
                   <div class="pull-left info">
-                      <p>Alexander Pierce</p>
+                      <p><%=userinfo.username%></p>
                       <!-- Status -->
                       <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
                   </div>
@@ -113,7 +82,7 @@
                               <ul class="treeview-menu">
                                   <li><a href="/admin/#/adminAllCompanyprofile/1"><i class="fa fa-circle-o"></i>查看公司简介</a></li>
                                   <li>
-                                      <a href="/admin/#/adminAddCompanyprofile"><i class="fa fa-circle-o"></i>添加公司简介<i class="fa fa-angle-left pull-right"></i></a>
+                                      <a href="/admin/#/adminAddCompanyprofile"><i class="fa fa-circle-o"></i>添加公司简介</a>
                                   </li>
                               </ul>
                           </li>
@@ -122,7 +91,7 @@
                               <ul class="treeview-menu">
                                   <li><a href="/admin/#/adminAllEnterpriseculture/1"><i class="fa fa-circle-o"></i>查看企业文化</a></li>
                                   <li>
-                                      <a href="/admin/#/adminAddEnterpriseculture"><i class="fa fa-circle-o"></i>添加企业文化<i class="fa fa-angle-left pull-right"></i></a>
+                                      <a href="/admin/#/adminAddEnterpriseculture"><i class="fa fa-circle-o"></i>添加企业文化</a>
                                   </li>
                               </ul>
                           </li>
@@ -131,7 +100,7 @@
                               <ul class="treeview-menu">
                                   <li><a href="/admin/#/adminAllDevelopment/1"><i class="fa fa-circle-o"></i>查看发展历程</a></li>
                                   <li>
-                                      <a href="/admin/#/adminAddDevelopment"><i class="fa fa-circle-o"></i>添加发展历程<i class="fa fa-angle-left pull-right"></i></a>
+                                      <a href="/admin/#/adminAddDevelopment"><i class="fa fa-circle-o"></i>添加发展历程</a>
                                   </li>
                               </ul>
                           </li>
@@ -140,7 +109,7 @@
                               <ul class="treeview-menu">
                                   <li><a href="#"><i class="fa fa-circle-o"></i>查看资质荣誉</a></li>
                                   <li>
-                                      <a href="#"><i class="fa fa-circle-o"></i>添加资质荣誉<i class="fa fa-angle-left pull-right"></i></a>
+                                      <a href="#"><i class="fa fa-circle-o"></i>添加资质荣誉</a>
                                   </li>
                               </ul>
                           </li>
@@ -277,16 +246,8 @@
               <!-- Settings tab content -->
               <div class="tab-pane" id="control-sidebar-settings-tab">
                   <form method="post">
-                      <h3 class="control-sidebar-heading">General Settings</h3>
-                      <div class="form-group">
-                          <label class="control-sidebar-subheading">
-                              Report panel usage
-                              <input type="checkbox" class="pull-right" checked />
-                          </label>
-                          <p>
-                              Some information about this general settings option
-                          </p>
-                      </div><!-- /.form-group -->
+                      <a ng-href="/admin/logout">退出</a><br>
+                      <a ng-href="/admin/#/addAdmin">添加用户</a>
                   </form>
               </div><!-- /.tab-pane -->
           </div>

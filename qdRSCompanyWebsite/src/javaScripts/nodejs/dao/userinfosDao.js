@@ -13,26 +13,37 @@ var UserinfosDAO = function(userinfo) {
 };
 
 //登陆
-UserinfosDAO.prototype.findUserInfoByUsernameAndPassword = function(username,password){
-    UserinfosModel.findOne({username:username,password:password},function(err,userinfo){
-        if (err)
-            return res.json({msg:err});
-        if (!userinfo) {
-            return res.json({msg:'用户名或密码错误'});
-        }
-        req.session["userinfo"] = userinfo;
-        res.json(userinfo);
-
+UserinfosDAO.prototype.findUserInfoByUsernameAndPassword = function(req,res,userinfo,callback){
+    UserinfosModel.findOne({username:userinfo.username,password:userinfo.password},function(err,userinfo){
+        callback(userinfo);
     });
 }
 
-//退出
-exports.logout = function (req, res) {
-    req.session["userinfo"] = null;
-    var html = path.normalize(__dirname + '/../views/index.html');
-    res.sendfile(html);
-};
+//添加用户
+UserinfosDAO.prototype.save = function(userinfo,callback){
+    var userinfoModel = new UserinfosModel(userinfo);
+    //this.getUserinfoByUsername(userinfo.username,function(user){
+    //    if(user){
+    //        return callback({msg:'0'});
+    //    }else{
+    //        return callback({msg:'2'});
+    //    }
+    //});
 
+    userinfoModel.save(function(err){
+        if (err){
+            return callback({msg:'2'});
+        }
+        return callback({msg:'1'});
+    });
+}
+
+//根据用户名查找
+UserinfosDAO.prototype.getUserinfoByUsername = function(username){
+    UserinfosModel.findOne({username:username},function(err,userinfo){
+        return userinfo;
+    });
+}
 
 module.exports = UserinfosDAO;
 

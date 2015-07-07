@@ -6,6 +6,7 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var routes = require('./routes/routes');
 //var users = require('./routes/users');
+var session = require('express-session');
 
 var app = express();
 
@@ -24,6 +25,44 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'src')));
+
+
+//session
+app.use(session({
+  secret:'secret',
+  cookie:{
+    maxAge:1000*60*30
+  }
+}));
+
+//登录拦截器
+//app.use(function(req, res, next){
+//  //跟踪;
+//  //console.log("req.method="+req.method);
+//  //console.log("req.url="+req.url);
+//  //console.log("req.originalUrl="+req.originalUrl);
+//  var url = req.originalUrl;
+//  //简单地定义一个登录拦截器
+//  if (url != "/admin/login" && !req.session.userinfo) {
+//    console.log("登录拦截器提示：必须登录，才能执行此项操作。");
+//    req.flash('error', '请先登录。');
+//    return res.redirect("/admin/login");
+//  }
+//
+//  res.locals.userinfo = req.session.userinfo;
+//
+//  //var error = req.flash('error');
+//  res.locals.error = error.length?error:null;
+//  //console.log("转移flash中的error值："+error);
+//
+//  //var success = req.flash('success');
+//  res.locals.success = success.length?success:null;
+//  //console.log("转移flash中的success值："+success);
+//
+//  res.locals.session = req.session;
+//  next();
+//});
+
 
 //图片上传配置
 //app.use(require("multer")({
