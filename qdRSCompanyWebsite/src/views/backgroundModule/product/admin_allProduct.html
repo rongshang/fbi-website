@@ -3,55 +3,50 @@
 <div class="row">
     <div class="col-xs-12">
         <div class="box">
-            <div class="box-header">
-                <h3 class="box-title">
-                   <span>
-                       产品名称:
-                        <input type="text" ng-model="title"/>
-                        <input type="button" ng-click="find()" value="查询"/>
-                   </span>
-                </h3>
-            </div><!-- /.box-header -->
             <div class="box-body">
                 <table id="table" class="table table-bordered table-hover">
                     <thead>
-                        <tr>
-                            <th>产品名称</th>
-                            <th>产品描述</th>
-                            <th>连接地址</th>
-                            <th>产品图片</th>
-                            <th>操作</th>
-                        </tr>
+                    <tr>
+                        <th>产品名称</th>
+                        <th>产品描述</th>
+                        <th>连接地址</th>
+                        <th>产品图片</th>
+                        <th>操作</th>
+                    </tr>
                     </thead>
                     <tbody>
-                        <tr ng-repeat="product in datas.products">
-                            <td ng-bind="product.title"></td>
-                            <td ng-bind-html="product.concat"></td>
-                            <td ng-bind="product.websiteUrl"></td>
-                            <td><img ng-src="{{product.image}}" style="width: 80px;height: 80px;" /></td>
-                            <td>
-                                <input type="button" value="修改" ng-click="update(product._id)"  class="btn btn-info" />
-                                <input type="button" value="删除" ng-click="del(product._id)" class="btn btn-danger" />
-                            </td>
-                        </tr>
+                    <tr ng-repeat="product in datas.products">
+                        <td ng-bind="product.title"></td>
+                        <td ng-bind-html="product.concat"></td>
+                        <td ng-bind="product.websiteUrl"></td>
+                        <td><img ng-src="{{product.image}}" style="width: 80px;height: 80px;" /></td>
+                        <td>
+                            <input type="button" value="修改" ng-click="update(product._id)"  class="btn btn-info" />
+                            <input type="button" value="删除" ng-click="del(product._id)" class="btn btn-danger" />
+                        </td>
+                    </tr>
                     </tbody>
                 </table>
+                <div style="text-align: right;">
+                    <div class="pagination pagination-sm right_end_fy">
+                        <li><a ng-href="/admin/#/adminAllProduct/1">首页</a></li>
+                        <li><a ng-href="/admin/#/adminAllProduct/{{datas.pageNo-1<=0?1:datas.pageNo-1}}"> 上一页</a></li>
+                        <li><a ng-href="/admin/#/adminAllProduct/{{datas.pageNo+1>=datas.pageCount?datas.pageCount:datas.pageNo+1}}"> 下一页</a></li>
+                        <li><a ng-href="/admin/#/adminAllProduct/{{datas.pageCount}}"> 尾页</a></li>
+                        <li><a href="javascript:void(0);">共{{datas.pageNo}}/{{datas.pageCount}}页</a></li>
+                        <li>第<input type="text" id="pageNo" class="input-small right_end_go"style="width: 30px;">页</li>
+                        <li><input type="hidden" id="pageCount" value="{{datas.pageCount}}" /></li>
+                        <li><button type="button" class="btn btn-default" role="button" onclick="go()">go</button></li>
+                    </div>
+                </div>
             </div><!-- /.box-body -->
         </div><!-- /.box -->
     </div>
 </div>
 
-<div class="pagination pagination-sm right_end_fy">
-    <li><a ng-href="/admin/#/adminAllProduct/1">首页</a></li>
-    <li><a ng-href="/admin/#/adminAllProduct/{{datas.pageNo-1<=0?1:datas.pageNo-1}}"> 上一页</a></li>
-    <li><a ng-href="/admin/#/adminAllProduct/{{datas.pageNo+1>=datas.pageCount?datas.pageCount:datas.pageNo+1}}"> 下一页</a></li>
-    <li><a ng-href="/admin/#/adminAllProduct/{{datas.pageCount}}"> 尾页</a></li>
-    <li><a href="javascript:void(0);">共{{datas.pageNo}}/{{datas.pageCount}}页</a></li>
-    <li>第<input type="text" id="pageNo" class="input-small right_end_go">页</li>
-    <li><input type="hidden" id="pageCount" value="{{datas.pageCount}}" /></li>
-    <li><button type="button" class="btn btn-default" role="button" onclick="go()">go</button></li>
-</div>
+
 <!-- DATA TABES SCRIPT -->
+<!--<script src="../libs/adminLTE/plugins/jQuery/jQuery-2.1.4.min.js"></script>-->
 <script src="../libs/adminLTE/plugins/datatables/jquery.dataTables.min.js" type="text/javascript"></script>
 <script src="../libs/adminLTE/plugins/datatables/dataTables.bootstrap.min.js" type="text/javascript"></script>
 <!-- SlimScroll -->

@@ -1,37 +1,71 @@
-<table class="table table-hover table-bordered">
-    <tr>
-        <td style="width:80%;">公司简介</td>
-        <td>操作</td>
-    </tr>
-    <tr ng-repeat="companyprofile in datas.companyprofiles">
-        <td style="width:80%; overflow:hidden;" ng-bind-html="companyprofile.concat"></td>
-        <td>
-            <input type="button" value="修改" ng-click="update(companyprofile._id)"  class="btn btn-info" />
-            <input type="button" value="删除" ng-click="del(companyprofile._id)" class="btn btn-danger" />
-        </td>
-    </tr>
-</table>
-<div class="pagination pagination-sm right_end_fy">
-    <li><a ng-href="/admin/#/adminAllCompanyprofile/1">首页</a></li>
-    <li><a ng-href="/admin/#/adminAllCompanyprofile/{{datas.pageNo-1<=0?1:datas.pageNo-1}}"> 上一页</a></li>
-    <li><a ng-href="/admin/#/adminAllCompanyprofile/{{datas.pageNo+1>=datas.pageCount?datas.pageCount:datas.pageNo+1}}"> 下一页</a></li>
-    <li><a ng-href="/admin/#/adminAllCompanyprofile/{{datas.pageCount}}"> 尾页</a></li>
-    <li><a href="javascript:void(0);">共{{datas.pageNo}}/{{datas.pageCount}}页</a></li>
-    <li>第<input type="text" id="pageNo" class="input-small right_end_go">页</li>
-    <li><input type="hidden" id="pageCount" value="{{datas.pageCount}}" /></li>
-    <li><button type="button" class="btn btn-default" role="button" onclick="go()">go</button></li>
+<link href="../libs/adminLTE/plugins/datatables/dataTables.bootstrap.css" rel="stylesheet" type="text/css" />
+<link href="../libs/adminLTE/dist/css/skins/_all-skins.min.css" rel="stylesheet" type="text/css" />
+<div class="row">
+    <div class="col-xs-12">
+        <div class="box">
+            <div class="box-body">
+                <table id="table" class="table table-bordered table-hover">
+                    <thead>
+                    <tr>
+                        <th style="text-align: center">公司简介</th>
+                        <th style="text-align: center">操作</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="companyprofile in datas.companyprofiles">
+                        <td  ng-bind-html="companyprofile.concat" style="width: 80%"></td>
+                        <td style="text-align: center">
+                            <input type="button" value="修改" ng-click="update(companyprofile._id)"  class="btn btn-info" />
+                            <input type="button" value="删除" ng-click="del(companyprofile._id)" class="btn btn-danger" />
+                        </td>
+                    </tr>
+                </table>
+                <div style="text-align: right;">
+                    <div class="pagination pagination-sm right_end_fy">
+                        <li><a ng-href="/admin/#/adminAllCompanyprofile/1">首页</a></li>
+                        <li><a ng-href="/admin/#/adminAllCompanyprofile/{{datas.pageNo-1<=0?1:datas.pageNo-1}}"> 上一页</a></li>
+                        <li><a ng-href="/admin/#/adminAllCompanyprofile/{{datas.pageNo+1>=datas.pageCount?datas.pageCount:datas.pageNo+1}}"> 下一页</a></li>
+                        <li><a ng-href="/admin/#/adminAllCompanyprofile/{{datas.pageCount}}"> 尾页</a></li>
+                        <li><a href="javascript:void(0);">共{{datas.pageNo}}/{{datas.pageCount}}页</a></li>
+                        <li>第<input type="text" id="pageNo" class="input-small right_end_go"style="width: 30px;">页</li>
+                        <li><input type="hidden" id="pageCount" value="{{datas.pageCount}}" /></li>
+                        <li><button type="button" class="btn btn-default" role="button" onclick="go()">go</button></li>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
-
-<script type="text/javascript">
-    function go(){
-        var pageNo = $("#pageNo").val();
-        var pageCount = parseInt($("#pageCount").val());
-        if(pageNo=="")
-        {
-            pageNo=1;
-        }else if(parseInt(pageNo)>pageCount){
-            pageNo=pageCount;
+<script src="../libs/adminLTE/plugins/datatables/jquery.dataTables.min.js" type="text/javascript"></script>
+<script src="../libs/adminLTE/plugins/datatables/dataTables.bootstrap.min.js" type="text/javascript"></script>
+<!-- SlimScroll -->
+<script src="../libs/adminLTE/plugins/slimScroll/jquery.slimscroll.min.js" type="text/javascript"></script>
+<!-- FastClick -->
+<script src='../libs/adminLTE/plugins/fastclick/fastclick.min.js'></script>
+<!-- AdminLTE for demo purposes -->
+<script src="../libs/adminLTE/dist/js/demo.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        $(function () {
+//            $("#table").dataTable();
+        $('#table').dataTable({
+            "bPaginate": true,
+            "bLengthChange": false,
+            "bFilter": false,
+            "bSort": true,
+            "bInfo": true,
+            "bAutoWidth": false
+        });
+        });
+        function go(){
+            var pageNo = $("#pageNo").val();
+            var pageCount = parseInt($("#pageCount").val());
+            if(pageNo=="")
+            {
+                pageNo=1;
+            }else if(parseInt(pageNo)>pageCount){
+                pageNo=pageCount;
+            }
+            window.location.href="/admin/#/adminAllEnterpriseculture/"+pageNo;
         }
-        window.location.href="/admin/#/adminAllCompanyprofile/"+pageNo;
-    }
-</script>
+
+    </script>

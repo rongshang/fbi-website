@@ -1,0 +1,28 @@
+<table id="table" class="table table-bordered table-hover">
+    <thead>
+    <tr>
+        <th>公司地址</th>
+        <th>公司邮箱</th>
+        <th>公司微信</th>
+        <th>公司qq</th>
+        <th>公司电话</th>
+        <th>公司传真</th>
+        <th>公司二维码</th>
+        <th>公司LOGO</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td><input type="text" ng-model="datas.address" /></td>
+        <td><input type="text" ng-model="datas.email" /></td>
+        <td><input type="text" ng-model="datas.code" /></td>
+        <td><input type="text" ng-model="datas.qq" /></td>
+        <td><input type="text" ng-model="datas.tel" /></td>
+        <td><input type="text" ng-model="datas.fax" /></td>
+        <td><img ng-src="{{datas.codeImg}}" style="width: 80px;height: 80px;" /></td>
+        <td><img ng-src="{{datas.logo}}" style="width: 80px;height: 80px;" /></td>
+    </tr>
+    </tbody>
+</table>
+<input type="button" ng-click="save(datas)" value="保存"/>
+

@@ -1,8 +1,16 @@
-<ul>
-    <li>企业文化:<textarea id="textarea" ng-model="enterpriseculture.concat"></textarea></li>
-</ul>
-<input type="button" value="保存" ng-click="save()">
-
+<div class="row">
+    <div class="col-xs-12">
+        <div class="box">
+            <div class="box-body">
+                <ul >
+                    <h4>新增企业文化</h4>
+                    <textarea id="textarea" ng-model="enterpriseculture.concat"style="width:80%;height:400px"></textarea>
+                </ul>
+                <div style="margin-left:40%"> <input type="button" value="保存" ng-click="save()"></div>
+            </div>
+        </div>
+    </div>
+</div>
 <script language=javascript>
     var editor;
     KindEditor.ready(function (K) {

@@ -1,10 +1,17 @@
-
-<ul>
-    <li>公司简介:<textarea id="textarea" ng-model="companyprofile.concat"></textarea></li>
-</ul>
-<input type="button" value="保存" ng-click="save()">
-
-<script language=javascript>
+<div class="row">
+    <div class="col-xs-12">
+        <div class="box">
+            <div class="box-body">
+                <ul >
+                  <h4>新增公司简介</h4>
+                    <textarea id="textarea" ng-model="companyprofile.concat"style="width:80%;height:400px"></textarea>
+                </ul>
+                <div style="margin-left:40%"> <input type="button" value="保存" ng-click="save()"></div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
     var editor;
     KindEditor.ready(function (K) {
         editor = K.create('#textarea', {

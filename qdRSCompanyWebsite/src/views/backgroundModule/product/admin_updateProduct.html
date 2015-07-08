@@ -1,3 +1,43 @@
+<div class="row">
+    <div class="col-xs-12">
+        <div class="box">
+            <div class="box-body">
+                <table id="table" class="table table-bordered ">
+                    <thead>
+                    <tr>
+                        <th style="text-align: center"colspan="2">修改产品信息</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>产品标题：<input  type="text" ng-model="datas.title"/></td>
+                        <td rowspan="4">
+                            <div style="margin-left: 5%">
+                                <textarea id="content" style="width:90%;height:400px;visibility:hidden;">
+                            </textarea>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <p style="float: left">产品视频： </p> <input type="file" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>产品地址： <input type="text"ng-model="datas.websiteUrl"/></td>
+                    </tr>
+                    <tr>
+                        <td>产品图片：
+                                <img ng-src="{{datas.image}}"  border=0 width="160" height="160" />
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+                <input type="button" value="保存" ng-click="save(datas)" style="margin-left: 50%">
+            </div>
+        </div>
+    </div>
+</div>
 <script>
     var editor;
     KindEditor.ready(function (K) {
@@ -8,21 +48,4 @@
         prettyPrint();
     });
 </script>
-<table>
-    <tr>
-        <td>产品标题</td>
-        <td>产品内容</td>
-        <td>产品图片</td>
-        <td>视频地址</td>
-    </tr>
-    <tr>
-        <td><input type="text" ng-model="datas.title" /></td>
-        <td>
-            <textarea id="content" style="width:300px;height:200px;visibility:hidden;"></textarea>
-        </td>
-        <td><img ng-src="{{datas.image}}" /></td>
-        <td><input type="text" ng-model="datas.websiteUrl" /></td>
-    </tr>
-</table>
-<input type="button" ng-click="save(datas)" value="保存"/>
 

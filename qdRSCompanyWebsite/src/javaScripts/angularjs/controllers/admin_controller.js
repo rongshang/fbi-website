@@ -29,7 +29,7 @@ app.controller('addAdminCtrl',['$scope','$http','$location','$routeParams','$roo
         }
         $http({
             method:'POST',
-            url:'/addAdminAjax',
+            url:'/admin/addAdminAjax',
             params: {userinfo:$scope.userinfo}
         }).success(function(data, status, headers, config){
             if(data.msg=='0'){
@@ -53,7 +53,7 @@ app.controller('adminAllProductCtrl',['$scope','$http','$location','$routeParams
     $scope.find = function(){
         $http({
             method:'get',
-            url:'/adminAllProductAjax',
+            url:'/admin/adminAllProductAjax',
             params: {pageNo:pageNo,title:$scope.title}
         }).success(function(data, status, headers, config){
             $scope.datas = data;
@@ -69,7 +69,7 @@ app.controller('adminAllProductCtrl',['$scope','$http','$location','$routeParams
     //删除产品
     $scope.del = function(id){
         if(confirm("你确定删除吗？")){
-            $http.post('/delProductAjax',{id:id}).success(function(data) {
+            $http.post('/admin/delProductAjax',{id:id}).success(function(data) {
                 if(data.msg=='1'){
                     window.location.reload();
                 }else{
@@ -97,7 +97,7 @@ app.controller('adminAddProductCtrl',['$scope','$http',function($scope,$http){
         $scope.product.createdTime=getCreateTime();
         $http({
             method:'post',
-            url:'/adminAddProductAjax',
+            url:'/admin/adminAddProductAjax',
             params: {'product':$scope.product}
         }).success(function(data, status, headers, config){
             if(data.msg=='1'){
@@ -111,7 +111,7 @@ app.controller('adminAddProductCtrl',['$scope','$http',function($scope,$http){
 
 //根据id查询产品
 app.controller("adminfindProductByIdCtrl",['$scope','$http','$location','$routeParams',function($scope,$http,$location,$routeParams){
-    $http.post('/findProductById',{id:$routeParams.id}).success(function(data) {
+    $http.post('/admin/findProductById',{id:$routeParams.id}).success(function(data) {
         editor.html(data.concat);
         $scope.datas = data;
     });
@@ -119,7 +119,7 @@ app.controller("adminfindProductByIdCtrl",['$scope','$http','$location','$routeP
     //更新产品
     $scope.save = function(product){
         product.concat=editor.html()
-        $http.post('/updateProductAjax',{product:product}).success(function(data) {
+        $http.post('/admin/updateProductAjax',{product:product}).success(function(data) {
             if(data.msg=='1'){
                 window.location.reload();
             }else{
@@ -135,7 +135,7 @@ app.controller('adminAllCompanyprofileCtrl',['$scope','$http','$location','$rout
     var pageNo = $routeParams.pageNo;
         $http({
             method:'get',
-            url:'/adminAllCompanyprofile',
+            url:'/admin/adminAllCompanyprofile',
             params: {pageNo:pageNo}
         }).success(function(data, status, headers, config){
             $scope.datas = data;
@@ -149,7 +149,7 @@ app.controller('adminAllCompanyprofileCtrl',['$scope','$http','$location','$rout
     //删除公司简介
     $scope.del = function(id){
         if(confirm("你确定删除吗？")){
-            $http.post('/delCompanyprofileAjax',{id:id}).success(function(data) {
+            $http.post('/admin/delCompanyprofileAjax',{id:id}).success(function(data) {
                 if(data.msg=='1'){
                     window.location.reload();
                 }else{
@@ -162,7 +162,7 @@ app.controller('adminAllCompanyprofileCtrl',['$scope','$http','$location','$rout
 
 //根据id查询公司简介
 app.controller("adminCompanyprofileByIdCtrl",['$scope','$http','$location','$routeParams',function($scope,$http,$location,$routeParams){
-    $http.post('/findCompanyprofileById',{id:$routeParams.id}).success(function(data) {
+    $http.post('/admin/findCompanyprofileById',{id:$routeParams.id}).success(function(data) {
         editor.html(data.concat);
         $scope.datas = data;
     });
@@ -170,7 +170,7 @@ app.controller("adminCompanyprofileByIdCtrl",['$scope','$http','$location','$rou
     //更新公司简介
     $scope.save = function(companyprofile){
         companyprofile.concat=editor.html()
-        $http.post('/updateCompanyprofileAjax',{companyprofile:companyprofile}).success(function(data) {
+        $http.post('/admin/updateCompanyprofileAjax',{companyprofile:companyprofile}).success(function(data) {
             if(data.msg=='1'){
                 window.location.reload();
             }else{
@@ -188,7 +188,7 @@ app.controller('adminAddCompanyprofileCtrl',['$scope','$http',function($scope,$h
         $scope.companyprofile.createdTime=getCreateTime();
         $http({
             method:'post',
-            url:'/adminAddCompanyprofileAjax',
+            url:'/admin/adminAddCompanyprofileAjax',
             params: {'companyprofile':$scope.companyprofile}
         }).success(function(data, status, headers, config){
             if(data.msg=='1'){
@@ -207,7 +207,7 @@ app.controller('adminAllEnterprisecultureCtrl',['$scope','$http','$location','$r
     var pageNo = $routeParams.pageNo;
     $http({
         method:'get',
-        url:'/adminAllEnterpriseculture',
+        url:'/admin/adminAllEnterpriseculture',
         params: {pageNo:pageNo}
     }).success(function(data, status, headers, config){
         $scope.datas = data;
@@ -221,7 +221,7 @@ app.controller('adminAllEnterprisecultureCtrl',['$scope','$http','$location','$r
     //删除企业文化
     $scope.del = function(id){
         if(confirm("你确定删除吗？")){
-            $http.post('/delEnterprisecultureAjax',{id:id}).success(function(data) {
+            $http.post('/admin/delEnterprisecultureAjax',{id:id}).success(function(data) {
                 if(data.msg=='1'){
                     window.location.reload();
                 }else{
@@ -234,7 +234,7 @@ app.controller('adminAllEnterprisecultureCtrl',['$scope','$http','$location','$r
 
 //根据id查询企业文化
 app.controller("adminEnterprisecultureByIdCtrl",['$scope','$http','$location','$routeParams',function($scope,$http,$location,$routeParams){
-    $http.post('/findEnterprisecultureById',{id:$routeParams.id}).success(function(data) {
+    $http.post('/admin/findEnterprisecultureById',{id:$routeParams.id}).success(function(data) {
         editor.html(data.concat);
         $scope.datas = data;
     });
@@ -242,7 +242,7 @@ app.controller("adminEnterprisecultureByIdCtrl",['$scope','$http','$location','$
     //更新企业文化
     $scope.save = function(enterpriseculture){
         enterpriseculture.concat=editor.html()
-        $http.post('/updateEnterprisecultureAjax',{enterpriseculture:enterpriseculture}).success(function(data) {
+        $http.post('/admin/updateEnterprisecultureAjax',{enterpriseculture:enterpriseculture}).success(function(data) {
             if(data.msg=='1'){
                 window.location.reload();
             }else{
@@ -260,7 +260,7 @@ app.controller('adminAddEnterprisecultureCtrl',['$scope','$http',function($scope
         $scope.enterpriseculture.createdTime=getCreateTime();
         $http({
             method:'post',
-            url:'/adminAddEnterprisecultureAjax',
+            url:'/admin/adminAddEnterprisecultureAjax',
             params: {'enterpriseculture':$scope.enterpriseculture}
         }).success(function(data, status, headers, config){
             if(data.msg=='1'){
@@ -279,7 +279,7 @@ app.controller('adminAllDevelopmentCtrl',['$scope','$http','$location','$routePa
     var pageNo = $routeParams.pageNo;
     $http({
         method:'get',
-        url:'/adminAllDevelopment',
+        url:'/admin/adminAllDevelopment',
         params: {pageNo:pageNo}
     }).success(function(data, status, headers, config){
         $scope.datas = data;
@@ -293,7 +293,7 @@ app.controller('adminAllDevelopmentCtrl',['$scope','$http','$location','$routePa
     //删除发展历程
     $scope.del = function(id){
         if(confirm("你确定删除吗？")){
-            $http.post('/delDevelopmentAjax',{id:id}).success(function(data) {
+            $http.post('/admin/delDevelopmentAjax',{id:id}).success(function(data) {
                 if(data.msg=='1'){
                     window.location.reload();
                 }else{
@@ -306,7 +306,7 @@ app.controller('adminAllDevelopmentCtrl',['$scope','$http','$location','$routePa
 
 //根据id查询发展历程
 app.controller("adminDevelopmentByIdCtrl",['$scope','$http','$location','$routeParams',function($scope,$http,$location,$routeParams){
-    $http.post('/findDevelopmentById',{id:$routeParams.id}).success(function(data) {
+    $http.post('/admin/findDevelopmentById',{id:$routeParams.id}).success(function(data) {
         editor.html(data.concat);
         $scope.datas = data;
     });
@@ -314,7 +314,7 @@ app.controller("adminDevelopmentByIdCtrl",['$scope','$http','$location','$routeP
     //更新发展历程
     $scope.save = function(development){
         development.concat=editor.html()
-        $http.post('/updateDevelopmentAjax',{development:development}).success(function(data) {
+        $http.post('/admin/updateDevelopmentAjax',{development:development}).success(function(data) {
             if(data.msg=='1'){
                 window.location.reload();
             }else{
@@ -332,7 +332,7 @@ app.controller('adminAddDevelopmentCtrl',['$scope','$http',function($scope,$http
         $scope.development.createdTime=getCreateTime();
         $http({
             method:'post',
-            url:'/adminAddDevelopmentAjax',
+            url:'/admin/adminAddDevelopmentAjax',
             params: {'development':$scope.development}
         }).success(function(data, status, headers, config){
             if(data.msg=='1'){
@@ -351,7 +351,7 @@ app.controller('adminAllRecruitmentCtrl',['$scope','$http','$location','$routePa
     var pageNo = $routeParams.pageNo;
     $http({
         method:'get',
-        url:'/adminAllRecruitment',
+        url:'/admin/adminAllRecruitment',
         params: {pageNo:pageNo}
     }).success(function(data, status, headers, config){
         $scope.datas = data;
@@ -365,7 +365,7 @@ app.controller('adminAllRecruitmentCtrl',['$scope','$http','$location','$routePa
     //删除招贤纳士
     $scope.del = function(id){
         if(confirm("你确定删除吗？")){
-            $http.post('/delRecruitmentAjax',{id:id}).success(function(data) {
+            $http.post('/admin/delRecruitmentAjax',{id:id}).success(function(data) {
                 if(data.msg=='1'){
                     window.location.reload();
                 }else{
@@ -378,7 +378,7 @@ app.controller('adminAllRecruitmentCtrl',['$scope','$http','$location','$routePa
 
 //根据id查询招贤纳士
 app.controller("adminRecruitmentByIdCtrl",['$scope','$http','$location','$routeParams',function($scope,$http,$location,$routeParams){
-    $http.post('/findRecruitmentById',{id:$routeParams.id}).success(function(data) {
+    $http.post('/admin/findRecruitmentById',{id:$routeParams.id}).success(function(data) {
         editor.html(data.concat);
         $scope.datas = data;
     });
@@ -386,7 +386,7 @@ app.controller("adminRecruitmentByIdCtrl",['$scope','$http','$location','$routeP
     //更新招贤纳士
     $scope.save = function(recruitment){
         recruitment.concat=editor.html()
-        $http.post('/updateRecruitmentAjax',{recruitment:recruitment}).success(function(data) {
+        $http.post('/admin/updateRecruitmentAjax',{recruitment:recruitment}).success(function(data) {
             if(data.msg=='1'){
                 window.location.reload();
             }else{
@@ -415,8 +415,88 @@ app.controller('adminAddRecruitmentCtrl',['$scope','$http',function($scope,$http
         $scope.recruitment.createdTime=getCreateTime();
         $http({
             method:'post',
-            url:'/adminAddRecruitmentAjax',
+            url:'/admin/adminAddRecruitmentAjax',
             params: {'recruitment':$scope.recruitment}
+        }).success(function(data, status, headers, config){
+            if(data.msg=='1'){
+                window.location.reload();
+            }else{
+                alert("添加失败");
+            }
+        });
+    }
+}]);
+
+//联系我们
+//查询全部联系我们
+app.controller('adminAllContactUsCtrl',['$scope','$http','$location','$routeParams','$rootScope',function($scope,$http,$location,$routeParams,$rootScope){
+    //查询联系我们
+    var pageNo = $routeParams.pageNo;
+    $http({
+        method:'get',
+        url:'/admin/adminAllContactUs',
+        params: {pageNo:pageNo}
+    }).success(function(data, status, headers, config){
+        $scope.datas = data;
+    });
+
+    //根据id查询联系我们
+    $scope.update = function(id){
+        $location.path("/findContactusById/"+id);
+    }
+
+    //删除联系我们
+    $scope.del = function(id){
+        if(confirm("你确定删除吗？")){
+            $http.post('/admin/delContactusAjax',{'id':id}).success(function(data) {
+                if(data.msg=='1'){
+                    window.location.reload();
+                }else{
+                    alert("删除失败");
+                }
+            });
+        }
+    }
+}])
+
+//根据id查询联系我们
+app.controller("adminContactUsByIdCtrl",['$scope','$http','$location','$routeParams',function($scope,$http,$location,$routeParams){
+    $http.post('/admin/findContactUsById',{'id':$routeParams.id}).success(function(data) {
+        $scope.datas = data;
+    });
+
+    //更新联系我们
+    $scope.save = function(contactus){
+        $http.put('/admin/updateContactUsAjax',{contactus:contactus}).success(function(data) {
+            if(data.msg=='1'){
+                window.location.reload();
+            }else{
+                alert("更新失败");
+            }
+        });
+    }
+}])
+
+//新增联系我们
+app.controller('adminAddContactUsCtrl',['$scope','$http',function($scope,$http){
+    $scope.contactus = {
+        _id:''
+        ,address:''
+        ,email:''
+        ,code:''
+        ,qq:''
+        ,fax:''
+        ,tel:''
+        ,logo:''
+        ,codeImg:''
+        ,createdTime:""
+    };
+    $scope.save = function(){
+        $scope.contactus.createdTime=getCreateTime();
+        $http({
+            method:'get',
+            url:'/admin/adminAddContactusAjax',
+            params: {'contactus':$scope.contactus}
         }).success(function(data, status, headers, config){
             if(data.msg=='1'){
                 window.location.reload();

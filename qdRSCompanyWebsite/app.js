@@ -7,6 +7,8 @@ var bodyParser = require('body-parser');
 var routes = require('./routes/routes');
 //var users = require('./routes/users');
 var session = require('express-session');
+var url = require('url');
+var querystring = require('querystring');
 
 var app = express();
 
@@ -36,32 +38,34 @@ app.use(session({
 }));
 
 //登录拦截器
-//app.use(function(req, res, next){
-//  //跟踪;
-//  //console.log("req.method="+req.method);
-//  //console.log("req.url="+req.url);
-//  //console.log("req.originalUrl="+req.originalUrl);
-//  var url = req.originalUrl;
-//  //简单地定义一个登录拦截器
-//  if (url != "/admin/login" && !req.session.userinfo) {
-//    console.log("登录拦截器提示：必须登录，才能执行此项操作。");
-//    req.flash('error', '请先登录。');
-//    return res.redirect("/admin/login");
-//  }
-//
-//  res.locals.userinfo = req.session.userinfo;
-//
-//  //var error = req.flash('error');
-//  res.locals.error = error.length?error:null;
-//  //console.log("转移flash中的error值："+error);
-//
-//  //var success = req.flash('success');
-//  res.locals.success = success.length?success:null;
-//  //console.log("转移flash中的success值："+success);
-//
-//  res.locals.session = req.session;
-//  next();
-//});
+app.use(function(req, res, next){
+  //跟踪;
+  //console.log("req.method="+req.method);
+  //console.log("req.url="+req.url);
+  //console.log("req.originalUrl="+req.originalUrl);
+  var url2 =url.format(req.originalUrl);
+  var regExp = /^\/admin\//;
+  var flag = regExp.test(url2);
+  console.log("===="+url2+"====flag==="+flag);
+  if (url2 != "/admin/login" && !req.session.userinfo&&flag) {
+    console.log("登录拦截器提示：必须登录，才能执行此项操作。");
+    //req.flash('error', '请先登录。');
+    return res.redirect("/admin/login");
+  }
+
+  //res.locals.userinfo = req.session.userinfo;
+  //
+  ////var error = req.flash('error');
+  //res.locals.error = error.length?error:null;
+  ////console.log("转移flash中的error值："+error);
+  //
+  ////var success = req.flash('success');
+  //res.locals.success = success.length?success:null;
+  ////console.log("转移flash中的success值："+success);
+  //
+  //res.locals.session = req.session;
+  next();
+});
 
 
 //图片上传配置

@@ -13,6 +13,7 @@ var adminCompanyprofile = require('./backgroundRoutes/admin_companyprofiles');
 var adminEnterpriseculture = require('./backgroundRoutes/admin_enterprisecultures');
 var adminDevelopment = require('./backgroundRoutes/admin_developments');
 var adminRecruitment = require('./backgroundRoutes/admin_recruitments');
+var adminContactus = require('./backgroundRoutes/admin_contactus');
 var userinfo = require('./backgroundRoutes/admin_userInfo');
 
 module.exports = function (app) {
@@ -52,58 +53,69 @@ module.exports = function (app) {
     //登陆功能
     app.post('/adminLoginAjax',userinfo.adminLogin);
     //添加用户
-    app.post('/addAdminAjax',userinfo.addAdmin);
+    app.post('/admin/addAdminAjax',userinfo.addAdmin);
     //首页
     app.get('/admin',amdin.index);
     //添加产品
-    app.post('/adminAddProductAjax',adminProduct.adminAddProductAjax);
+    app.post('/admin/adminAddProductAjax',adminProduct.adminAddProductAjax);
     //删除产品
-    app.post('/delProductAjax',adminProduct.delProductAjax);
+    app.post('/admin/delProductAjax',adminProduct.delProductAjax);
     //根据id查询产品
-    app.post('/findProductById',adminProduct.findProductById)
+    app.post('/admin/findProductById',adminProduct.findProductById)
     //更新产品
-    app.post('/updateProductAjax',adminProduct.updateProductAjax);
+    app.post('/admin/updateProductAjax',adminProduct.updateProductAjax);
     //查询所有的产品
-    app.get('/adminAllProductAjax',adminProduct.adminAllProductAjax);
+    app.get('/admin/adminAllProductAjax',adminProduct.adminAllProductAjax);
     //添加公司简介
-    app.post('/adminAddCompanyprofileAjax',adminCompanyprofile.adminAddCompanyprofileAjax);
+    app.post('/admin/adminAddCompanyprofileAjax',adminCompanyprofile.adminAddCompanyprofileAjax);
     //删除公司简介
-    app.post('/delCompanyprofileAjax',adminCompanyprofile.delCompanyprofileAjax);
+    app.post('/admin/delCompanyprofileAjax',adminCompanyprofile.delCompanyprofileAjax);
     //根据id查询公司简介
-    app.post('/findCompanyprofileById',adminCompanyprofile.findCompanyprofileById)
+    app.post('/admin/findCompanyprofileById',adminCompanyprofile.findCompanyprofileById)
     //更新公司简介
-    app.post('/updateCompanyprofileAjax',adminCompanyprofile.updateCompanyprofileAjax);
+    app.post('/admin/updateCompanyprofileAjax',adminCompanyprofile.updateCompanyprofileAjax);
     //查询全部公司简介
-    app.get('/adminAllCompanyprofile',adminCompanyprofile.adminAllCompanyprofile);
+    app.get('/admin/adminAllCompanyprofile',adminCompanyprofile.adminAllCompanyprofile);
     //添加企业文化
-    app.post('/adminAddEnterprisecultureAjax',adminEnterpriseculture.adminAddEnterprisecultureAjax);
+    app.post('/admin/adminAddEnterprisecultureAjax',adminEnterpriseculture.adminAddEnterprisecultureAjax);
     //删除企业文化
-    app.post('/delEnterprisecultureAjax',adminEnterpriseculture.delEnterprisecultureAjax);
+    app.post('/admin/delEnterprisecultureAjax',adminEnterpriseculture.delEnterprisecultureAjax);
     //根据id查询企业文化
-    app.post('/findEnterprisecultureById',adminEnterpriseculture.findEnterprisecultureById)
+    app.post('/admin/findEnterprisecultureById',adminEnterpriseculture.findEnterprisecultureById)
     //更新企业文化
-    app.post('/updateEnterprisecultureAjax',adminEnterpriseculture.updatEenterprisecultureAjax);
+    app.post('/admin/updateEnterprisecultureAjax',adminEnterpriseculture.updatEenterprisecultureAjax);
     //查询全部企业文化
-    app.get('/adminAllEnterpriseculture',adminEnterpriseculture.adminAllEnterpriseculture);
+    app.get('/admin/adminAllEnterpriseculture',adminEnterpriseculture.adminAllEnterpriseculture);
     //添加发展历程
-    app.post('/adminAddDevelopmentAjax',adminDevelopment.adminAddDevelopmentAjax);
+    app.post('/admin/adminAddDevelopmentAjax',adminDevelopment.adminAddDevelopmentAjax);
     //删除发展历程
-    app.post('/delDevelopmentAjax',adminDevelopment.delDevelopmentAjax);
+    app.post('/admin/delDevelopmentAjax',adminDevelopment.delDevelopmentAjax);
     //根据id查询发展历程
-    app.post('/findDevelopmentById',adminDevelopment.findDevelopmentById)
+    app.post('/admin/findDevelopmentById',adminDevelopment.findDevelopmentById)
     //更新发展历程
     app.post('/updateDevelopmentAjax',adminDevelopment.updateDevelopmentAjax);
     //查询全部发展历程
-    app.get('/adminAllDevelopment',adminDevelopment.adminAllDevelopment);
+    app.get('/admin/adminAllDevelopment',adminDevelopment.adminAllDevelopment);
     //添加招贤纳士
-    app.post('/adminAddRecruitmentAjax',adminRecruitment.adminAddRecruitmentAjax);
+    app.post('/admin/adminAddRecruitmentAjax',adminRecruitment.adminAddRecruitmentAjax);
     //删除招贤纳士
-    app.post('/delRecruitmentAjax',adminRecruitment.delRecruitmentAjax);
+    app.post('/admin/delRecruitmentAjax',adminRecruitment.delRecruitmentAjax);
     //根据id查询招贤纳士
-    app.post('/findRecruitmentById',adminRecruitment.findRecruitmentById)
+    app.post('/admin/findRecruitmentById',adminRecruitment.findRecruitmentById)
     //更新招贤纳士
-    app.post('/updateRecruitmentAjax',adminRecruitment.updateRecruitmentAjax);
+    app.post('/admin/updateRecruitmentAjax',adminRecruitment.updateRecruitmentAjax);
     //查询全部招贤纳士
-    app.get('/adminAllRecruitment',adminRecruitment.adminAllRecruitment);
+    app.get('/admin/adminAllRecruitment',adminRecruitment.adminAllRecruitment);
+    //添加联系我们
+    app.get('/admin/adminAddContactusAjax',adminContactus.adminAddContactusAjax);
+    //删除联系我们
+    app.post('/admin/delContactusAjax',adminContactus.delContactusAjax);
+    //根据id查询联系我们
+    app.post('/admin/findContactUsById',adminContactus.findContactusById);
+    //更新联系我们
+    app.put('/admin/updateContactUsAjax',adminContactus.updateContactusAjax);
+    //查询全部联系我们
+    app.get('/admin/adminAllContactUs',adminContactus.adminAllContactus);
+
 
 };

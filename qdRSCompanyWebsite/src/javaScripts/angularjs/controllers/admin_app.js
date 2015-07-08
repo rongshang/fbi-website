@@ -40,6 +40,12 @@ app.config(['$routeProvider',function($routeProvider){
         .when('/adminAddRecruitment', {templateUrl:'/views/backgroundModule/recruitment/admin_addRecruitment.html',controller: 'adminAddRecruitmentCtrl'})
         //根据id查询招贤纳士
         .when('/findRecruitmentById/:id', {templateUrl:'/views/backgroundModule/recruitment/admin_updateRecruitment.html',controller: 'adminRecruitmentByIdCtrl'})
+        //查询全部联系我们
+        .when('/adminAllContactus/:pageNo', {templateUrl:'/views/backgroundModule/contactus/admin_allContactUs.html',controller: 'adminAllContactUsCtrl'})
+        //添加联系我们
+        .when('/adminAddContactus', {templateUrl:'/views/backgroundModule/contactus/admin_addContactUs.html',controller: 'adminAddContactUsCtrl'})
+        //根据id查询联系我们
+        .when('/findContactusById/:id', {templateUrl:'/views/backgroundModule/contactus/admin_updateContactUs.html',controller: 'adminContactUsByIdCtrl'})
 
 }
 ]);
