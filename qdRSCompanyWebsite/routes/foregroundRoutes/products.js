@@ -42,27 +42,6 @@ exports.productdetailAjax = function(req,res){
     },function(err,results){
         res.json({'title':'产品中心','productid':productid,'productsTitle':results.getProductsTitle,'products':results.getProductVideo});
     });
-
-    //howdo
-    //    .task(function(done){
-    //        productsDaoBse.findByLimitAndSortAndQuery({},{createdTime:-1},8,function(err,productsTitle){
-    //            done(null,productsTitle);
-    //        });
-    //    })
-    //    .task(function(done){
-    //        productsDaoBse.getById(productid,function(err,products){
-    //            var fileProvider = new ImageFileProvider();
-    //            fileProvider.read(products.image,function(data){
-    //                products.image = data;
-    //                done(null,products);
-    //
-    //            });
-    //        });
-    //    })
-    //    .together(function(err,productsTitle,products){
-    //        res.json({'title':'产品中心','productid':productid,'productsTitle':productsTitle,'products':products});
-    //    })
-
 }
 
 //全部产品

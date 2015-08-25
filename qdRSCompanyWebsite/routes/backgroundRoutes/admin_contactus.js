@@ -95,7 +95,7 @@ exports.updateContactusAjax = function(req,res,next){
                     ,qq:contactus.qq
                     ,fax:contactus.fax
                     ,tel:contactus.tel
-                    ,logo:result.getCodeImgId
+                    ,logo:result.getLogoImgId
                     ,codeImg:result.getCodeImgId
                 }},
                 options = {multi: true};
@@ -111,25 +111,6 @@ exports.updateContactusAjax = function(req,res,next){
     },function(err,results){
         res.json(results.setImgIdAndUpdateData);
     });
-
-    //var condition = {_id:contactus._id},
-    //    update = {$set: {address:contactus.address
-    //                    ,email:contactus.email
-    //                    ,code:contactus.code
-    //                    ,qq:contactus.qq
-    //                    ,fax:contactus.fax
-    //                    ,tel:contactus.tel
-    //                    ,logo:contactus.logo
-    //                    ,codeImg:contactus.codeImg}},
-    //    options = {multi: true};
-    //contactusDaoBse.update(condition,update,options,function(data){
-    //    if(data==null){
-    //        data={"msg":"1"}
-    //    }else{
-    //        data={"msg":"0"}
-    //    }
-    //    res.json(data);
-    //})
 }
 
 //根据id查询联系我们

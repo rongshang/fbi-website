@@ -32,9 +32,38 @@ var ImageFileProvider = require('../../src/javaScripts/nodejs/common/ImageFilePr
 //首页
 exports.index = function(req,res){
     //联系我们
-    contactusDaoBse.findOneBySort({createdTime:-1},function(err,contactus){
-        res.render('foregroundModule/index',{'contactus':contactus});
+    async.auto({
+        getOneBySort:function(callback){
+            contactusDaoBse.findOneBySortAndLimit({createdTime:-1},function(err,contactus){
+                callback(null,contactus);
+            });
+        },
+        getLogo:["getOneBySort",function(callback,result){
+            var fileProvider = new ImageFileProvider();
+            fileProvider.read(result.getOneBySort.logo,function(data){
+                result.getOneBySort.logo = data;
+                callback(null,result.getOneBySort);
+            })
+        }],
+        getCodeImg:["getLogo","getOneBySort",function(callback,result){
+            var fileProvider = new ImageFileProvider();
+            fileProvider.read(result.getLogo.codeImg,function(data){
+                result.getLogo.codeImg = data;
+                callback(null,result.getLogo);
+            })
+        }]
+    },function(err,results){
+        res.render('foregroundModule/index',{'contactus':results.getCodeImg});
     });
+
+    //contactusDaoBse.findOneBySort({createdTime:-1},function(err,contactus){
+    //    var fileProvider = new ImageFileProvider();
+    //    fileProvider.read(contactus.logo,function(data){
+    //        console.log("======logo===="+data);
+    //        contactus.logo = data;
+    //    })
+    //    res.render('foregroundModule/index',{'contactus':contactus});
+    //});
 }
 
 exports.welcome = function(req,res){
