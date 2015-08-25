@@ -4,7 +4,7 @@
         <div  class="well lefttop" style="text-align: center">
             <strong ng-bind="datas.title"></strong>
         </div>
-        <div  class="leftcenter" style="margin-top: -15px;">
+        <div  class="leftcenter" style="margin-top: -15px;min-height: 480px;">
             <ul id="myTab" class="nav nav-tabs nav-pills" style="width: 150px;border: 0px;">
                 <li ng-repeat="productTitle in datas.productsTitle" ng-class="{true:'active'}[productTitle._id==datas.productid]" id="{{productTitle._id}}" >
                     <a ng-href="#/productdetail?id={{productTitle._id}}" data-toggle="tab">{{productTitle.title}}</a>

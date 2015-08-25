@@ -1,27 +1,36 @@
-<table>
-    <tr>
-        <td style="width:10%;">招聘职位</td>
-        <td style="width:10%;">招聘人数</td>
-        <td style="width:10%;">工作地点</td>
-        <td style="width:10%;">薪资待遇</td>
-        <td style="width:30%;">工作要求</td>
-        <td style="width:10%;">联系电话</td>
-        <td style="width:10%;">邮箱</td>
-        <td style="width:10%;">工作待遇</td>
-    </tr>
-    <tr>
-        <td style="width:10%;"><input type="text" ng-model="recruitment.job" /></td>
-        <td style="width:10%;"><input type="text" ng-model="recruitment.count" /></td>
-        <td style="width:10%;"><input type="text" ng-model="recruitment.address" /></td>
-        <td style="width:10%;"><input type="text" ng-model="recruitment.salary" /></td>
-        <td style="width:30%;"><textarea id="content" style="width:300px;height:200px;visibility:hidden;"></textarea></td>
-        <td style="width:10%;"><input type="text" ng-model="recruitment.tel" /></td>
-        <td style="width:10%;"><input type="text" ng-model="recruitment.email" /></td>
-        <td style="width:10%;"><input type="text" ng-model="recruitment.treatment" /></td>
-    </tr>
-</table>
-<input type="button" value="保存" ng-click="save()">
-
+<div class="row">
+    <div class="col-xs-12">
+        <div class="box">
+            <div class="box-body">
+                <h4>新增招聘信息</h4>
+                <table id="table" class="table table-bordered ">
+                    <tr>
+                        <th>招聘职位：<input type="text" ng-model="recruitment.job" /></th>
+                        <th>招聘人数：<input type="text" ng-model="recruitment.count" /></th>
+                        <th>工作地点：<input type="text" ng-model="recruitment.address" /></th>
+                    </tr>
+                    <tr>
+                        <th>薪资待遇：<input type="text" ng-model="recruitment.salary" /></th>
+                        <th>联系电话：<input type="text" ng-model="recruitment.tel" /></th>
+                        <th>邮&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 箱：<input type="text" ng-model="recruitment.email" /></th>
+                    </tr>
+                    <tr>
+                        <th colspan="3">工作待遇：<input type="text" ng-model="recruitment.treatment"style="width:48.5%;" /></th>
+                    </tr>
+                    <tr>
+                        <th colspan="3">工作要求：
+                            <div style="margin-left: 10%;">
+                                <textarea id="content" style="visibility:hidden;width:80%;height: 300px;">
+                                </textarea>
+                            </div>
+                        </th>
+                    </tr>
+                </table>
+               <div style="margin-left: 44%"><input type="button" value="保存" ng-click="save()"></div>
+            </div>
+        </div>
+    </div>
+</div>
 <script language=javascript>
     var editor;
     KindEditor.ready(function (K) {

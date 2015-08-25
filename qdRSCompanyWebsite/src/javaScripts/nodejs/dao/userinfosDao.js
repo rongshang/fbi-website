@@ -3,6 +3,7 @@
  */
 
 'use strict'
+var when=require('when');
 
 var DaoBase = require('./DaoBase'),
     models = require('../models/index'),
@@ -22,6 +23,7 @@ UserinfosDAO.prototype.findUserInfoByUsernameAndPassword = function(req,res,user
 //添加用户
 UserinfosDAO.prototype.save = function(userinfo,callback){
     var userinfoModel = new UserinfosModel(userinfo);
+    var deferred = when.defer();
     //this.getUserinfoByUsername(userinfo.username,function(user){
     //    if(user){
     //        return callback({msg:'0'});
@@ -32,16 +34,26 @@ UserinfosDAO.prototype.save = function(userinfo,callback){
 
     userinfoModel.save(function(err){
         if (err){
-            return callback({msg:'2'});
+            deferred.reject(err);
+            //return callback({msg:'2'});
+        }else{
+            deferred.resolve(null);
         }
-        return callback({msg:'1'});
+        return deferred.promise;
+        //return callback({msg:'1'});
     });
 }
 
 //根据用户名查找
 UserinfosDAO.prototype.getUserinfoByUsername = function(username){
     UserinfosModel.findOne({username:username},function(err,userinfo){
-        return userinfo;
+        var deferred = when.defer();
+        if (err){
+            deferred.reject(err);
+        }else{
+            deferred.resolve(userinfo);
+        }
+        return deferred.promise;
     });
 }
 

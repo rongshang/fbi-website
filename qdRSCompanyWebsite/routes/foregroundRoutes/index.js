@@ -1,6 +1,7 @@
 'use strict'
 
 var howdo = require('howdo');
+var async = require('async');
 var express = require('express');
 var router = express.Router();
 var path = require('path');
@@ -25,6 +26,9 @@ var contactusDaoBse = new daoBase(contactus);
 var figures = require("../../src/javaScripts/nodejs/models/index").figures;
 var figuresDaoBse = new daoBase(figures);
 
+//图片处里
+var ImageFileProvider = require('../../src/javaScripts/nodejs/common/ImageFileProvider.js').ImageFileProvider;
+
 //首页
 exports.index = function(req,res){
     //联系我们
@@ -34,39 +38,80 @@ exports.index = function(req,res){
 }
 
 exports.welcome = function(req,res){
-    howdo
-        .task(function(done){
-            //我们的产品
+    async.auto({
+        //产品信息
+        getProducts:function(callback){
             productsDaoBse.findByLimitAndSortAndQuery({image:{$ne:""}},{createdTime:-1},3,function(err,products){
-                done(null,products);
+                callback(null,products);
             });
-        })
-        .task(function(done){
-            //风云人物
+        },
+        //产品图片
+        getProductImg:["getProducts",function(callback,result){
+            var count = 0;
+            result.getProducts.forEach(function(item,i){
+                var fileProvider = new ImageFileProvider();
+                fileProvider.read(item.image,function(data){
+                    count += 1;  //读完一个文件之后计数器自增
+                    item.image = data;
+                    if (count === result.getProducts.length) {
+                        callback(null, result.getProducts);
+                    }
+                });
+            });
+        }],
+        //风云人物
+        getFigures:function(callback){
             figuresDaoBse.findByLimitAndSortAndQuery({image:{$ne:""}},{createdTime:-1},3,function(err,figures){
-                done(null,figures);
+                callback(null,figures);
             });
-        })
-        .task(function(done){
-            //新闻标题
+        },
+        //风云人物图片
+        getFigureImg:["getFigures",function(callback,result){
+            var count = 0;
+            result.getFigures.forEach(function(item,i){
+                var fileProvider = new ImageFileProvider();
+                fileProvider.read(item.image,function(data){
+                    count += 1;  //读完一个文件之后计数器自增
+                    item.image = data;
+                    if (count === result.getFigures.length) {
+                        callback(null, result.getFigures);
+                    }
+                });
+            });
+        }],
+        //新闻标题
+        getNewsTitle:function(callback){
             newsDaoBse.findByLimitAndSort({createdTime:-1},10,function(err,news){
-                done(null,news);
+                callback(null,news);
             });
-        })
-        .task(function(done){
-            //合作伙伴
+        },
+        //合作伙伴
+        getPartners:function(callback){
             partnersDaoBse.findByLimitAndSortAndQuery({image:{$ne:""}},{createdTime:-1},5,function(err,partners){
-                done(null,partners);
+                callback(null,partners);
             });
-        })
-        .task(function(done){
-            //联系我们
+        },
+        //合作伙伴图片
+        getPartnerImg:["getPartners",function(callback,result){
+            var count = 0;
+            result.getPartners.forEach(function(item,i){
+                var fileProvider = new ImageFileProvider();
+                fileProvider.read(item.image,function(data){
+                    count += 1;  //读完一个文件之后计数器自增
+                    item.image = data;
+                    if (count === result.getPartners.length) {
+                        callback(null, result.getPartners);
+                    }
+                });
+            });
+        }],
+        //联系我们
+        getContactus:function(callback){
             contactusDaoBse.findOneBySort({createdTime:-1},function(err,contactus){
-                done(null,contactus);
+                callback(null,contactus);
             });
-        })
-        // 异步顺序并行
-        .together(function(err,products,figures,news,partners,contactus){
-            res.json({'products':products,'figures':figures,'news':news,'partners':partners,'contactus':contactus});
-        });
+        }
+    },function(err,result){
+        res.json({'products':result.getProductImg,'figures':result.getFigureImg,'news':result.getNewsTitle,'partners':result.getPartnerImg,'contactus':result.getContactus});
+    });
 }

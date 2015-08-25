@@ -27,9 +27,9 @@
         <div class="panel-heading heading">
             <span class="flag"></span>&nbsp;&nbsp;<a ng-href="#/welcome">首页</a>&nbsp;> &nbsp;招聘详情
         </div>
-        <div id="myTabContent" class="tab-content">
+        <div id="myTabContent" class="tab-content"style="min-height: 450px;overflow: hidden">
             <div ng-class="{true:'tab-pane fade in active',false:'tab-pane fade'}[datas.active==1]" id="zplc">
-                <div style="text-align: center">
+                <div style="text-align: center;height: 450px;">
                     <img src="../../views/resource/foregroundModule/images/zplc.jpg"/>
                 </div>
             </div>
@@ -66,7 +66,6 @@
                     <input type="hidden" id="pageCount" value="{{datas.pageCount}}" />
                     <button type="button" class="btn btn-default" role="button" onclick="go()">go</button>
                 </div>
-
             </div>
         </div>
     </div>

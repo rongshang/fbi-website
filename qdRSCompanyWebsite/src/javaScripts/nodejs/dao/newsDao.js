@@ -11,6 +11,18 @@ var NewsDAO = function(news) {
     this.news=news ||{};
 };
 
+
+NewsDAO.prototype.save = function(news,callback){
+    var newsModel = new NewsModel(news);
+    newsModel.save(function(err){
+        if (err){
+            return callback({msg:'0'});
+        }
+        return callback({msg:'1'});
+    });
+}
+
+
 module.exports = NewsDAO;
 
 

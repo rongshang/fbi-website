@@ -15,6 +15,12 @@ var adminDevelopment = require('./backgroundRoutes/admin_developments');
 var adminRecruitment = require('./backgroundRoutes/admin_recruitments');
 var adminContactus = require('./backgroundRoutes/admin_contactus');
 var userinfo = require('./backgroundRoutes/admin_userInfo');
+var adminHonor = require('./backgroundRoutes/admin_honor');
+var adminFigure = require('./backgroundRoutes/admin_figures');
+var adminPartner = require('./backgroundRoutes/admin_partners');
+var adminNews = require('./backgroundRoutes/admin_news');
+
+
 
 module.exports = function (app) {
     //标题页面
@@ -107,7 +113,7 @@ module.exports = function (app) {
     //查询全部招贤纳士
     app.get('/admin/adminAllRecruitment',adminRecruitment.adminAllRecruitment);
     //添加联系我们
-    app.get('/admin/adminAddContactusAjax',adminContactus.adminAddContactusAjax);
+    app.post('/admin/adminAddContactusAjax',adminContactus.adminAddContactusAjax);
     //删除联系我们
     app.post('/admin/delContactusAjax',adminContactus.delContactusAjax);
     //根据id查询联系我们
@@ -116,6 +122,46 @@ module.exports = function (app) {
     app.put('/admin/updateContactUsAjax',adminContactus.updateContactusAjax);
     //查询全部联系我们
     app.get('/admin/adminAllContactUs',adminContactus.adminAllContactus);
+    //添加资质荣誉
+    app.post('/admin/adminAddHonorAjax',adminHonor.adminAddHonorAjax);
+    //删除资质荣誉
+    app.delete('/admin/delHonorAjax',adminHonor.delHonorAjax);
+    //根据id查询资质荣誉
+    app.post('/admin/findHonorById',adminHonor.findHonorById);
+    //更新资质荣誉
+    //app.put('/admin/updateHonorAjax',adminHonor.updateHonorAjax);
+    //查询全部资质荣誉
+    app.get('/admin/adminAllHonor',adminHonor.adminAllHonor);
+    //添加风云人物
+    app.post('/admin/adminAddFigureAjax',adminFigure.adminAddFigureAjax);
+    //删除风云人物
+    app.delete('/admin/delFigureAjax',adminFigure.delFigureAjax);
+    //根据id查询风云人物
+    app.post('/admin/findFigureById',adminFigure.findFigureById);
+    //更新风云人物
+    app.put('/admin/updateFigureAjax',adminFigure.updateFigureAjax);
+    //查询全部风云人物
+    app.get('/admin/adminAllFigure',adminFigure.adminAllFigure);
+    //添加合作伙伴
+    app.post('/admin/adminAddPartnerAjax',adminPartner.adminAddPartnerAjax);
+    //删除合作伙伴
+    app.delete('/admin/delPartnerAjax',adminPartner.delPartnerAjax);
+    //根据id查询合作伙伴
+    app.post('/admin/findPartnerById',adminPartner.findPartnerById);
+    //更新合作伙伴
+    app.put('/admin/updatePartnerAjax',adminPartner.updatePartnerAjax);
+    //查询全部合作伙伴
+    app.get('/admin/adminAllPartner',adminPartner.adminAllPartner);
+    //添加新闻
+    app.post('/admin/adminAddNewsAjax',adminNews.adminAddNewsAjax);
+    //删除新闻
+    app.delete('/admin/delNewsAjax',adminNews.delNewsAjax);
+    //根据id查询新闻
+    app.post('/admin/findNewsById',adminNews.findNewsById);
+    //更新新闻
+    app.put('/admin/updateNewsAjax',adminNews.updateNewsAjax);
+    //查询全部新闻
+    app.get('/admin/adminAllNews',adminNews.adminAllNews);
 
 
 };

@@ -5,7 +5,6 @@
 var uuid = require("uuid");
 var fs = require("fs");
 var howdo = require('howdo');
-var promise = require('promise');
 
 var daoBase = require("../../src/javaScripts/nodejs/dao/DaoBase");
 //用户信息
@@ -33,20 +32,11 @@ exports.addAdmin = function(req,res,next){
     var str = buf.toString("binary");
     var crypto = require("crypto");
     userinfo.password = crypto.createHash("md5").update(str).digest("hex");
-    promise.then(function(){
-        console.log("============");
-        return newUserinfosDao.getUserinfoByUsername(userinfo.username);
-    }).then(function(result){
-        console.log("==result==="+result);
-       if(result){
-           res.json({msg:'0'});
-       }else{
-           newUserinfosDao.save(userinfo, function (datas) {
-               return res.json(datas);
-           });
-       }
-
-    })
+    newUserinfosDao.getUserinfoByUsername(userinfo.username)
+        .then(newUserinfosDao.save(userinfo))
+        .catch(function(err){
+        console.log(err);
+    });
 
 }
 //登陆功能

@@ -1,0 +1,44 @@
+.left{
+    height: 450px;
+    width: 180px;
+    float: left;
+}
+.lefttop{
+    padding: 10px 15px 10px;
+    height: 45px;
+    font-size: 21px;
+    background:url("../images/right_m.jpg")repeat-x ;
+}
+.leftcenter{
+    margin-top: 1px;
+    height: 405px;
+    width: 180px;
+    border: 1px solid #e3e3e3;
+    /*background-color: #e3e3e3;*/
+}
+#right{
+  margin-left:220px;
+    width: 900px;
+}
+#panel-heading{
+    background:url("../images/right_m.jpg")repeat-x ;
+    height:47px;
+
+}
+.flag{
+    background:url("../images/flag.jpg") no-repeat ;
+    height: 30px;
+    width: 24px;
+    margin-left: 10px;
+    float: left;
+
+}
+.right_top_font{
+    margin-left: 70px;
+    padding-top: 15px;
+}
+
+.nav-pills > li.active > a, .nav-pills > li.active > a:hover, .nav-pills > li.active > a:focus{
+    background-color:#e3e3e3;
+    color: #080808;
+}

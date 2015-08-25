@@ -1,20 +1,22 @@
 <link rel="stylesheet" href="../../../views/resource/foregroundModule/css/newsdetail.css" />
 <br><br>
 <div class="container">
-    <div class="right_top">
-        <div class="right_top_right_1">
+    <div style="margin-left: 5%;margin-top: -30px;">
+        <div class="right_top">
+            <div class="right_top_right_1">
+            </div>
+            <div>
+                <span class="flag"></span>
+                <div class="right_top_font"><a ng-href="#/welcome">首页</a>&nbsp;> &nbsp;新闻内容 </div>
+            </div>
+            <div class="right_top_right_2"></div>
         </div>
-        <div>
-            <span class="flag"></span>
-            <div class="right_top_font"><a ng-href="#/welcome">首页</a>&nbsp;> &nbsp;新闻内容 </div>
+        <div class="panel panel-default center">
+            <br><br>
+            <h2><p class="text-center" ng-bind-html="news.title"></p></h2>
+            <br>
+            <div style="text-align: center"><img style="width: 500px;height: 200px;" ng-src="{{news.image}}"></div>
+            <div class="panel-body" style="text-align: center" ng-bind-html="news.concat"></div>
         </div>
-        <div class="right_top_right_2"></div>
     </div>
-    <div class="panel panel-default center">
-        <br><br>
-        <h2><p class="text-center">{{news.title}}</p></h2>
-        <div class="panel-body">
-          {{news.concat}}
-        </div>
-     </div>
 </div>

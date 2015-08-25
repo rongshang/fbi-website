@@ -11,6 +11,18 @@ var HonorsDAO = function(honors) {
     this.honors=honors ||{};
 };
 
+
+HonorsDAO.prototype.save = function(honor,callback){
+    var honorsModel = new HonorsModel(honor);
+    honorsModel.save(function(err){
+        if (err){
+            return callback({msg:'0'});
+        }
+        return callback({msg:'1'});
+    });
+}
+
+
 module.exports = HonorsDAO;
 
 

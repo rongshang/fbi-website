@@ -10,48 +10,46 @@ var Db = require('mongodb').Db,
     assert = require('assert'),
     tools = require('./tools');
 
-ImageFileProvider = function (host, port) {
-   this.db = new Db('rswebsite', new Server(host, port, {auto_reconnect:true}, {}));
+ImageFileProvider = function () {
+    this.db = new Db('rswebsite', new Server('localhost', 27017, {auto_reconnect:true}, {}));
 };
 
-ImageFileProvider.prototype.insert = function (image, callback) {
-    console.log(image);
+ImageFileProvider.prototype.insert = function (data, callback) {
     //var rename = tools.formatDate(new Date(),'YYYYMMDDHHmmss')+datapath.substring(datapath.length,datapath.lastIndexOf("."));
     this.db.open(function(err, db) {
-        var gridStore = new GridStore(db, null, "w");
-        //var prefix = "data:image/png;base64,";
-        //var readData = fs.readFileSync(datapath);
-        //×ª»»³Ébase64
-        //var base64 = new Buffer(readData, 'binary').toString('base64');
-        //var data = prefix+base64;
+        var fileId = new ObjectID();
+        var gridStore = new GridStore(db, fileId, 'w');
         gridStore.open(function(err, gridStore) {
-            gridStore.write(image, function(err, gridStore) {
+            gridStore.write(data, function(err, gridStore) {
+                assert.equal(null, err);
                 gridStore.close(function(err, result) {
-                    GridStore.read(db, result._id, function(err, fileData) {
-                        //assert.equal(data.length, fileData.length);
+                    assert.equal(null, err);
+                    GridStore.exist(db, fileId, function(err, result) {
+                        assert.equal(null, err);
+                        assert.equal(true, result);
                         db.close();
-                        callback(result._id);
+                        callback(fileId);
                     });
                 });
             });
         });
     });
-
 };
 
 ImageFileProvider.prototype.read = function (fileId, callback) {
     this.db.open(function(err, db) {
         var gridStore = new GridStore(db, null, "r");
         gridStore.open(function(err, gridStore) {
-                GridStore.read(db, new ObjectID(fileId) , function(err, fileData) {
-                    if(err){
-                        console.log(err);
-                    }else{
-                        callback(fileData);
-                    }
-                    db.close();
+            GridStore.read(db, new ObjectID(fileId) , function(err, fileData) {
+                if(err){
+                    console.log(err);
+                }else{
+                    callback(fileData);
+                }
+                db.close();
+            });
 
-                });
+
         });
     });
 };

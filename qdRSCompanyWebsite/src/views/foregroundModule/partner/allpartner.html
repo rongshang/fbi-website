@@ -16,68 +16,70 @@
     }
 </script>
 <link rel="stylesheet" href="../../../views/resource/foregroundModule/css/allpartner.css"/>
-<div class="container" >
-    <div  style="width:200px;height:500px;float: left;">
-        <div class="well lefttop"  style="text-align: center;" ><strong>{{datas.title}}</strong></div>
-        <div class="leftmiddle" >
-            <div id="carousel-example" class="carousel slide" data-ride="carousel">
-                <!-- Wrapper for slides -->
-                <div class="carousel-inner">
-                    <div ng-class="{true:'item active',false:'item'}[$index==0]" ng-repeat="partnerImg in datas.partnerImgs" >
-                        <div class="img">
-                            <img ng-src="{{partnerImg.image}}"  />
-                        </div>
-                        <div>
-                            <h3 ng-bind="partnerImg.title"></h3>
-                            <!--<p ng-bind="partnerImg.concat |limitTo:140"></p>-->
-                        </div>
-                    </div>
-                </div>
-                <!-- Controls -->
-                <a class="left carousel-control" id="span_1" href="javascript:void(0);#carousel-example" data-slide="prev">
-                    <span class="glyphicon glyphicon-chevron-left" style="margin-left: -45px"></span>
-                </a>
-                <a class="right carousel-control" id="span_2" href="javascript:void(0);#carousel-example" data-slide="next">
-                    <span class="glyphicon glyphicon-chevron-right" style="margin-right: -45px"></span>
-                </a>
-            </div>
-        </div>
-    </div>
-    <div class="right">
-        <div class="right_top">
-            <div class="right_top_right_1"></div>
-            <div>
-                <span class="flag"></span>
-                <div class="right_top_font"><a ng-href="#/welcome">首页</a>&nbsp;> &nbsp;公司动态 </div>
-            </div>
-            <div class="right_top_right_2"></div>
-        </div>
-        <div class="right_center">
-            <table class="table table-hover" style="table-layout:fixed" >
-                <tbody>
-                <tr ng-repeat="partner in datas.allPartners">
-                    <td>
-                        <a ng-href="javascript::void(0)" class="right_center_a"style="text-decoration: none">
-                            <strong>&nbsp; &nbsp;<img height="70px;" ng-src="{{partner.image}}" title="{{partner.title}}" /> </strong>
-                        </a>
-                        <p class="right_center_p"><small>[{{partner.createdTime}}]</small></p>
-                    </td>
-                </tr>
-            </table>
-        </div>
-        <div class="pagination pagination-sm right_end_fy" >
-            <li><a ng-href="#/allpartner?pageNo=1"> 首页</a></li>
-            <li><a ng-href="#/allpartner?pageNo={{datas.pageNo-1<=0?1:datas.pageNo-1}}"> 上一页</a></li>
-            <li><a ng-href="#/allpartner?pageNo={{datas.pageNo+1>=datas.pageCount?datas.pageCount:datas.pageNo+1}}"> 下一页</a></li>
-            <li><a ng-href="#/allpartner?pageNo={{datas.pageCount}}"> 尾页</a></li>
-            <li><a href="javascript:void(0);">共{{datas.pageNo}}/{{datas.pageCount}}页</a></li>
-        </div>
-        <div>&nbsp;
-            第<input type="text" id="pageNo" class="input-small right_end_go" />页
-            <input type="hidden" id="pageCount" value="{{datas.pageCount}}" />
-            <button type="button" class="btn btn-default" role="button" onclick="go()">go</button>
-        </div>
-    </div>
+<div class="container">
+  <div style="margin-left: 6%;">
+      <div  style="width:200px;height:500px;float: left;">
+          <div class="well lefttop"  style="text-align: center;" ><strong>{{datas.title}}</strong></div>
+          <div class="leftmiddle" >
+              <div id="carousel-example" class="carousel slide" data-ride="carousel">
+                  <!-- Wrapper for slides -->
+                  <div class="carousel-inner">
+                      <div ng-class="{true:'item active',false:'item'}[$index==0]" ng-repeat="partnerImg in datas.partnerImgs" >
+                          <div class="img">
+                              <img ng-src="{{partnerImg.image}}"  />
+                          </div>
+                          <div>
+                              <h3 ng-bind="partnerImg.title"></h3>
+                              <!--<p ng-bind="partnerImg.concat |limitTo:140"></p>-->
+                          </div>
+                      </div>
+                  </div>
+                  <!-- Controls -->
+                  <a class="left carousel-control" id="span_1" href="javascript:void(0);#carousel-example" data-slide="prev">
+                      <span class="glyphicon glyphicon-chevron-left" style="margin-left: -45px"></span>
+                  </a>
+                  <a class="right carousel-control" id="span_2" href="javascript:void(0);#carousel-example" data-slide="next">
+                      <span class="glyphicon glyphicon-chevron-right" style="margin-right: -45px"></span>
+                  </a>
+              </div>
+          </div>
+      </div>
+      <div class="right">
+          <div class="right_top">
+              <div class="right_top_right_1"></div>
+              <div>
+                  <span class="flag"></span>
+                  <div class="right_top_font"><a ng-href="#/welcome">首页</a>&nbsp;> &nbsp;公司动态 </div>
+              </div>
+              <div class="right_top_right_2"></div>
+          </div>
+          <div class="right_center">
+              <table class="table table-hover" style="table-layout:fixed" >
+                  <tbody>
+                  <tr ng-repeat="partner in datas.allPartners">
+                      <td>
+                          <a ng-href="javascript::void(0)" class="right_center_a"style="text-decoration: none">
+                              <strong>&nbsp; &nbsp;<img height="70px;" ng-src="{{partner.image}}" title="{{partner.title}}" /> </strong>
+                          </a>
+                          <p class="right_center_p"><small>[{{partner.createdTime}}]</small></p>
+                      </td>
+                  </tr>
+              </table>
+          </div>
+          <div class="pagination pagination-sm right_end_fy" >
+              <li><a ng-href="#/allpartner?pageNo=1"> 首页</a></li>
+              <li><a ng-href="#/allpartner?pageNo={{datas.pageNo-1<=0?1:datas.pageNo-1}}"> 上一页</a></li>
+              <li><a ng-href="#/allpartner?pageNo={{datas.pageNo+1>=datas.pageCount?datas.pageCount:datas.pageNo+1}}"> 下一页</a></li>
+              <li><a ng-href="#/allpartner?pageNo={{datas.pageCount}}"> 尾页</a></li>
+              <li><a href="javascript:void(0);">共{{datas.pageNo}}/{{datas.pageCount}}页</a></li>
+          </div>
+          <div>&nbsp;
+              第<input type="text" id="pageNo" class="input-small right_end_go" />页
+              <input type="hidden" id="pageCount" value="{{datas.pageCount}}" />
+              <button type="button" class="btn btn-default" role="button" onclick="go()">go</button>
+          </div>
+      </div>
+  </div>
 </div>
 
 <script type="text/javascript">

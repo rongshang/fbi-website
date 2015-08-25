@@ -97,8 +97,9 @@ app.controller('adminAddProductCtrl',['$scope','$http',function($scope,$http){
         $scope.product.createdTime=getCreateTime();
         $http({
             method:'post',
+            dataType:'json',
             url:'/admin/adminAddProductAjax',
-            params: {'product':$scope.product}
+            data:{product:$scope.product}
         }).success(function(data, status, headers, config){
             if(data.msg=='1'){
                 window.location.reload();
@@ -467,7 +468,7 @@ app.controller("adminContactUsByIdCtrl",['$scope','$http','$location','$routePar
 
     //更新联系我们
     $scope.save = function(contactus){
-        $http.put('/admin/updateContactUsAjax',{contactus:contactus}).success(function(data) {
+        $http.put('/admin/updateContactUsAjax',{"contactus":contactus}).success(function(data) {
             if(data.msg=='1'){
                 window.location.reload();
             }else{
@@ -493,10 +494,314 @@ app.controller('adminAddContactUsCtrl',['$scope','$http',function($scope,$http){
     };
     $scope.save = function(){
         $scope.contactus.createdTime=getCreateTime();
+        $http.post("/admin/adminAddContactusAjax",{"contactus":$scope.contactus}).success(function(data) {
+            if(data.msg=='1'){
+                window.location.reload();
+            }else{
+                alert("更新失败");
+            }
+        });
+    }
+}]);
+
+//资质荣誉
+//查询全部资质荣誉
+app.controller('adminAllHonorCtrl',['$scope','$http','$location','$routeParams','$rootScope',function($scope,$http,$location,$routeParams,$rootScope){
+    //查询资质荣誉
+    var pageNo = $routeParams.pageNo;
+    $http({
+        method:'get',
+        url:'/admin/adminAllHonor',
+        params: {pageNo:pageNo}
+    }).success(function(data, status, headers, config){
+        $scope.datas = data;
+    });
+
+    //根据id查询资质荣誉
+    $scope.update = function(id){
+        $location.path("/findHonorById/"+id);
+    }
+
+    //删除资质荣誉
+    $scope.del = function(id){
+        if(confirm("你确定删除吗？")){
+            $http.delete('/admin/delHonorAjax?id='+id).success(function(data) {
+                if(data.msg=='1'){
+                    window.location.reload();
+                }else{
+                    alert("删除失败");
+                }
+            });
+        }
+    }
+}])
+
+//根据id查询资质荣誉
+app.controller("adminHonorByIdCtrl",['$scope','$http','$location','$routeParams',function($scope,$http,$location,$routeParams){
+
+    $http.post('/admin/findHonorById',{'id':$routeParams.id}).success(function(data) {
+        $scope.datas = data;
+    });
+
+    //更新资质荣誉
+    $scope.save = function(honor){
+        $http.put('/admin/updateHonorAjax',{"honor":honor}).success(function(data) {
+            if(data.msg=='1'){
+                window.location.reload();
+            }else{
+                alert("更新失败");
+            }
+        });
+    }
+}])
+
+//新增资质荣誉
+app.controller('adminAddHonorCtrl',['$scope','$http',function($scope,$http){
+    $scope.honor = {
+        _id:''
+        ,image:''
+        ,createdTime:""
+    };
+    $scope.save = function(){
+        $scope.honor.createdTime=getCreateTime();
         $http({
-            method:'get',
-            url:'/admin/adminAddContactusAjax',
-            params: {'contactus':$scope.contactus}
+            method:'post',
+            url:'/admin/adminAddHonorAjax',
+            data: {'honor':$scope.honor}
+        }).success(function(data, status, headers, config){
+            if(data.msg=='1'){
+                window.location.reload();
+            }else{
+                alert("添加失败");
+            }
+        });
+    }
+}]);
+
+//风云人物
+//查询全部风云人物
+app.controller('adminAllFigureCtrl',['$scope','$http','$location','$routeParams','$rootScope',function($scope,$http,$location,$routeParams,$rootScope){
+    //查询风云人物
+    var pageNo = $routeParams.pageNo;
+    $http({
+        method:'get',
+        url:'/admin/adminAllFigure',
+        params: {pageNo:pageNo}
+    }).success(function(data, status, headers, config){
+        $scope.datas = data;
+    });
+
+    //根据id查询风云人物
+    $scope.update = function(id){
+        $location.path("/findFigureById/"+id);
+    }
+
+    //删除风云人物
+    $scope.del = function(id){
+        if(confirm("你确定删除吗？")){
+            $http.delete('/admin/delFigureAjax?id='+id).success(function(data) {
+                if(data.msg=='1'){
+                    window.location.reload();
+                }else{
+                    alert("删除失败");
+                }
+            });
+        }
+    }
+}])
+
+//根据id查询风云人物
+app.controller("adminFigureByIdCtrl",['$scope','$http','$location','$routeParams',function($scope,$http,$location,$routeParams){
+    $http.post('/admin/findFigureById',{'id':$routeParams.id}).success(function(data) {
+        $scope.datas = data;
+        editor.html(data.honor);
+    });
+    //更新风云人物
+    $scope.save = function(figure){
+        figure.honor=editor.html()
+        $http.put('/admin/updateFigureAjax',{figure:figure}).success(function(data) {
+            if(data.msg=='1'){
+                window.location.reload();
+            }else{
+                alert("更新失败");
+            }
+        });
+    }
+}])
+
+//新增风云人物
+app.controller('adminAddFigureCtrl',['$scope','$http',function($scope,$http){
+    $scope.figure = {
+        _id:""
+        ,image:""
+        ,name:""
+        ,job:""
+        ,honor:""
+        ,createdTime:""
+    };
+    $scope.save = function(){
+        $scope.figure.honor=editor.html();
+        $scope.figure.createdTime=getCreateTime();
+        $http({
+            method:'post',
+            url:'/admin/adminAddFigureAjax',
+            data: {'figure':$scope.figure}
+        }).success(function(data, status, headers, config){
+            if(data.msg=='1'){
+                window.location.reload();
+            }else{
+                alert("添加失败");
+            }
+        });
+    }
+}]);
+
+
+//合作伙伴
+//查询全部合作伙伴
+app.controller('adminAllPartnerCtrl',['$scope','$http','$location','$routeParams','$rootScope',function($scope,$http,$location,$routeParams,$rootScope){
+    //查询合作伙伴
+    var pageNo = $routeParams.pageNo;
+    $http({
+        method:'get',
+        url:'/admin/adminAllPartner',
+        params: {pageNo:pageNo}
+    }).success(function(data, status, headers, config){
+        $scope.datas = data;
+    });
+
+    //根据id查询合作伙伴
+    $scope.update = function(id){
+        $location.path("/findPartnerById/"+id);
+    }
+
+    //删除合作伙伴
+    $scope.del = function(id){
+        if(confirm("你确定删除吗？")){
+            $http.delete('/admin/delPartnerAjax?id='+id).success(function(data) {
+                if(data.msg=='1'){
+                    window.location.reload();
+                }else{
+                    alert("删除失败");
+                }
+            });
+        }
+    }
+}])
+
+//根据id查询合作伙伴
+app.controller("adminPartnerByIdCtrl",['$scope','$http','$location','$routeParams',function($scope,$http,$location,$routeParams){
+    $http.post('/admin/findPartnerById',{'id':$routeParams.id}).success(function(data) {
+        $scope.datas = data;
+        editor.html(data.concat);
+    });
+    //更新合作伙伴
+    $scope.save = function(partner){
+        partner.concat = editor.html();
+        $http.put('/admin/updatePartnerAjax',{"partner":partner}).success(function(data) {
+            if(data.msg=='1'){
+                window.location.reload();
+            }else{
+                alert("更新失败");
+            }
+        });
+    }
+}])
+
+//新增合作伙伴
+app.controller('adminAddPartnerCtrl',['$scope','$http',function($scope,$http){
+    $scope.partner = {
+        _id:""
+        ,image:""
+        ,concat:""
+        ,title:""
+        ,createdTime:""
+    };
+    $scope.save = function(){
+        $scope.partner.concat=editor.html();
+        $scope.partner.createdTime=getCreateTime();
+        $http({
+            method:'post',
+            url:'/admin/adminAddPartnerAjax',
+            data: {'partner':$scope.partner}
+        }).success(function(data, status, headers, config){
+            if(data.msg=='1'){
+                window.location.reload();
+            }else{
+                alert("添加失败");
+            }
+        });
+    }
+}]);
+
+
+//新闻
+//查询全部新闻
+app.controller('adminAllNewsCtrl',['$scope','$http','$location','$routeParams','$rootScope',function($scope,$http,$location,$routeParams,$rootScope){
+    //查询新闻
+    var pageNo = $routeParams.pageNo;
+    $http({
+        method:'get',
+        url:'/admin/adminAllNews',
+        params: {pageNo:pageNo}
+    }).success(function(data, status, headers, config){
+        $scope.datas = data;
+    });
+
+    //根据id查询新闻
+    $scope.update = function(id){
+        $location.path("/findNewsById/"+id);
+    }
+
+    //删除新闻
+    $scope.del = function(id){
+        if(confirm("你确定删除吗？")){
+            $http.delete('/admin/delNewsAjax?id='+id).success(function(data) {
+                if(data.msg=='1'){
+                    window.location.reload();
+                }else{
+                    alert("删除失败");
+                }
+            });
+        }
+    }
+}])
+
+//根据id查询新闻
+app.controller("adminNewsByIdCtrl",['$scope','$http','$location','$routeParams',function($scope,$http,$location,$routeParams){
+    $http.post('/admin/findNewsById',{'id':$routeParams.id}).success(function(data) {
+        $scope.datas = data;
+        editor.html(data.concat);
+    });
+    //更新新闻
+    $scope.save = function(news){
+        news.concat = editor.html();
+        $http.put('/admin/updateNewsAjax',{"news":news}).success(function(data) {
+            if(data.msg=='1'){
+                window.location.reload();
+            }else{
+                alert("更新失败");
+            }
+        });
+    }
+}])
+
+//新增新闻
+app.controller('adminAddNewsCtrl',['$scope','$http',function($scope,$http){
+    $scope.news = {
+        _id:""
+        ,image:""
+        ,concat:""
+        ,title:""
+        ,createdTime:""
+    };
+    $scope.save = function(){
+        $scope.news.concat=editor.html();
+        $scope.news.createdTime=getCreateTime();
+        $http({
+            method:'post',
+            url:'/admin/adminAddNewsAjax',
+            data: {'news':$scope.news}
         }).success(function(data, status, headers, config){
             if(data.msg=='1'){
                 window.location.reload();

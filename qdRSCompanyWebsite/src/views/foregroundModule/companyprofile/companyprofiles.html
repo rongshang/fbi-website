@@ -1,4 +1,4 @@
-<link rel="stylesheet"  type="text/css" href="../../views/resource/foregroundModule/css/companyprofiles.css"/>
+<link rel="stylesheet"  type="text/css" href="../../../views/resource/foregroundModule/css/companyprofiles.css"/>
 <div  class="container">
     <div class="left">
         <div  class=" well lefttop" style="text-align: center">
@@ -18,10 +18,10 @@
             &nbsp;&nbsp;
             <a ng-href="#/welcome">首页</a>&nbsp;> &nbsp;公司简介
         </div>
-        <div id="myTabContent" class="tab-content">
+        <div id="myTabContent" class="tab-content"style="min-height: 450px;overflow: hidden">
             <div class="tab-pane fade in active" id="product1">
-                <div style="margin-left: 10px;" ng-repeat="companyprofile in datas.companyprofiles">
-                    <span ng-bind-html="companyprofile.concat"></span>
+                <div style="margin-left: 10px;text-align: center" ng-repeat="companyprofile in datas.companyprofiles">
+                    <span  ng-bind-html="companyprofile.concat"></span>
                 </div>
             </div>
         </div>

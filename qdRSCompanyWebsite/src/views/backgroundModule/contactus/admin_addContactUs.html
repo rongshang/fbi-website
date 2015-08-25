@@ -1,28 +1,48 @@
-<table id="table" class="table table-bordered table-hover">
-    <thead>
-    <tr>
-        <th>公司地址</th>
-        <th>公司邮箱</th>
-        <th>公司微信</th>
-        <th>公司qq</th>
-        <th>公司电话</th>
-        <th>公司传真</th>
-        <th>公司二维码</th>
-        <th>公司LOGO</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr>
-        <td><input type="text" ng-model="contactus.address" /></td>
-        <td><input type="text" ng-model="contactus.email" /></td>
-        <td><input type="text" ng-model="contactus.code" /></td>
-        <td><input type="text" ng-model="contactus.qq" /></td>
-        <td><input type="text" ng-model="contactus.tel" /></td>
-        <td><input type="text" ng-model="contactus.fax" /></td>
-        <td><input type="file" /></td>
-        <td><input type="file" /></td>
-    </tr>
-    </tbody>
-</table>
-<input type="button" ng-click="save()" value="保存"/>
+<div class="row">
+    <div class="col-xs-12">
+        <div class="box">
+            <div class="box-body">
+                <h4>新增联系方式</h4>
+                <table id="table" class="table table-bordered table-hover">
+                    <tr>
+                        <th>公司地址：<input type="text" ng-model="contactus.address" /></th>
+                        <th>公司邮箱：<input type="text" ng-model="contactus.email" /></th>
+                    </tr>
+                    <tr>
+                        <th>公司微信：<input type="text" ng-model="contactus.code" /></th>
+                        <th>公司qq：&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" ng-model="contactus.qq" /></th>
+                    </tr>
+                    <tr>
+                        <th>公司电话：<input type="text" ng-model="contactus.tel" /></th>
+                        <th>公司传真：<input type="text" ng-model="contactus.fax" /></th>
+                    </tr>
+                    <tr>
+                        <th>公司二维码：
+                            <input type="file" fileread="contactus.codeImg" onchange="codeImage(this)" />
+                            <div id="code">
+                                <img id="codeImg" border=0 width="160" height="160" />
+                            </div>
+                        </th>
+                        <th>公司LOGO：
+                            <input type="file" fileread="contactus.logo" onchange="logoImage(this)" />
+                            <div id="logo">
+                                <img id="logoImg" border=0 width="160" height="160" />
+                            </div>
+                        </th>
+                    </tr>
+
+                </table>
+                <br>
+                <div style="text-align: center"><input type="button" ng-click="save()" value="保存" /></div>
+            </div>
+        </div>
+    </div>
+</div>
+<style type="text/css">
+    #logo{width:160px;height:160px;border:1px solid #000;overflow:hidden;}
+    #code{width:160px;height:160px;border:1px solid #000;overflow:hidden;}
+    #codeImg {filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod=image);}
+    #logoImg {filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod=image);}
+</style>
+<script src="../../views/js/backgroundModule/adminContactUs.js"></script>
 

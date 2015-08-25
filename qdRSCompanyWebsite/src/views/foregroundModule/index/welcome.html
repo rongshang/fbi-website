@@ -6,7 +6,7 @@
                 <p>青岛融商</p>
                 <h3>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;QINGDAORONGSHANG</h3>
                 <br>
-                <small style="font-size: 24px;">——<cite title="Source Title">是一家特别有实力的软件公司,
+                <small style="font-size: 24px;">——<cite title="Source Title">是一家实力雄厚的软件公司,
                     <br>专门为企业提供信息技术服务。</cite>
                 </small>
             </div>
@@ -30,27 +30,15 @@
     </div>
 </div>
 <div class="row3">
-    <div class="col" ng-repeat="product in data.products">
-        <h4>
-            <a href="" class="product-title" ng-bind="product.title"></a>
-        </h4>
-        <a>
-            <img ng-src="product.image"/>
-        </a>
-        <div class="txt" title="{{product.concat}}">
-            <p ng-bind="product.concat"></p>
-        </div>
-        <div class="detail"><a > << more </a></div>
-    </div>
     <div class="col" ng-repeat="product in datas.products">
         <h4>
-            <a class="product-title" ng-bind="product.title"></a>
+            <a class="product-title" ng-bind-html="product.title"></a>
         </h4>
         <a>
-            <img ng-src="product.image"/>
+            <img ng-src="{{product.image}}"/>
         </a>
-        <div class="txt" title="{{product.concat}}">
-            <p ng-bind="product.concat | limitTo :130 "></p>
+        <div class="txt">
+            <p ng-bind-html="product.concat | limitTo :130 "></p>
         </div>
         <div class="detail"><a ng-href="#/productdetail?id={{product._id}}" > << more </a></div>
     </div>
@@ -64,7 +52,7 @@
         <div class="bank">
             <h3><a ng-bind="datas.partners[0].title"></a></h3>
             <div class="txt">
-                <p title="{{datas.partners[0].concat}}" ng-bind="datas.partners[0].concat | limitTo:140"></p>
+                <p title="{{datas.partners[0].concat}}" ng-bind-html="datas.partners[0].concat | limitTo:140"></p>
             </div>
         </div>
         <div>
@@ -74,7 +62,7 @@
                     <img ng-if="$index>0" ng-src="{{partner.image}}"/>
                 </a>
             </div>
-            <div class="detail"><a ng-href="#/allpartner" > << more </a></div>
+            <div class="detail"><a ng-href="#/allpartner?pageNo=1" > << more </a></div>
         </div>
     </div>
 </div>
@@ -108,9 +96,9 @@
         </a>
         <div class="txt">
             <p>
-                <div>姓名：<span ng-bind="figure.name"></span></div>
-                <div>职位：<span ng-bind="figure.job"></span></div>
-                <div title="{{figure.honor}}" ng-bind="figure.honor | limitTo:120"></div>
+                <div>姓名：<span ng-bind-html="figure.name"></span></div>
+                <div>职位：<span ng-bind-html="figure.job"></span></div>
+                <div>资质荣誉:<span title="{{figure.honor}}" ng-bind-html="figure.honor | limitTo:120"></span></div>
             </p>
         </div>
     </div>

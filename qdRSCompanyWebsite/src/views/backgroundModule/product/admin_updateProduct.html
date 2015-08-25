@@ -3,33 +3,33 @@
         <div class="box">
             <div class="box-body">
                 <table id="table" class="table table-bordered ">
-                    <thead>
-                    <tr>
-                        <th style="text-align: center"colspan="2">修改产品信息</th>
-                    </tr>
-                    </thead>
+                    <h4>修改产品信息</h4>
                     <tbody>
                     <tr>
-                        <td>产品标题：<input  type="text" ng-model="datas.title"/></td>
-                        <td rowspan="4">
+                        <th>产品标题：<input  type="text" ng-model="datas.title"/></td>
+                        <th rowspan="4">
                             <div style="margin-left: 5%">
                                 <textarea id="content" style="width:90%;height:400px;visibility:hidden;">
                             </textarea>
                             </div>
-                        </td>
+                        </th>
                     </tr>
                     <tr>
-                        <td>
-                            <p style="float: left">产品视频： </p> <input type="file" />
-                        </td>
+                        <th>
+                            <p style="float: left">产品视频： </p>
+                            <input type="file" fileread="datas.videosrc" />
+                        </th>
                     </tr>
                     <tr>
-                        <td>产品地址： <input type="text"ng-model="datas.websiteUrl"/></td>
+                        <th>产品地址： <input type="text"ng-model="datas.websiteUrl"/></th>
                     </tr>
                     <tr>
-                        <td>产品图片：
-                                <img ng-src="{{datas.image}}"  border=0 width="160" height="160" />
-                        </td>
+                        <th>产品图片：
+                            <div id="preview">
+                                <img ng-src="{{datas.image}}" id="imghead"  border=0 width="160" height="160" />
+                            </div>
+                            <input type="file" id="file_img" fileread="datas.image" onchange="previewImage(this)" />
+                        </th>
                     </tr>
                     </tbody>
                 </table>
@@ -48,4 +48,8 @@
         prettyPrint();
     });
 </script>
-
+<style type="text/css">
+    #preview{width:160px;height:160px;border:1px solid #000;overflow:hidden;}
+    #imghead {filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod=image);}
+</style>
+<script src="../../views/js/backgroundModule/adminHonor.js"></script>

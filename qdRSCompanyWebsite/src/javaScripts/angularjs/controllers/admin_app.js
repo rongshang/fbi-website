@@ -46,6 +46,30 @@ app.config(['$routeProvider',function($routeProvider){
         .when('/adminAddContactus', {templateUrl:'/views/backgroundModule/contactus/admin_addContactUs.html',controller: 'adminAddContactUsCtrl'})
         //根据id查询联系我们
         .when('/findContactusById/:id', {templateUrl:'/views/backgroundModule/contactus/admin_updateContactUs.html',controller: 'adminContactUsByIdCtrl'})
+        //查询全部资质荣誉
+        .when('/adminAllHonor/:pageNo', {templateUrl:'/views/backgroundModule/honor/admin_allHonor.html',controller: 'adminAllHonorCtrl'})
+        //添加资质荣誉
+        .when('/adminAddHonor', {templateUrl:'/views/backgroundModule/honor/admin_addHonor.html',controller: 'adminAddHonorCtrl'})
+        //根据id查询资质荣誉
+        .when('/findHonorById/:id', {templateUrl:'/views/backgroundModule/honor/admin_updateHonor.html',controller: 'adminHonorByIdCtrl'})
+        //查询全部风云人物
+        .when('/adminAllFigure/:pageNo', {templateUrl:'/views/backgroundModule/figure/admin_allFigure.html',controller: 'adminAllFigureCtrl'})
+        //添加风云人物
+        .when('/adminAddFigure', {templateUrl:'/views/backgroundModule/figure/admin_addFigure.html',controller: 'adminAddFigureCtrl'})
+        //根据id查询风云人物
+        .when('/findFigureById/:id', {templateUrl:'/views/backgroundModule/figure/admin_updateFigure.html',controller: 'adminFigureByIdCtrl'})
+        //查询全部合作伙伴
+        .when('/adminAllPartner/:pageNo', {templateUrl:'/views/backgroundModule/partner/admin_allPartner.html',controller: 'adminAllPartnerCtrl'})
+        //添加合作伙伴
+        .when('/adminAddPartner', {templateUrl:'/views/backgroundModule/partner/admin_addPartner.html',controller: 'adminAddPartnerCtrl'})
+        //根据id查询合作伙伴
+        .when('/findPartnerById/:id', {templateUrl:'/views/backgroundModule/partner/admin_updatePartner.html',controller: 'adminPartnerByIdCtrl'})
+        //查询全部新闻
+        .when('/adminAllNews/:pageNo', {templateUrl:'/views/backgroundModule/news/admin_allNews.html',controller: 'adminAllNewsCtrl'})
+        //添加新闻
+        .when('/adminAddNews', {templateUrl:'/views/backgroundModule/news/admin_addNews.html',controller: 'adminAddNewsCtrl'})
+        //根据id查询新闻
+        .when('/findNewsById/:id', {templateUrl:'/views/backgroundModule/news/admin_updateNews.html',controller: 'adminNewsByIdCtrl'})
 
 }
 ]);

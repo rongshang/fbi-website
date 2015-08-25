@@ -5,6 +5,10 @@ var howdo = require('howdo');
 var express = require('express');
 var router = express.Router();
 var path = require('path');
+var async = require('async');
+
+//图片处理
+var ImageFileProvider = require('../../src/javaScripts/nodejs/common/ImageFileProvider.js').ImageFileProvider;
 
 var daoBase = require("../../src/javaScripts/nodejs/dao/DaoBase");
 //产品详细内容模块
@@ -13,20 +17,51 @@ var productsDaoBse = new daoBase(products);
 //产品的详细内容
 exports.productdetailAjax = function(req,res){
     var productid = req.query.productid;
-    howdo
-        .task(function(done){
+    async.auto({
+        getProductsTitle:function(callback){
             productsDaoBse.findByLimitAndSortAndQuery({},{createdTime:-1},8,function(err,productsTitle){
-                done(null,productsTitle);
+                callback(null,productsTitle);
             });
-        })
-        .task(function(done){
-            productsDaoBse.getById(productid,function(err,products){
-                done(null,products);
-            });
-        })
-        .together(function(err,productsTitle,products){
-            res.json({'title':'产品中心','productid':productid,'productsTitle':productsTitle,'products':products});
-        })
+        },
+        getProductById:function(callback){
+            productsDaoBse.getById(productid,function(err,product){
+                callback(null,product);
+          });
+        },
+        getProductVideo:["getProductById",function(callback,result){
+            var fileProvider = new ImageFileProvider();
+            if(result.getProductById.videosrc==""||result.getProductById.videosrc==null||result.getProductById.videosrc===undefined){
+                callback(null,result.getProductById);
+            }else{
+                fileProvider.read(result.getProductById.videosrc,function(data){
+                    result.getProductById.videosrc = data;
+                    callback(null,result.getProductById);
+                });
+            }
+        }]
+    },function(err,results){
+        res.json({'title':'产品中心','productid':productid,'productsTitle':results.getProductsTitle,'products':results.getProductVideo});
+    });
+
+    //howdo
+    //    .task(function(done){
+    //        productsDaoBse.findByLimitAndSortAndQuery({},{createdTime:-1},8,function(err,productsTitle){
+    //            done(null,productsTitle);
+    //        });
+    //    })
+    //    .task(function(done){
+    //        productsDaoBse.getById(productid,function(err,products){
+    //            var fileProvider = new ImageFileProvider();
+    //            fileProvider.read(products.image,function(data){
+    //                products.image = data;
+    //                done(null,products);
+    //
+    //            });
+    //        });
+    //    })
+    //    .together(function(err,productsTitle,products){
+    //        res.json({'title':'产品中心','productid':productid,'productsTitle':productsTitle,'products':products});
+    //    })
 
 }
 
@@ -35,8 +70,9 @@ exports.allProductAjax = function(req,res){
     var pageCount=0;
     var pageNo = parseInt(req.query.pageNo);
     var pageSize = 8;
-    howdo
-        .task(function(done){
+
+    async.auto({
+        getCount:function(callback){
             productsDaoBse.countByQuery({},function(err,count){
                 pageCount = parseInt(Math.ceil(count/pageSize));
                 if(pageNo>pageCount){
@@ -44,21 +80,34 @@ exports.allProductAjax = function(req,res){
                 }else if(pageNo<0){
                     pageNo = 1;
                 }
-                done(null,pageNo,pageCount);
+                callback(null,{"pageNo":pageNo,"pageCount":pageCount});
             });
-        })
-        .task(function(done){
+        },
+        getProducts:function(callback){
             productsDaoBse.findAllByPage({createdTime:-1},pageNo,pageSize,function(err,allProducts){
-                done(null,allProducts);
+                callback(null,allProducts);
             });
-        })
-        .task(function(done){
+        },
+        getProductImg:["getProducts",function(callback,result){
+            var count= 0;
+            result.getProducts.forEach(function(item,i){
+                var fileProvider = new ImageFileProvider();
+                fileProvider.read(item.image,function(data){
+                    count += 1;  //读完一个文件之后计数器自增
+                    item.image = data;
+                    if (count === result.getProducts.length) {
+                        callback(null, result.getProducts);
+                    }
+                });
+            })
+        }],
+        getProductsTitle:function(callback){
             productsDaoBse.findByLimitAndSortAndQuery({},{createdTime:-1},8,function(err,productsTitle){
-                done(null,productsTitle);
+                callback(null,productsTitle);
             });
-        })
-        .together(function(err,pageNo,pageCount,allProducts,productsTitle){
-            res.json({'title':'我们的产品','pageNo':pageNo,'pageCount':pageCount,'allProducts':allProducts,'productsTitle':productsTitle});
-        });
+        }
+    },function(err,results){
+        res.json({'title':'我们的产品','pageNo':results.getCount.pageNo,'pageCount':results.getCount.pageCount,'allProducts':results.getProductImg,'productsTitle':results.getProductsTitle});
 
+    });
 }

@@ -1,0 +1,25 @@
+<div class="row">
+    <div class="col-xs-12">
+        <div class="box">
+            <div class="box-body">
+                <table id="table" class="table table-bordered ">
+                    <h4>资质荣誉</h4>
+                    <tbody>
+                        <th>资质荣誉图片
+                            <div id="preview">
+                                <img ng-src="{{datas.image}}" id="imghead"  border=0 width="160" height="160" />
+                            </div>
+                            <input type="file" id="file_img" fileread="datas.image" onchange="previewImage(this)" />
+                        </th>
+                    </tbody>
+                </table>
+                <input type="button" value="保存" ng-click="save(datas)" style="margin-left: 50%">
+            </div>
+        </div>
+    </div>
+</div>
+<style type="text/css">
+    #preview{width:160px;height:160px;border:1px solid #000;overflow:hidden;}
+    #imghead {filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod=image);}
+</style>
+<script src="../../views/js/backgroundModule/adminHonor.js"></script>

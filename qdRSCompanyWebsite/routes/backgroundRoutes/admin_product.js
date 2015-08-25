@@ -4,17 +4,15 @@
 
 var uuid = require("uuid");
 var fs = require("fs");
+var async = require("async");
 var howdo = require('howdo');
 var url = require("url");
-var fs = require("fs");
 var path = require("path");
 var daoBase = require("../../src/javaScripts/nodejs/dao/DaoBase");
 
 //图片上传模块
 //var ItemProvider = require('.././ItemProvider').ItemProvider
 var ImageFileProvider = require('../../src/javaScripts/nodejs/common/ImageFileProvider.js').ImageFileProvider;
-//var itemProvider = new ItemProvider('localhost', 27017);
-var fileProvider = new ImageFileProvider('localhost', 27017);
 
 //产品模块
 var products = require("../../src/javaScripts/nodejs/models/index").products;
@@ -34,8 +32,9 @@ exports.adminAllProductAjax = function(req,res,next){
         var pattern = new RegExp("^.*"+title+".*$");
         queryStr.title = pattern;
     }
-    howdo
-        .task(function(done){
+
+    async.auto({
+        getCount:function(callback){
             productsDaoBse.countByQuery(queryStr,function(err,count){
                 pageCount = parseInt(Math.ceil(count/pageSize));
                 if(pageNo>pageCount){
@@ -43,37 +42,78 @@ exports.adminAllProductAjax = function(req,res,next){
                 }else if(pageNo<0){
                     pageNo = 1;
                 }
-                done(null,pageNo,pageCount);
+                callback(null,{"pageNo":pageNo,"pageCount":pageCount});
             });
-        })
-        .task(function(done){
+        },
+        getData:function(callback){
             productsDaoBse.findAllByPageAndQuery(queryStr,{createdTime:-1},pageNo,pageSize,function(err,products){
-                done(null,products);
+                callback(null,products);
             });
-        })
-        .together(function(err,pageNo,pageCount,products){
-            res.json({'title':'产品展示','pageNo':pageNo,'pageCount':pageCount,'products':products});
-        });
+        },
+        getImg:['getData',function(callback,result){
+            var count= 0;
+            result.getData.forEach(function(item,i){
+                var fileProvider = new ImageFileProvider();
+                fileProvider.read(item.image,function(data){
+                    count += 1;  //读完一个文件之后计数器自增
+                    item.image = data;
+                    if (count === result.getData.length) {
+                        callback(null, result.getData);
+                    }
+                });
+            })
+        }]
+    }, function(err, results) {
+        res.json({'title':'产品展示','pageNo':results.getCount.pageNo,'pageCount':results.getCount.pageCount,'products':results.getData});
+    });
 }
 
 //添加产品
 exports.adminAddProductAjax = function(req,res,next){
-    var pathname = url.parse(req.url).pathname;
-    console.log("===pathname==="+pathname);
-    var product=req.query.product;
-    product =JSON.parse(product);
+    var product=req.body.product;
     product._id = uuid.v1();
-    console.log("====product.image===="+product.image);
-    fileProvider.insert(product.image,function(fileId){
-        if(fileId!=null&&fileId!=""){
-            product.image=fileId;
-            newProductsDao.save(product,function(data){
-                res.json(data);
-            });
-        }
-    });
-
-
+    if(product.videosrc ==""||product.videosrc ==null){
+        async.auto({
+            getImgId: function (callback) {
+                var fileProvider = new ImageFileProvider();
+                fileProvider.insert(product.image, function (fileId) {
+                    callback(null, fileId);
+                });
+            },
+            addData: ["getImgId",function (callback, result) {
+                product.image = result.getImgId;
+                newProductsDao.save(product, function (data) {
+                    callback(null, data);
+                });
+            }]
+        }, function (err, results) {
+            res.json(results.addData);
+        });
+    }else {
+        async.auto({
+            getImgId: function (callback) {
+                var fileProvider = new ImageFileProvider();
+                fileProvider.insert(product.image, function (fileId) {
+                    callback(null, fileId);
+                });
+            },
+            getVideoId: function (callback) {
+                var fileProvider = new ImageFileProvider();
+                fileProvider.insert(product.videosrc, function (fileId) {
+                    callback(null, fileId);
+                });
+            },
+            addData: ["getImgId", "getVideoId", function (callback, result) {
+                product.image = result.getImgId;
+                product.videosrc = result.getVideoId;
+                newProductsDao.save(product, function (data) {
+                    callback(null, data);
+                });
+            }]
+        }, function (err, results) {
+            res.json(results.addData);
+        });
+    }
 }
 
 //删除产品
@@ -92,33 +132,88 @@ exports.delProductAjax = function(req,res,next){
 //更新产品
 exports.updateProductAjax = function(req,res,next){
     var product=req.body.product;
-    var condition = {_id:product._id},
-        update = {$set: {image: product.image,
-                         title:product.title,
-                         videosrc:product.videosrc,
-                         websiteUrl:product.websiteUrl,
-                         concat:product.concat
-                        }},
-        options = {multi: true};
-    productsDaoBse.update(condition,update,options,function(data){
-        if(data==null){
-            data={"msg":"1"}
-        }else{
-            data={"msg":"0"}
-        }
-        res.json(data);
-    })
+    if(product.videosrc ==""||product.videosrc ==null){
+        async.auto({
+            getImgId:function(callback){
+                var fileProvider = new ImageFileProvider();
+                fileProvider.insert(product.image,function(fileId){
+                    callback(null,fileId);
+                });
+            },
+            setImgIdAndUpdateData:["getImgId",function(callback,result){
+                var condition = {_id:product._id},
+                    update = {$set: {image: result.getImgId,
+                        title:product.title,
+                        videosrc:product.videosrc,
+                        websiteUrl:product.websiteUrl,
+                        concat:product.concat
+                    }},
+                    options = {multi: true};
+                productsDaoBse.update(condition,update,options,function(data){
+                    if(data==null){
+                        data={"msg":"1"}
+                    }else{
+                        data={"msg":"0"}
+                    }
+                    callback(null,data);
+                })
+            }]
+        },function(err,results){
+            res.json(results.setImgIdAndUpdateData);
+        });
+    }else{
+        async.auto({
+            getImgId: function (callback) {
+                var fileProvider = new ImageFileProvider();
+                fileProvider.insert(product.image, function (fileId) {
+                    callback(null, fileId);
+                });
+            },
+            getVideoId: function (callback) {
+                var fileProvider = new ImageFileProvider();
+                fileProvider.insert(product.videosrc, function (fileId) {
+                    callback(null, fileId);
+                });
+            },
+            addData: ["getImgId", "getVideoId", function (callback, result) {
+                //product.image = result.getImgId;
+                //product.videosrc = result.getVideoId;
+                var condition = {_id:product._id},
+                    update = {$set: {
+                        image: result.getImgId,
+                        title:product.title,
+                        videosrc:result.getVideoId,
+                        websiteUrl:product.websiteUrl,
+                        concat:product.concat
+                    }},
+                    options = {multi: true};
+                productsDaoBse.update(condition,update,options,function(data){
+                    if(data==null){
+                        data={"msg":"1"}
+                    }else{
+                        data={"msg":"0"}
+                    }
+                    callback(null,data);
+                })
+            }]
+        }, function (err, results) {
+            res.json(results.addData);
+        });
+
+
+
+    }
 }
 
 //根据id查询产品
 exports.findProductById = function(req,res,next){
     var id=req.body.id;
     productsDaoBse.getById(id,function(err,product){
+        var fileProvider = new ImageFileProvider();
         fileProvider.read(product.image,function(data){
            product.image=data;
             res.json(product);
         });
-
     })
 }
 

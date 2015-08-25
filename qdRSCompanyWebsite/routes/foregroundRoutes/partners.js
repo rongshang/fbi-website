@@ -5,6 +5,10 @@ var howdo = require('howdo');
 var express = require('express');
 var router = express.Router();
 var path = require('path');
+var async = require('async');
+
+//图片处里
+var ImageFileProvider = require('../../src/javaScripts/nodejs/common/ImageFileProvider.js').ImageFileProvider;
 
 var daoBase = require("../../src/javaScripts/nodejs/dao/DaoBase");
 //合作伙伴模块
@@ -15,8 +19,8 @@ exports.allPartnersAjax = function(req,res){
     var pageCount=0;
     var pageNo = parseInt(req.query.pageNo);
     var pageSize = 5;
-    howdo
-        .task(function(done){
+    async.auto({
+        getCount:function(callback){
             partnersDaoBse.countByQuery({},function(err,count){
                 pageCount = parseInt(Math.ceil(count/pageSize));
                 if(pageNo>pageCount){
@@ -24,21 +28,48 @@ exports.allPartnersAjax = function(req,res){
                 }else if(pageNo<0){
                     pageNo = 1;
                 }
-                done(null,pageNo,pageCount);
+                callback(null,{"pageNo":pageNo,"pageCount":pageCount});
             });
-        })
-        .task(function(done){
+        },
+        getPartners:function(callback){
             partnersDaoBse.findAllByPage({createdTime:-1},pageNo,pageSize,function(err,allPartners){
-                done(null,allPartners);
+                callback(null,allPartners);
             });
-        })
-        .task(function(done){
+        },
+        getPartnerImg:["getPartners",function(callback,result){
             //合作伙伴图片
+            var count= 0;
+            result.getPartners.forEach(function(item,i){
+                var fileProvider = new ImageFileProvider();
+                fileProvider.read(item.image,function(data){
+                    count += 1;  //读完一个文件之后计数器自增
+                    item.image = data;
+                    if (count === result.getPartners.length) {
+                        callback(null, result.getPartners);
+                    }
+                });
+            })
+        }],
+        //左侧的3个图片
+        getTop3Partners:function(callback){
             partnersDaoBse.findByLimitAndSortAndQuery({image:{$ne:""}},{createdTime:-1},3,function(err,partnerImgs){
-                done(null,partnerImgs);
+                callback(null,partnerImgs);
             });
-        })
-        .together(function(err,pageNo,pageCount,allPartners,partnerImgs){
-            res.json({'title':'我们的伙伴','pageNo':pageNo,'pageCount':pageCount,'allPartners':allPartners,'partnerImgs':partnerImgs});
-        });
+        },
+        getTop3PartnersImg:["getTop3Partners",function(callback,result){
+            var count= 0;
+            result.getTop3Partners.forEach(function(item,i){
+                var fileProvider = new ImageFileProvider();
+                fileProvider.read(item.image,function(data){
+                    count += 1;  //读完一个文件之后计数器自增
+                    item.image = data;
+                    if (count === result.getTop3Partners.length) {
+                        callback(null, result.getTop3Partners);
+                    }
+                });
+            })
+        }]
+    },function(err,results){
+        res.json({'title':'我们的伙伴','pageNo':results.getCount.pageNo,'pageCount':results.getCount.pageCount,'allPartners':results.getPartnerImg,'partnerImgs':results.getTop3PartnersImg});
+    });
 }

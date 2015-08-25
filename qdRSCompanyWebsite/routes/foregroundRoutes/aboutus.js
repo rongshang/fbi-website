@@ -5,7 +5,11 @@ var howdo = require('howdo');
 var express = require('express');
 var router = express.Router();
 var path = require('path');
+var async = require('async');
 var daoBase = require("../../src/javaScripts/nodejs/dao/DaoBase");
+
+//图片处理
+var ImageFileProvider = require('../../src/javaScripts/nodejs/common/ImageFileProvider.js').ImageFileProvider;
 
 //产品模块
 var products = require("../../src/javaScripts/nodejs/models/index").products;
@@ -14,22 +18,18 @@ var productsDaoBse = new daoBase(products);
 //公司简介模块
 var companyprofiles = require("../../src/javaScripts/nodejs/models/index").companyprofiles;
 var companyprofilesDaoBse = new daoBase(companyprofiles);
-//var companyprofilesDao = require("../src/javaScripts/dao/companyprofilesDao");
 
 //企业文化模块
 var enterprisecultures = require("../../src/javaScripts/nodejs/models/index").enterprisecultures;
 var enterpriseculturesDaoBse = new daoBase(enterprisecultures);
-//var enterpriseculturesDao = require("../src/javaScripts/dao/enterpriseculturesDao");
 
 //发展历程模块
 var developments = require("../../src/javaScripts/nodejs/models/index").developments;
 var developmentsDaoBse = new daoBase(developments);
-//var developmentsDao = require("../src/javaScripts/dao/developmentsDao");
 
 //资质荣誉模块
 var honors = require("../../src/javaScripts/nodejs/models/index").honors;
 var honorsDaoBse = new daoBase(honors);
-//var honorsDao = require("../src/javaScripts/dao/honorsDao");
 
 //公司简介
 exports.companyprofile = function(req,res){
@@ -45,7 +45,7 @@ exports.companyprofile = function(req,res){
             })
         })
         .together(function(err,productsTitle,companyprofiles){
-            res.json({'title':'我们的产品','productsTitle':productsTitle,'companyprofiles':companyprofiles});
+            res.json({'title':'公司简介','productsTitle':productsTitle,'companyprofiles':companyprofiles});
         })
 }
 
@@ -63,7 +63,7 @@ exports.enterpriseculture = function(req,res){
             })
         })
         .together(function(err,productsTitle,enterprisecultures){
-            res.json({'title':'我们的产品','productsTitle':productsTitle,'enterprisecultures':enterprisecultures});
+            res.json({'title':'企业文化','productsTitle':productsTitle,'enterprisecultures':enterprisecultures});
         })
 }
 
@@ -81,24 +81,38 @@ exports.development = function(req,res){
             })
         })
         .together(function(err,productsTitle,developments){
-            res.json({'title':'我们的产品','productsTitle':productsTitle,'developments':developments});
+            res.json({'title':'发展历程','productsTitle':productsTitle,'developments':developments});
         })
 }
 
 //资质荣誉
 exports.honor = function(req,res){
-    howdo
-        .task(function(done){
+    async.auto({
+        getProductsTitle:function(callback){
             productsDaoBse.findByLimitAndSortAndQuery({},{createdTime:-1},8,function(err,productsTitle){
-                done(null,productsTitle);
+                callback(null,productsTitle);
             });
-        })
-        .task(function(done){
+        },
+        getHonors:function(callback){
             honorsDaoBse.findBySort({'createdTime':-1},function(err,honors){
-                done(null,honors);
+                callback(null,honors);
             })
-        })
-        .together(function(err,productsTitle,honors){
-            res.json({'title':'我们的产品','productsTitle':productsTitle,'honors':honors});
-        })
+        },
+        getHonorImg:["getHonors",function(callback,result){
+            var count = 0;
+            result.getHonors.forEach(function(item,i){
+                var fileProvider = new ImageFileProvider();
+                fileProvider.read(item.image,function(data){
+                    count += 1;  //读完一个文件之后计数器自增
+                    item.image = data;
+                    if (count === result.getHonors.length) {
+                        callback(null, result.getHonors);
+                    }
+                });
+            })
+        }]
+    },function(err,results){
+        res.json({'title':'资质荣誉','productsTitle':results.getProductsTitle,'honors':results.getHonorImg});
+
+    });
 }

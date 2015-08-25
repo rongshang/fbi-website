@@ -9,7 +9,6 @@ var routes = require('./routes/routes');
 var session = require('express-session');
 var url = require('url');
 var querystring = require('querystring');
-
 var app = express();
 
 // view engine setup
@@ -23,12 +22,11 @@ app.set('view engine', 'html');
 // uncomment after placing your favicon in /public
 //app.use(favicon(__dirname + '/public/favicon.ico'));
 app.use(logger('dev'));
+app.use(bodyParser({limit:'300mb'}));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'src')));
-
-
 //session
 app.use(session({
   secret:'secret',
@@ -39,31 +37,13 @@ app.use(session({
 
 //登录拦截器
 app.use(function(req, res, next){
-  //跟踪;
-  //console.log("req.method="+req.method);
-  //console.log("req.url="+req.url);
-  //console.log("req.originalUrl="+req.originalUrl);
   var url2 =url.format(req.originalUrl);
   var regExp = /^\/admin\//;
   var flag = regExp.test(url2);
-  console.log("===="+url2+"====flag==="+flag);
   if (url2 != "/admin/login" && !req.session.userinfo&&flag) {
     console.log("登录拦截器提示：必须登录，才能执行此项操作。");
-    //req.flash('error', '请先登录。');
     return res.redirect("/admin/login");
   }
-
-  //res.locals.userinfo = req.session.userinfo;
-  //
-  ////var error = req.flash('error');
-  //res.locals.error = error.length?error:null;
-  ////console.log("转移flash中的error值："+error);
-  //
-  ////var success = req.flash('success');
-  //res.locals.success = success.length?success:null;
-  ////console.log("转移flash中的success值："+success);
-  //
-  //res.locals.session = req.session;
   next();
 });
 
